@@ -2,7 +2,9 @@
 
 * [Overview](README.md)
 
-## Overview
+## Technologies
 
-* [Why Factom and not just Bitcoin?](overview/why-factom-and-not-just-bitcoin.md)
+## Enterprise Solutions
+
+## Developers
 
