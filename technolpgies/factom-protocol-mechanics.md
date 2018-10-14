@@ -1,2 +1,0 @@
-# Factom Protocol Mechanics
-
