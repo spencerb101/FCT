@@ -37,7 +37,7 @@ In the Factom network, data is organized into specific groups, and each group ca
 
 
 
-## Decentralized Identity 
+## Decentralized Identity \(Edit by Julian\)
 
 
 
