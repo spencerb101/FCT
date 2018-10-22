@@ -27,7 +27,31 @@ In the Factom network, data is organized into specific groups, and each group ca
 
 ## 2 Token System
 
+The majority of internet traffic runs on the TCP/IP protocol yet few understand how it works or even know that it exists. Technology integrates it seamlessly so that we don’t have to. If Factom is successful, businesses and people will one day use the Factom Protocol in much the same way when they want to ensure the integrity of their data. For true data integrity, one must have a trustless, decentralized, immutable, censorship resistant, autonomous protocol and that is exactly what Factom is building.  
+  
+While many in cryptocurrency circles have heard of Factom, most don’t know that it actually is a two-token system; Factoids \(FCT\) and Entry Credits \(EC\) and it is this two-token setup that, “Isolates use of the protocol from a tradable token” as Paul Snow states above. Even fewer understand the genius of this setup. As developers slowly begin to comprehend the utility of the two-token system, I suspect many future blockchains will replicate it.
 
+For Factom to be decentralized, the design calls for 64 “Authority Nodes” which are run by "Authority Node Operator \(ANO\)" companies. These ANOs provide a service and in return, they are compensated in Factoids \(FCT\) which are the publicly traded token that has its’ price determined by the market. The protocol compensates the 64 Authority Nodes with approximately 73,000 FCT per month.
+
+Now, the Founders of Factom realized that many businesses will want to use their protocol BUT there would be two problems with this:
+
+1. Many companies cannot hold cryptocurrencies for regulatory or internal policy reasons.
+
+2. Cryptocurrencies tend to be highly volatile and companies need to be able to budget effectively to use something like the Factom Protocol. If the token you use is $5.00 one day, $30.00 a week later, and $2.00 a month later, you can’t effectively budget.
+
+As such, the Founders came up with an absolutely brilliant solution. They created Entry Credits \(EC\) in addition to Factoids thus inventing the two-token system and isolate the use of the protocol from the tradable token. It is ENTRY CREDITS that allow you to enter data into the Factom Protocol. One EC allows you to enter up to 1kb of data and costs $.001. Note it’s not .001 FCT, but $.001. You receive EC by burning FCT and that FCT \(and all fees\) are removed completely \(burned\) thus reducing future inflation. To reinforce the fact that EC are priced in dollars, not FCT, note that:
+
+If one FCT is worth $1.00 and you burn it, you get 1,000 EC
+
+If one FCT is worth $10.00 and you burn it, you get 10,000 EC
+
+EC are not transferable and you can’t turn them back into FCT, HOWEVER, you CAN purchase EC and have a service like this one acquire and burn the FCT on your behalf. You pay a premium to them for that service, but you don’t have to hold or deal with cryptocurrency.
+
+This solves the two problems:
+
+1. Companies don’t have to hold cryptocurrency if they don’t want to or can’t.
+
+2. Companies can effectively budget for the cost of using the protocol because the cost for EC will be $.001 each.
 
 ## Factom Protocol Mechanics
 
