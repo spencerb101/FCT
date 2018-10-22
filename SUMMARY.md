@@ -8,9 +8,10 @@
 * [Getting Started](developers/getting-started.md)
 * [Enterprise Wallet Setup](developers/enterprise-wallet-setup.md)
 * [Factom Explorer](developers/factom-explorer.md)
+* [Factomd Control Panel](developers/factomd-control-panel.md)
 * [Tutorials](developers/tutorials.md)
 * [ANO Guides & Tutorials](developers/ano-guides-and-tutorials.md)
-* [Factomd Control Panel](developers/factomd-control-panel.md)
+* [Factom API Docs](developers/factom-api-docs.md)
 
 ## Enterprise Solutions
 
