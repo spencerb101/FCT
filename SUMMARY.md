@@ -12,6 +12,7 @@
 * [Tutorials](developers/tutorials.md)
 * [ANO Guides & Tutorials](developers/ano-guides-and-tutorials.md)
 * [Factom API Docs](developers/factom-api-docs.md)
+* [Factom CLI Docs](developers/factom-cli-docs.md)
 
 ## Enterprise Solutions
 
