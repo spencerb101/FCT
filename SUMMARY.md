@@ -10,6 +10,7 @@
 * [Factom Explorer](developers/factom-explorer.md)
 * [Tutorials](developers/tutorials.md)
 * [ANO Guides & Tutorials](developers/ano-guides-and-tutorials.md)
+* [Factomd Control Panel](developers/factomd-control-panel.md)
 
 ## Enterprise Solutions
 
