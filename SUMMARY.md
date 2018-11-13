@@ -1,7 +1,6 @@
 # Table of contents
 
 * [Protocol Overview](README.md)
-* [Enterprise Solutions](enterprise-solutions-1.md)
 
 ## Developers
 
