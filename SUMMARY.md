@@ -4,7 +4,6 @@
 
 ## Developers
 
-* [Getting Started](developers/getting-started.md)
 * [Enterprise Wallet Setup](developers/enterprise-wallet-setup.md)
 * [Factom Explorer](developers/factom-explorer.md)
 * [Factomd Control Panel](developers/factomd-control-panel.md)
