@@ -53,15 +53,9 @@ This solves the two problems:
 
 2. Companies and governments can effectively budget for the cost of using the protocol because the cost for EC will be $.001 each.
 
-## Factom Protocol Mechanics
 
 
 
-## Extensive Open-Source Libraries 
-
-
-
-## Decentralized Identity
 
 
 
