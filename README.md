@@ -7,7 +7,7 @@ Factom is a blockchain protocol built to leverage the security and immutability 
 Bitcoin is the largest, most secure, and most trusted distributed ledger that exists in the world today. This is a function of network value and hash power. Bitcoin leads all cryptoassets on both. Data contained in the Bitcoin blockchain is immutable and auditable in a way that was impossible before Bitcoin was created. While the majority of development within the Bitcoin ecosystem has focused on Bitcoin as a payment or value transfer mechanism, the security and immutability of the Bitcoin blockchain can be leveraged in novel ways. Outside of payments, one of the most compelling use cases for blockchain technology is the ability to record and secure arbitrary kinds of data.  
 
 
-## **Why Factom and not just Bitcoin?** 
+## **Why Factom and not just Bitcoin?**
 
 There are several reasons why enterprise clients, especially those dealing with large amounts of data, would not want to record that data directly onto the Bitcoin blockchain:
 
