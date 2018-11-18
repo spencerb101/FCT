@@ -1,4 +1,4 @@
-# Enterprise Wallet Setup
+# Enterprise Wallet
 
 ### Before You Begin <a id="before-you-begin"></a>
 

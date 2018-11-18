@@ -2,14 +2,14 @@
 
 * [Protocol Overview](README.md)
 
-## Developers
+## Getting Started
 
-* [Enterprise Wallet Setup](developers/enterprise-wallet-setup.md)
-* [Factom Explorer](developers/factom-explorer.md)
-* [Factomd Control Panel](developers/factomd-control-panel.md)
-* [Factom API Docs](developers/factom-api-docs.md)
-* [Factom CLI Docs](developers/factom-cli-docs.md)
-* [ANO Guides & Tutorials](developers/ano-guides-and-tutorials.md)
+* [Factom Explorer](start/factom-explorer.md)
+* [Factom API Docs](start/factom-api-docs.md)
+* [Factom CLI Docs](start/factom-cli-docs.md)
+* [Factom Clients](start/factom-clients.md)
+* [Factomd Control Panel](start/factomd-control-panel.md)
+* [Testnet Information](start/testnet-information.md)
 
 ## Technologies
 
@@ -17,4 +17,16 @@
 * [Smart Contracts](technologies/smart-contracts.md)
 * [Digital Identities](technologies/digital-identities.md)
 * [Voting Protocols](technologies/voting-protocols.md)
+
+## Wallets
+
+* [Enterprise Wallet](wallets/enterprise-wallet-setup.md)
+* [Ledger Nano S Wallet](wallets/ledger-nano-s-wallet.md)
+* [MyFactomWallet](wallets/myfactomwallet.md)
+* [Paper Wallet](wallets/paper-wallet.md)
+
+## Authority Node Operators
+
+* [ANO Guides & Tutorials](authority-node-operators/ano-guides-and-tutorials.md)
+* [ANO Tools and Resources](authority-node-operators/ano-tools-and-resources.md)
 
