@@ -703,7 +703,7 @@ Please wait for your node to be fully synced by checking the control panel node 
 ### Preparing the brain swap
 
 {% hint style="info" %}
-For experienced and seasoned brain swappers there's an automated brain swap script made by Stamp-IT found [here](https://github.com/Stamp-IT-io/brainswap). **Do not try this, if this is the first time you're doing a brainswap**.
+For experienced and seasoned brain swappers there's an automated brain swap script made by Stamp-IT found [here](https://github.com/Stamp-IT-io/brainswap). However, **do not try this if this is the first time you're doing a brainswap, as it's important to understand the process in case something goes wrong.**
 {% endhint %}
 
 To perform the brain swap you will need one standby node that is ready. The standby node should be running the most recent Factomd software version if you've completed the previous steps.
