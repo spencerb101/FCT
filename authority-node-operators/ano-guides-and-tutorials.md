@@ -648,7 +648,7 @@ This tutorial is fully covered in the video shown above.
 
 ### What is a brainswap
 
-Brainswappingis the idea of having two nodes switch identities at the same time. We call it "brainswapping" because a node's identity dictates how it behaves.
+Brainswapping is the idea of having two nodes switch identities at the same time. We call it "brainswapping" because a node's identity dictates how it behaves.
 
 It was implemented as a way to update the network without having to bring it down, as federated servers can "brainswap" with standby nodes that have already been updated with the new code.
 
@@ -660,7 +660,7 @@ The procedure can also be used for migrating the Authority identity to a new phy
 
 ### Updating your node
 
-First check if your node is running the latest version. This can be done by comparing your nodes version with the latest found here, usually at the top. If your follower is not running the latest version, you can proceed by stopping and removing the current `factomd` docker container.
+First check if your node is running the latest version. This can be done by comparing your nodes version with the latest found [here](https://hub.docker.com/r/factominc/factomd/tags/). If your follower is not running the latest version, you can proceed by stopping and removing the current `factomd` docker container.
 
 ```text
 docker stop factomd
@@ -671,23 +671,21 @@ docker rm factomd
 Dont worry, this will not delete or remove the synchronised database.
 {% endhint %}
 
-
-
-This is also a good time to update and reboot the system if you have any pending updates or reboots. To update simply run the following commands.
+This is also a good time to update and reboot the system, if you have any pending updates or reboots. To update simply run the following commands.
 
 ```text
 sudo apt-get update
 sudo apt-get upgrade
 ```
 
-Now, run the following command exactly:
+Now, run the following command exactly :
 
 ```text
 docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8108:8108" -l "name=factomd" factominc/factomd:v6.1.0-alpine -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf
 ```
 
 {% hint style="info" %}
-If you're updating or brainswapping a node on the testnet you need to add the following parameters to the command above, before `startdelay=600`:
+If you're updating or brainswapping a node on the testnet you need to add the following parameters to the command above, before `-startdelay=600`:
 
 ```text
 -broadcastnum=16 -network=CUSTOM -customnet=fct_community_test
@@ -696,7 +694,7 @@ If you're updating or brainswapping a node on the testnet you need to add the fo
 
 After this your node will be started. You can check for the existence of a factom container using the command `docker ps`.
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 Please wait for your node to be fully synced by checking the control panel node sync statuses to be 100% before performing any next steps. Please also regard the initial wait period of 20 minutes before doing anything with your node. Furthermore, note that the `factomd:v6.1.0-alpine` version may have changed since the time of writing.
 {% endhint %}
 
