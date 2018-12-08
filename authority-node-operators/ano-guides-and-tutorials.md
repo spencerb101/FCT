@@ -33,7 +33,7 @@ The specifications are subject to change at any time as the network matures.
 
 Setting up a factomd node is very easy, download the latest release by running the following:
 
-`wget` [`https://github.com/FactomProject/distribution/releases/download/v6.0.1/factom-amd64.deb`](https://github.com/FactomProject/distribution/releases/download/v6.0.1/factom-amd64.deb)\`\`
+`wget` [`https://github.com/FactomProject/distribution/releases/download/v6.1.0/factom-amd64.deb`](https://github.com/FactomProject/distribution/releases/download/v6.1.0/factom-amd64.deb)\`\`
 
 {% hint style="danger" %}
 The version in the above command may be outdated, be sure to check what the [latest release](https://github.com/FactomProject/distribution/releases) is. 
@@ -85,7 +85,7 @@ sudo cp factomd.conf /var/docker/volumes/factom_keys/_data/factomd.conf
 Run Factomd in Docker:
 
 ```text
-docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8108:8108" -l "name=factomd" factominc/factomd:v6.0.1-alpine -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf
+docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8108:8108" -l "name=factomd" factominc/factomd:v6.1.0-alpine -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf
 ```
 
 {% hint style="danger" %}
@@ -525,7 +525,7 @@ Only accept logins at federation.factomd.com. Any other login endpoints are frau
 
 Run the following command _exactly:_
 
-`docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8108:8108" -l "name=factomd" factominc/factomd:v6.0.1-alpine -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf`
+`docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8108:8108" -l "name=factomd" factominc/factomd:v6.1.0-alpine -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf`
 
 {% hint style="info" %}
 If you want the Factomd container to start at system boot \(reboots\) you can add the following parameter to the command above:
@@ -556,7 +556,7 @@ Now you're free to start the `factomd` container again with `docker start factom
 If you check the currently running docker containers you'll see a container named `factominc/filebeat:m3-debug` , this is generally a good sign as it means the portainer system has successfully connected and started a container remotely. 
 
 {% hint style="warning" %}
-Please wait for your node to be fully synced by checking the control panel node sync statuses to be 100% before performing any next steps. Please also regard the initial wait period of 20 minutes before doing anything with your node. Also note that the `factomd:v6.0.1-alpine` version may have changed since the time of writing.
+Please wait for your node to be fully synced by checking the control panel node sync statuses to be 100% before performing any next steps. Please also regard the initial wait period of 20 minutes before doing anything with your node. Also note that the `factomd:v6.1.0-alpine` version may have changed since the time of writing.
 {% endhint %}
 
 ## Securing your node with SSH and iptables
