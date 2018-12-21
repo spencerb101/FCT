@@ -5,6 +5,7 @@
 
 ## Getting Started
 
+* [Developer Sandbox Setup Guide](start/developer-sandbox-setup-guide.md)
 * [Factom Explorer](start/factom-explorer.md)
 * [Factom API Docs](start/factom-api-docs.md)
 * [Factom CLI Docs](start/factom-cli-docs.md)
