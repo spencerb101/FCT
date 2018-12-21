@@ -12,3 +12,9 @@ Securing and validating the data on your existing legacy systems is easy and eff
 
 You don't need to learn a new language to build on top of the Factom Protocol.  In fact, we already have libraries for many of the languages you already love to build with:
 
+[Factom.js](https://github.com/PaulBernier/factomjs) - An interface to factomd API to make it super simple to query, create transactions, chains and entries
+
+[Java Enterprise Client Library](https://github.com/bi-foundation/factom-java) - Java Library integrates Java \(JEE & Spring\) with the Factom blockchain
+
+[C\# / .net Library](https://github.com/FactoidAuthority/FactomSharp) - The .NET-library supports the complete factomd- and walletd-API.
+
