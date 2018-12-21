@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Protocol Overview](README.md)
+* [Welcome Developers!](welcome-developers.md)
 
 ## Getting Started
 
