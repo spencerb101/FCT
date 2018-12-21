@@ -6,7 +6,7 @@ The Factom Protocol is a one of a kind pure data blockchain that makes securing 
 
 ## Use With Legacy Systems
 
-Securing and validating the data on your existing legacy systems is easy and efficient with the Factom Protocol.  Simply tap into an existing API solution or build your own.
+Securing and validating the data on your existing legacy systems is easy and efficient with the Factom Protocol.  [Simply tap into an existing API solution or build your own](https://developers.factomprotocol.org/start/factom-api-docs).
 
 ## Use The Languages You Already Know
 
