@@ -10,7 +10,7 @@ Securing and validating the data on your existing legacy systems is easy and eff
 
 ## Use The Languages You Already Know
 
-You don't need to learn a new language to build on top of the Factom Protocol.  In fact, we already have libraries for many of the languages you already utilize:
+You don't need to learn a new language to build on top of the Factom Protocol.  In fact, we have libraries for many of the languages you already utilize:
 
 [Factom.js](https://github.com/PaulBernier/factomjs) - An interface to factomd API to make it super simple to query, create transactions, chains and entries
 
