@@ -64,5 +64,5 @@ At this point it's up to you how you wish to get these on a piece of paper, writ
 It is highly recommended that you send a very small amount the first time and then check the balance after some time on a Factom explorer. For example on [https://explorer.factoid.org/](https://explorer.factoid.org/) or [https://explorer.factom.com/](https://explorer.factom.com/). Paste your Factoid address to the search bar and information about your wallet will show up after some time.
 {% endhint %}
 
-To withdraw your Factoids from your wallet you can use the Factom Enterprise Wallet. A guide on how to import the private key and send the coins can be found on the menu bar to the left, or just click [here](https://developers.factomprotocol.org/wallets/enterprise-wallet-setup).
+To withdraw your Factoids from your wallet you can use the Factom Enterprise Wallet. A guide on how to import the private key to the Factom Enterprise wallet and send the coins can be found on the menu bar to the left, or just click [here](https://developers.factomprotocol.org/wallets/enterprise-wallet-setup#import-private-key).
 
