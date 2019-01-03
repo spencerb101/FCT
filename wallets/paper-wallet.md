@@ -6,7 +6,13 @@ This guide also assumes you're on a secure system that you're sure is not compro
 
 {% tabs %}
 {% tab title="Windows" %}
-[https://github.com/FactomProject/factoidpapermill/raw/master/bin/factoidpapermill.exe](https://github.com/FactomProject/factoidpapermill/raw/master/bin/factoidpapermill.exe)
+First you need to download the file. Clicking [here ](https://github.com/FactomProject/factoidpapermill/raw/master/bin/factoidpapermill.exe)will start the download. After its finished browse to the location it downloaded to.
+
+Next up you need to open a command prompt. Search for CMD at the search bar next to the windows icon at the bottom left and click the top result. As seen in the image below.
+
+![The windows language here is not english, thus the result might be different from what you get. ](../.gitbook/assets/cmd.png)
+
+Now with the command promt open, drag the downloaded factoidpapermill-windows.exe file into the command prompt box and hit enter.
 {% endtab %}
 
 {% tab title="Linux" %}
@@ -31,26 +37,26 @@ And simply run it:
 ```bash
 ./factoidpapermill-linux
 ```
+{% endtab %}
+{% endtabs %}
 
-After you run it you should see something similar to the image below. That's your private key and Factoid address. 
+After you run it you should see something similar to the image below. That's your private key and Factoid address.
 
 ![Example of running the Factoidpapermill on Linux. ](../.gitbook/assets/papermill-example.PNG)
 
 {% hint style="danger" %}
 Do **NOT** share the Factoid Private Key with anyone. If you lose this, you will most likely lose your funds stored on that address. 
 
-However, The Factoid address is safe to share as is your public address Factoid users can send Factoids \(FCT\) to. 
+However, The Factoid address is safe to share as is your public address Factoid users can send Factoids \(FCT\) to.
 {% endhint %}
 
-At this point it's up to you how you wish to get these on a piece of paper, write them manually or print them. After that's done put the paper wallet in a highly secure location such as a safe deposit box or something similar. 
+At this point it's up to you how you wish to get these on a piece of paper, write them manually or print them. After that's done put the paper wallet in a highly secure location such as a safe deposit box.
 
-If you wish to send funds to the wallet, simply send Factoids \(FCT\) to the Factoid address generated. 
+ If you wish to send funds to the wallet, simply send Factoids \(FCT\) to the Factoid address generated.
 
 {% hint style="warning" %}
-It is highly recommended that you send a very small amount the first time and then check the balance after some time on a Factom explorer. For example on [https://explorer.factoid.org/](https://explorer.factoid.org/) or [https://explorer.factom.com/](https://explorer.factom.com/). Simply paste your Factoid address to the search bar and It'll show up after some time. 
+It is highly recommended that you send a very small amount the first time and then check the balance after some time on a Factom explorer. For example on [https://explorer.factoid.org/](https://explorer.factoid.org/) or [https://explorer.factom.com/](https://explorer.factom.com/). Paste your Factoid address to the search bar and information about your wallet will show up after some time.
 {% endhint %}
 
-To withdraw your Factoids from your wallet you can use the Factom Enterprise Wallet. A guide on how to import the private key and send the coins can be found on the menu bar to the left, or just click [here](https://developers.factomprotocol.org/wallets/enterprise-wallet-setup). 
-{% endtab %}
-{% endtabs %}
+To withdraw your Factoids from your wallet you can use the Factom Enterprise Wallet. A guide on how to import the private key and send the coins can be found on the menu bar to the left, or just click [here](https://developers.factomprotocol.org/wallets/enterprise-wallet-setup).
 
