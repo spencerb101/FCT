@@ -44,7 +44,9 @@ And simply run it:
 {% endtab %}
 {% endtabs %}
 
-After you run it you should see something similar to the image below. That's your private key and Factoid address.
+After you run it you should see something similar to the images below, depending on your system. That's your private key and Factoid address.
+
+![Example of running the Factoidpapermill on Windows. ](../.gitbook/assets/papermill-example%20%281%29.PNG)
 
 ![Example of running the Factoidpapermill on Linux. ](../.gitbook/assets/papermill-example.PNG)
 
