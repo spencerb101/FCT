@@ -8,6 +8,10 @@ This guide also assumes you're on a secure system that you're sure is not compro
 {% tab title="Windows" %}
 First you need to download the file. Clicking [here ](https://github.com/FactomProject/factoidpapermill/raw/master/bin/factoidpapermill.exe)will start the download. After it's finished, browse to the location it downloaded to and let that window be open, we will use it soon.
 
+{% hint style="info" %}
+After the download you're free to disconnect the system from the internet if you wish to do so, as the factoidpapermill doesn't require you to be online.
+{% endhint %}
+
 Next up you need to open a command prompt. Search for `CMD`at the search bar next to the windows icon at the bottom left and click the top result. As seen in the image below.
 
 ![The windows language here is not english, thus the result might be different from what you get. ](../.gitbook/assets/cmd.png)
