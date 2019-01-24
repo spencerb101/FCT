@@ -18,7 +18,9 @@ You don't need to learn a new language to build on top of the Factom Protocol.  
 
 [C\# / .net Library](https://github.com/FactoidAuthority/FactomSharp) - The .NET-library supports the complete factomd- and walletd-API.
 
-[Python Client Library](https://github.com/bhomnick/factom-api) - Provides Python clients for interacting with the factomd and factom-walletd APIs. The API client is fully tested under Python 2.7, 3.4, 3.5, and 3.6, and likely works with other versions as well.
+[Python Client Library](https://github.com/TRGG3R/factom-api) - Provides Python clients for interacting with the factomd and factom-walletd APIs. The API client is fully tested under Python 2.7, 3.4, 3.5, and 3.6, and likely works with other versions as well.
+
+[PHP SDK for Factom Enterprise API](https://github.com/DeFacto-Team/Factom-EnterpriseAPI-php) - Integrate Factom blockchain in your PHP application with just a few lines of code.
 
 
 
