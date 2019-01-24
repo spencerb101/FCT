@@ -292,7 +292,7 @@ Edit some of the values at the top of the python script to make different Entrie
 You can get some diagnostic info from the control panel \(which incidentally doesn't control anything\). Browse to [http://localhost:8090](http://localhost:8090/).
 
 {% hint style="success" %}
-Your Factom sandbox container is now all setup. The next steps are setting up the Python environment and writing/running some code.
+Your Factom sandbox container is now setup, you're now ready to interact with the Factom blockchain! Why not follow one of the hello-world examples for your favorite client? Head over to the [Hello-world examples](https://developers.factomprotocol.org/start/hello-world-examples) section for an overview.
 {% endhint %}
 
 ## **Setup a Factom Remote Server**
@@ -334,7 +334,7 @@ factomd -network=CUSTOM -customnet="mycustomnet" -exclusive=true -peers="SERVERI
 The rest of the steps with [factom-walletd and factom-cli](https://github.com/FactomProject/FactomDocs/blob/master/developerSandboxSetup.md#run-factomd) should work on the local machine.
 
 {% hint style="success" %}
-Your Factom sandbox container is now all setup. The next steps are setting up the Python environment and writing/running some code.
+Your Factom sandbox container is now setup, you're now ready to interact with the Factom blockchain! Why not follow one of the hello-world examples for your favorite client? Head over to the [Hello-world examples](https://developers.factomprotocol.org/start/hello-world-examples) section for an overview.
 {% endhint %}
 
 ## Run a Dockerized Factom sandbox
@@ -415,7 +415,7 @@ docker exec -it fct-sandbox factom-cli newecaddress
 You should see an EC address returned \(it starts with `EC`\). Write down this address as well, as we’ll be using it later.
 
 {% hint style="success" %}
-Your Factom sandbox container is now all setup. The next steps are setting up the Python environment and writing/running some code.
+Your Factom sandbox container is now setup, you're now ready to interact with the Factom blockchain! Why not follow one of the hello-world examples for your favorite client? Head over to the [Hello-world examples](https://developers.factomprotocol.org/start/hello-world-examples) section for an overview.
 {% endhint %}
 
 ## Resetting the Blockchain

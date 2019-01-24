@@ -26,3 +26,9 @@ The .NET-library supports the complete factomd- and walletd-API.
 
 [C\#/.NET Client Library](https://github.com/FactoidAuthority/FactomSharp)
 
+## PHP client
+
+Integrate Factom blockchain in your PHP application with just a few lines of code.
+
+[PHP SDK for Factom Enterprise API](https://github.com/DeFacto-Team/Factom-EnterpriseAPI-php)
+
