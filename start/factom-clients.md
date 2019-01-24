@@ -8,9 +8,11 @@ An interface to factomd API to make it super simple to query, create transaction
 
 ## Python Client
 
-Provides Python clients for interacting with the factomd and factom-walletd APIs. The API client is fully tested under Python 2.7, 3.4, 3.5, and 3.6, and likely works with other versions as well.
+Provides Python clients for interacting with the `factomd` and `factom-walletd` APIs. The API client is fully tested under Python 2.7, 3.4, 3.5, and 3.6, and likely works with other versions as well.
 
-[Python Client Library](https://github.com/bhomnick/factom-api)
+[Python Client Library](https://github.com/TRGG3R/factom-api)  
+  
+[Hello world example for Python](https://developers.factomprotocol.org/start/hello-world-examples/python)
 
 ## Java Client
 

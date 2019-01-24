@@ -6,6 +6,8 @@
 ## Getting Started
 
 * [Developer Sandbox Setup Guide](start/developer-sandbox-setup-guide.md)
+* [Hello-world examples](start/hello-world-examples/README.md)
+  * [Python](start/hello-world-examples/python.md)
 * [Enterprise Wallet](start/enterprise-wallet.md)
 * [Factom Explorer](start/factom-explorer.md)
 * [Factom API Docs](start/factom-api-docs.md)

@@ -6,69 +6,86 @@ Use Factoids with private key `Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9
 
 There are three options for running a sandbox.
 
-1. Run only a local sandbox server
+1. [**Run only a local sandbox server**](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#setup-a-local-sandbox-factom-server)\*\*\*\*
+   1. Minimal setup
+   2. good for quickly testing APIs
+   3. Better feedback metrics
+2. [**Run a test server and client**](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#setup-a-factom-remote-server)\*\*\*\*
+   1. Much closer to production experience
+   2. Needed if multiple clients are used
+   3. Factom setup needed on two different computers
+3. [**Run a Dockerized Factom sandbox**](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#run-a-dockerized-factom-sandbox)\*\*\*\*
+   1. Zero setup
+   2. Good if you are already familiar with Docker
+   3. Almost the same as running a local sandbox server
 
-* Minimal setup
-* good for quickly testing APIs
-* Better feedback metrics
+## Setup a Local Sandbox Factom Server
 
-1. Run a test server and client
+### **Install Factom Binaries**
 
-* Much closer to production experience
-* Needed if multiple clients are used
-* Factom setup needed on two different computers
+Download the appropriate Factom binary package from factom.org. Installers for for Windows, Mac, and Linux are hosted at [https://github.com/FactomProject/distribution](https://github.com/FactomProject/distribution). Directions for installing Factom Federation may be found [here](https://docs.factom.com/#install-factom-federation-ff).
 
-1. Run a Dockerized Factom sandbox
+Install the binaries like you would any other for your OS. The install directions walk you through various operating systems. Do not run them yet, as you will be making your own fresh blockchain instead of using the public one.
 
-* Zero setup
-* Good if you are already familiar with Docker
-* Almost the same as running a local sandbox server
+{% hint style="info" %}
+ If you did run `factomd` before setup, follow the directions found [here ](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#resetting-the-blockchain)to reset the blockchain.
+{% endhint %}
 
-#### Setup a Local Sandbox Factom Server
+Three programs are installed: `factomd`, `factom-walletd`, and `factom-cli`. You may also wish to install the GUI [Enterprise Wallet](https://docs.factom.com/#enterprise-wallet).
 
-**Install Factom Binaries**
+* `Factomd` is the main program. It manages the blockchain, connects to the public network, and enforces the network rules.
+* `factom-walletd` is an application for holding private keys. It builds Factoid transactions and handles crypto related operations to add user data into Factom.
+* `Factom-cli` is a program for users to interface with `factomd` and `factom-walletd`. It may be used to create Chains, Entries, and Factoid transactions.
 
-Download the appropriate Factom binary package from factom.org
+### **Configure Factomd for Sandbox use**
 
-Directions for installing Factom Federation may be found [here](https://docs.factom.com/#install-factom-federation-ff)
+Create a folder in your user home folder. The folder should be called `.factom`. If factomd has been run on your computer before this folder will already exist and may already contain part of the Factom blockchain.
 
-Installers for for Windows, Mac, and Linux are hosted at [https://github.com/FactomProject/distribution](https://github.com/FactomProject/distribution)
+In a terminal on Linux or  Mac, run: 
 
-Install the binaries like you would any other for your OS. The install directions walk you through various operating systems. Do not run them yet, as you will be making your own fresh blockchain instead of using the public one. If you did run factomd before setup, follow the directions below for resetting the blockchain.
+```bash
+mkdir -p ~/.factom/m2
+```
 
-Three programs are installed: factomd, factom-walletd, and factom-cli. You may also wish to install the GUI [Enterprise Wallet](https://docs.factom.com/#enterprise-wallet).
+or Windows: 
 
-* Factomd is the main program. It manages the blockchain, connects to the public network, and enforces the network rules.
-* factom-walletd is an application for holding private keys. It builds Factoid transactions and handles crypto related operations to add user data into Factom.
-* Factom-cli is a program for users to interface with factomd and factom-walletd. It may be used to create Chains, Entries, and Factoid transactions.
+```bash
+mkdir %HOMEDRIVE%%HOMEPATH%\.factom\m2
+```
 
-**Configure Factomd for Sandbox use**
+Save the configuration file [factomd.conf](https://raw.githubusercontent.com/FactomProject/factomd/master/factomd.conf) to your `.factom/m2` directory. Open `factomd.conf` and edit the following:
 
-Create a folder in your user home folder. The folder should be called `.factom`. If factomd has been run on your computer before this folder will already exist and may already contain part of the factom blockchain.
-
-In a terminal Linux and Mac: `mkdir -p ~/.factom/m2`or Windows: `mkdir %HOMEDRIVE%%HOMEPATH%\.factom\m2`
-
-Save the configuration file [factomd.conf](https://raw.githubusercontent.com/FactomProject/factomd/master/factomd.conf) to your `.factom/m2` directory.
-
-* Open `factomd.conf`
 * Change the line `Network` from `MAIN` to `LOCAL`
-  * This will cause factomd to run on its own local network rather than the factom main network.
+  * This will cause `factomd` to run on its own local network rather than the Factom main network.
 * Change the line `NodeMode` from `FULL` to `SERVER`
-  * This will make factomd create a blockchain
-* Optionally adjust `DirectoryBlockInSeconds`. 600 gives 10 minute blocks, which is more realistic
-  * The default is for 6 second blocks which is easier to develop with, but may cuase some strange behavior and errors.
+  * This will make `factomd` create a blockchain.
+* Optionally, adjust `DirectoryBlockInSeconds`. 600 gives 10 minute blocks, which is more realistic
+  * The default is for 6 second blocks which is easier to develop with, but may causesome strange behavior and errors.
+* For easier debugging, change the `logLevel` to `debug`. This exports pointers to data which is added into Factom to the `~/.factom/data/export/` directory. Adding new entries will add new files to the directory with the specified ChainID.
 
-For easier debugging, change the `logLevel` to `debug`. This exports pointers to data which is added into factom to the ~/.factom/data/export/ directory. Adding new entries will add new files to the directory with the specified ChainID.
+### **Run Factomd in sandbox mode**
 
-**Run Factomd in sandbox mode**
+In a terminal window, run:
 
-In a terminal window, run `factomd -network=CUSTOM -customnet="mycustomnet" -exclusive=true`. \(Windows users have a desktop shortcut\)
+```bash
+factomd -network=CUSTOM -customnet="mycustomnet" -exclusive=true
+```
 
-In a new terminal window, run `factom-walletd`. \(Windows users have a desktop shortcut\)
+In a new terminal window, run:
 
-In a new terminal window, run `factom-cli properties` \(Windows users may have to browse to the install location of factom-cli, or it might be in the path\)
+```bash
+factom-walletd
+```
 
-```text
+In a new terminal window, run:
+
+```bash
+factom-cli properties
+```
+
+Result should be similar to:
+
+```bash
 % factom-cli properties
 CLI Version: 0.2.0.2
 Factomd Version: 0.4.0.2
@@ -77,60 +94,90 @@ Wallet Version: 0.2.0.2
 Wallet API Version: 2.0
 ```
 
-Once factomd is running you can use an internet browser and navigate to to view the factomd Control Panel.
+{% hint style="info" %}
+Windows users have a desktop shortcut for both first and second command, for the last one you might have to browse to the install location of `factom-cli`, or it might be in the path.
+{% endhint %}
 
-**Charge an Entry Credit key**
+Once `factomd` is running you can use an internet browser and navigate to view the `factomd` Control Panel, found at [http://localhost:8090](http://localhost:8090).
 
-We use a Factoid key which has a balance of 40000 in the genesis block. It has since been depleted on mainnet, but can be used on sandbox systems. The private key is: `Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK` The public key is: `FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q`
+### **Charge an Entry Credit key**
 
-```text
-% factom-cli importaddress Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK
-FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q
+We use a Factoid key which has a balance of 40000 in the genesis block. It has since been depleted on main net, but can be used on sandbox systems. 
+
+The private key is: `Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK` 
+
+The public key is: `FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q`
+
+To import the address, run:
+
+```bash
+factom-cli importaddress Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK
 ```
 
-We will generate a new Entry Credit address.
+Now lets generate a new Entry Credit address:
 
-```text
-% factom-cli newecaddress
-EC2kMjtY5jB5sLLzFtfzaA2rU92fqdNeiWNWjvtKmYQoG7fXFTmG
+```bash
+factom-cli newecaddress
 ```
 
+To verify that you've imported and generated your addresses you can list them:
+
+```bash
+factom-cli listaddresses
+```
+
+Result should be similar to:
+
 ```text
-% factom-cli listaddresses
 FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q 40000
 EC2kMjtY5jB5sLLzFtfzaA2rU92fqdNeiWNWjvtKmYQoG7fXFTmG 0
 
+% Named the addresses fa1 and ec1
 % fa1=FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q
 % ec1=EC2kMjtY5jB5sLLzFtfzaA2rU92fqdNeiWNWjvtKmYQoG7fXFTmG
 ```
 
 Then purchase Entry Credits using our Factoid address.
 
-```text
-% factom-cli buyec $fa1 $ec1 10000
-TxID: ce18d00316508dd44a02d20bb3d9ee15f909bd9a099dd1b9b4576e2688f8f42a
-Status: TransactionACK
-% factom-cli balance $ec1
-10000
+```bash
+factom-cli buyec $fa1 $ec1 10000
 ```
 
-**Make Entries into Factom**
+Result:
+
+```bash
+TxID: ce18d00316508dd44a02d20bb3d9ee15f909bd9a099dd1b9b4576e2688f8f42a
+Status: TransactionACK
+```
+
+If you want to check your EC balance run:
+
+```bash
+factom-cli balance $ec1
+```
+
+### **Make Entries into Factom**
 
 All Entries in Factom need to be in a Chain. First, make a Chain for your entries to live in.
 
-```text
+```bash
 % echo "This is the payload of the first Entry in my chain" | factom-cli addchain -n thisIsAChainName -n moreChainNameHere $ec1
 CommitTxID: e8950db51f6c15e10fdc6cc928cd40a5b9438b775708bdf4cabb266b0c1ffb5a
 ChainID: 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
 Entryhash: e8a838f95c1fe873e0c7faae401cef31d6273644c32aa2324946613a594c0c77
 ```
 
-It makes the chain `23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8`
+It makes the chain with `ChainID`: `23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8`
 
 Check the status of the Chain.
 
-```text
-% factom-cli get chainhead 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
+```bash
+factom-cli get chainhead 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
+```
+
+Result:
+
+```bash
 EBlock: c18bf1688d20b145d53f6e995ff8dfe91c2d73a422a625eb68c712ccc7988cd2
 BlockSequenceNumber: 0
 ChainID: 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
@@ -145,39 +192,61 @@ EBEntry {
 
 You can now place Entries into this Chain.
 
-```text
-% echo "This is the payload of an Entry" | factom-cli addentry -e newextid -e anotherextid -c 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8 $ec1
+```bash
+echo "This is the payload of an Entry" | factom-cli addentry -e newextid -e anotherextid -c 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8 $ec1
+```
+
+Result:
+
+```bash
 CommitTxID: 0e6513528212b476297355207d619807f1b6bf2379f707c84cb0066ad2d4a920
 ChainID: 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
 Entryhash: 0a9fee6636ab71466a8716ba3715cc01582174d8ffab9e830e9f4ce4f1ea8890
 ```
 
-Query your entries in factom.
+Query your entries in Factom:
+
+```bash
+factom-cli get entry 0a9fee6636ab71466a8716ba3715cc01582174d8ffab9e830e9f4ce4f1ea8890
+```
+
+Result:
 
 ```text
-% factom-cli get entry 0a9fee6636ab71466a8716ba3715cc01582174d8ffab9e830e9f4ce4f1ea8890
 EntryHash: 0a9fee6636ab71466a8716ba3715cc01582174d8ffab9e830e9f4ce4f1ea8890
 ChainID: 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
 ExtID: newextid
 ExtID: anotherextid
 Content:
 "This is the payload of an Entry"
-
 ```
 
-And get information about the chain and its entries
+And get information about the chain and its entries:
+
+```bash
+% factom-cli get firstentry 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
+```
+
+Result:
 
 ```text
-% factom-cli get firstentry 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
 EntryHash: e8a838f95c1fe873e0c7faae401cef31d6273644c32aa2324946613a594c0c77
 ChainID: 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
 ExtID: thisIsAChainName
 ExtID: moreChainNameHere
 Content:
 "This is the payload of the first Entry in my chain"
+```
 
+and:
 
-% factom-cli get allentries 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
+```bash
+factom-cli get allentries 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
+```
+
+Result:
+
+```text
 Entry [0] {
 EntryHash: e8a838f95c1fe873e0c7faae401cef31d6273644c32aa2324946613a594c0c77
 ChainID: 23985c922e9cdd5ec09c7f52a7c715bc9e26295778ead5d54e30a0a6215783c8
@@ -194,86 +263,164 @@ ExtID: newextid
 ExtID: anotherextid
 Content:
 "This is the payload of an Entry"
-
 }
 ```
 
 **Make Entries into Factom Programmatically**
 
-Now that your EC key has been charged, you no longer need the wallet. You can run API calls against factomd, as the crypto is simple enough to do when we get to submitting Entries. [Here](https://github.com/FactomProject/Testing/tree/master/examples/) are some examples for using Factom.
+Now that your EC key has been charged, you no longer need the wallet. You can run API calls against `factomd`,  [Here](https://github.com/FactomProject/Testing/tree/master/examples/) are some examples for using Factom. [This](https://github.com/FactomProject/Testing/blob/master/examples/python/writeFactomEntryAPI.py) is a good example python script which commits and reveals Entries to Factom.
 
-[This](https://github.com/FactomProject/Testing/blob/master/examples/python/writeFactomEntryAPI.py) is a good example python script which commits and reveals Entries to Factom.
+If you have Python installed, first install the needed libraries. On Ubuntu this is enough:
 
-If you have python installed, first install the needed libraries. On Ubuntu this is enough:
-
-```text
+```bash
 sudo apt-get install python-pip
 sudo apt-get install python-dev
 sudo pip install ed25519
 sudo pip install base58
 ```
 
-Then run the script on the command line with `python writeFactomEntryAPI.py`
+Then run the script on the command line with:
 
-Edit some of the values at the top of the python script to make different Entries. Specifically, modify entryContent and externalIDs. \(Note the same Entry can be made multiple times\)
+```bash
+python writeFactomEntryAPI.py
+```
 
-**Evaluating Success**
+Edit some of the values at the top of the python script to make different Entries. Specifically, modify `entryContent` and `externalIDs`. \(Note the same Entry can be made multiple times\)
 
-You can get some diagnostic info from the control panel \(which incidentally doesn't control anything\). Browse to [http://localhost:8090](http://localhost:8090/)
+### **Evaluating Success**
 
-[![controlpanel](https://github.com/FactomProject/FactomDocs/raw/master/images/controlpanel.png)](https://github.com/FactomProject/FactomDocs/blob/master/images/controlpanel.png)
+You can get some diagnostic info from the control panel \(which incidentally doesn't control anything\). Browse to [http://localhost:8090](http://localhost:8090/).
 
-**Setup a Factom Remote Server**
+{% hint style="success" %}
+Your Factom sandbox container is now all setup. The next steps are setting up the Python environment and writing/running some code.
+{% endhint %}
+
+## **Setup a Factom Remote Server**
 
 On a remote machine, setup a Factom server. Both the client and server must be run of different machines.  
-Use the same directions as [Install Factom Binaries](https://github.com/FactomProject/FactomDocs/blob/master/developerSandboxSetup.md#setup-a-local-sandbox-factom-server) and [Configure Factomd for Sandbox use](https://github.com/FactomProject/FactomDocs/blob/master/developerSandboxSetup.md#configure-factomd-for-sandbox-use). Run factomd. Make sure that port 8110 is open on the server. Only factomd needs to be running on the remote server.
+  
+Use the same directions as [Install Factom Binaries](https://github.com/FactomProject/FactomDocs/blob/master/developerSandboxSetup.md#setup-a-local-sandbox-factom-server) and [Configure Factomd for Sandbox use](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#configure-factomd-for-sandbox-use). Run `factomd`. Make sure that port 8110 is open on the server. Only factomd needs to be running on the remote server.
 
-**Setup Client to use Sandbox Server**
+### **Setup Client to use Sandbox Server**
 
-Create a folder in your user home folder. The folder should be called `.factom/m2`.
+Create a folder in your user home folder. The folder should be called `.factom/m2`. If factomd has been run on your computer before this folder will already exist and may already contain part of the Factom blockchain.
 
-In a terminal Linux and Mac: `mkdir -p ~/.factom/m2`or Windows: `mkdir -p %HOMEDRIVE%%HOMEPATH%\.factom\m2`
+In a terminal on Linux or  Mac, run: 
 
-Save the configuration file [factomd.conf](https://raw.githubusercontent.com/FactomProject/factomd/master/factomd.conf) to your `.factom/m2` directory.
+```bash
+mkdir -p ~/.factom/m2
+```
 
-* Open `factomd.conf`
+or Windows: 
+
+```bash
+mkdir %HOMEDRIVE%%HOMEPATH%\.factom\m2
+```
+
+Save the configuration file [factomd.conf](https://raw.githubusercontent.com/FactomProject/factomd/master/factomd.conf) to your `.factom/m2` directory. Open `factomd.conf` and edit the following:
+
 * Change the line `ServerPubKey` from `"0426a802617848d4d16d87830fc521f4d136bb2d0c352850919c2679f189613a"` to `"8cee85c62a9e48039d4ac294da97943c2001be1539809ea5f54721f0c5477a0a"`
   * This will make factomd recognize the sandbox public key instead of the official public key.
-* Make sure you are using the default NodeMode = FULL for the client node.
+* Make sure `NodeMode` is set to `FULL` for the client node. 
 
-**Connect Local Factomd to Sandbox Server**
+### **Connect Local Factomd to Sandbox Server**
 
-The local machine should be set as a client in the factomd.conf, which is default.
+The local machine should be set as a client in the `factomd.conf`, which is default. Run `factomd` this way, but use the remote Factom server's IP address.
 
-run factomd this way, but use the remote factom server's IP address.
-
-```text
-factomd -network=CUSTOM -customnet="mycustomnet" -exclusive=true -peers="serverip:8110" -prefix="notaserver"
+```bash
+factomd -network=CUSTOM -customnet="mycustomnet" -exclusive=true -peers="SERVERIP:8110" -prefix="notaserver"
 ```
 
 The rest of the steps with [factom-walletd and factom-cli](https://github.com/FactomProject/FactomDocs/blob/master/developerSandboxSetup.md#run-factomd) should work on the local machine.
 
-#### Run a Dockerized Factom sandbox
+{% hint style="success" %}
+Your Factom sandbox container is now all setup. The next steps are setting up the Python environment and writing/running some code.
+{% endhint %}
 
-A community member graciously maintains a docker image for a Factom sandbox.
+## Run a Dockerized Factom sandbox
 
-Just execute
+### Setting up the factom sandbox
 
-```text
-docker run -d --name factom-sandbox 31z4/factom-sandbox
+A current ANO maintains a docker image for a Factom sandbox. This tutorial assumes you know how to use [docker](https://docs.docker.com/) and that it's installed.  To run the Factom sandbox container without any modifications, simply run one of the two below depending on what you need:
+
+{% tabs %}
+{% tab title="Quick start" %}
+```bash
+docker run -d --name fct-sandbox laende/fct-sandbox
+```
+{% endtab %}
+
+{% tab title="Quick start with ports exposed" %}
+```bash
+docker run -d --name fct-sandbox -p "8088:8088" -p "8089:8089" -p "8090:8090" laende/fct-sandbox
+```
+{% endtab %}
+{% endtabs %}
+
+The commands above run a Factom node with the following configuration:
+
+* `Network` is set to `LOCAL`
+  * This will cause factomd to run on its own local network rather than the Factom main network.
+* `NodeMode` is set to `SERVER`
+  * This will make `factomd` create a blockchain.
+* `DirectoryBlockInSeconds` is set to `20`
+  * Mainnet runs with 10 minute blocks \(600 seconds\). Easier to develop with shorter block times, but may cause some strange behavior and errors. 
+* `logLevel` is set to `debug`
+  * This exports pointers to data which is added into Factom to the `~/.factom/data/export/`directory. Adding new entries will add new files to the directory with the specified `ChainID`.
+
+{% hint style="info" %}
+To make Factom's data persist it is recommended to mount a data volume at /root/.factom:  
+  
+`docker run -d -v /root/.factom --name fct-sandbox-volume laende/fct-sandbox`
+{% endhint %}
+
+**Alternatively**, ****if you wish to do modifications to the `factomd.conf` file before running you can clone the repository from github:
+
+```bash
+git clone https://github.com/Laende/fct-docker.git
 ```
 
-and you are all set. You can now for example use `factom-cli`:
+ Navigate to the `fct-docker` directory, which contains five files. To configure your local installation of `factomd` and `factomwalletd` edit the `factomd.conf` file. Once you’re happy with the changes, run:
 
-```text
-docker exec -it factom-sandbox factom-cli properties
+```bash
+docker build --tag=fct-sandbox .
 ```
 
-See other details [here](https://github.com/31z4/factom-sandbox-docker).
+and:
 
-#### Resetting the Blockchain
+```bash
+docker run -d -p "8088:8088" -p "8089:8089" -p "8090:8090" fct-sandbox
+```
 
-By default, Factom holds all the blockchain, wallet, etc data in the user's home directory in a folder called ".factom/m2/custom-database". This may be a hidden folder, so make sure to display hidden folders on your OS.
+### Importing wallet with funds to the sandbox container
 
-To reset the blockchain, first close factomd and factom-walletd. Delete all the folders and files in `.factom/m2/custom-database except` `factomd.conf`
+Now we need a Factom wallet with some funds to start recording entries. We use a Factoid address which has a balance of 20000 FCT in the genesis block. It has since been depleted on mainnet, but can be used on sandbox systems.
+
+The private key is: `Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK` 
+
+The public key is: `FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q`
+
+Let's import this address to our sandbox container:
+
+```bash
+docker exec -it fct-sandbox factom-cli importaddress Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK
+```
+
+This command should return the public key mentioned above. Note it down somewhere as we will be using it later. We now need an Entry Credit address which we’ll generate:
+
+```bash
+docker exec -it fct-sandbox factom-cli newecaddress
+```
+
+You should see an EC address returned \(it starts with `EC`\). Write down this address as well, as we’ll be using it later.
+
+{% hint style="success" %}
+Your Factom sandbox container is now all setup. The next steps are setting up the Python environment and writing/running some code.
+{% endhint %}
+
+## Resetting the Blockchain
+
+By default, Factom holds all the blockchain, wallet, etc data in the user's home directory in a folder called `.factom/m2/custom-database`. This may be a hidden folder, so make sure to display hidden folders on your OS.
+
+To reset the blockchain, first close `factomd` and `factom-walletd`. Delete all the folders and files in `.factom/m2/custom-database` except `factomd.conf`.
 
