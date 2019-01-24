@@ -5,7 +5,6 @@ In this tutorial we will be using the Factom [Python library](https://github.com
 ## _Requirements_
 
 * _Python 3+_
-* _Docker_
 * _Git_
 
 ## Setup
