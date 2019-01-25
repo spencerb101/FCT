@@ -32,6 +32,12 @@
 
 ## Authority Node Operators
 
-* [ANO Guides & Tutorials](authority-node-operators/ano-guides-and-tutorials.md)
+* [ANO Guides & Tutorials](authority-node-operators/ano-guides-and-tutorials/README.md)
+  * [Getting started](authority-node-operators/ano-guides-and-tutorials/getting-started.md)
+  * [Generating your server identity](authority-node-operators/ano-guides-and-tutorials/generating-your-server-identity.md)
+  * [Setting the coinbase address and node efficiency](authority-node-operators/ano-guides-and-tutorials/setting-the-coinbase-address-and-node-efficiency.md)
+  * [Joining the docker swarm](authority-node-operators/ano-guides-and-tutorials/joining-the-docker-swarm.md)
+  * [Securing your node with SSH and iptables](authority-node-operators/ano-guides-and-tutorials/securing-your-node-with-ssh-and-iptables.md)
+  * [Updating and brainswapping your node](authority-node-operators/ano-guides-and-tutorials/updating-and-brainswapping-your-node.md)
 * [ANO Tools and Resources](authority-node-operators/ano-tools-and-resources.md)
 
