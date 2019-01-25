@@ -4,7 +4,7 @@ description: >-
   Federated servers.
 ---
 
-# Block elements
+# Block types
 
 ## Directory Block
 

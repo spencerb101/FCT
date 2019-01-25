@@ -15,7 +15,7 @@
 * [Factom data structures](start/factom-data-structures/README.md)
   * [Building blocks](start/factom-data-structures/building-blocks.md)
   * [User elements](start/factom-data-structures/user-elements.md)
-  * [Block elements](start/factom-data-structures/block-elements.md)
+  * [Block types](start/factom-data-structures/block-types.md)
 * [Factom Clients](start/factom-clients.md)
 * [Factomd Control Panel](start/factomd-control-panel.md)
 * [Testnet Information](start/testnet-information.md)
