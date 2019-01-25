@@ -1,6 +1,8 @@
-# Building blocks
+---
+description: This describes the low level minutia for common data structures.
+---
 
-This describes the low level minutia for common data structures.
+# Building blocks
 
 ## Chain Name
 
