@@ -18,7 +18,12 @@
   * [Block types](start/factom-data-structures/block-types.md)
 * [Factom Clients](start/factom-clients.md)
 * [Factomd Control Panel](start/factomd-control-panel.md)
-* [Testnet Information](start/testnet-information.md)
+* [Factom community testnet](start/testnet-information/README.md)
+  * [Installation](start/testnet-information/preparing-your-system.md)
+  * [Node monitoring](start/testnet-information/node-monitoring.md)
+  * [Maintenance](start/testnet-information/securing-your-system.md)
+  * [Interacting with Factom blockchain](start/testnet-information/installing-factomd.md)
+  * [Frequently Asked Questions \(FAQ\)](start/testnet-information/frequently-asked-questions-faq.md)
 
 ## Technologies
 

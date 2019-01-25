@@ -75,7 +75,7 @@ docker volume create factom_keys
 docker volume create factom_database
 ```
 
-Place the factomd.conf in the correct folder:
+Place the `factomd.conf` in the correct folder:
 
 ```bash
 wget https://raw.githubusercontent.com/FactomProject/factomd/master/factomd.conf
