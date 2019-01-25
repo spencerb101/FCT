@@ -1,9 +1,5 @@
 # Developer Sandbox Setup Guide
 
-This is the Factom equivalent of Testnet3 in bitcoin, but doesn't require finding testnet coins.
-
-Use Factoids with private key `Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK`
-
 There are three options for running a sandbox.
 
 1. [**Run only a local sandbox server**](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#setup-a-local-sandbox-factom-server)\*\*\*\*
@@ -265,27 +261,6 @@ Content:
 "This is the payload of an Entry"
 }
 ```
-
-**Make Entries into Factom Programmatically**
-
-Now that your EC key has been charged, you no longer need the wallet. You can run API calls against `factomd`,  [Here](https://github.com/FactomProject/Testing/tree/master/examples/) are some examples for using Factom. [This](https://github.com/FactomProject/Testing/blob/master/examples/python/writeFactomEntryAPI.py) is a good example python script which commits and reveals Entries to Factom.
-
-If you have Python installed, first install the needed libraries. On Ubuntu this is enough:
-
-```bash
-sudo apt-get install python-pip
-sudo apt-get install python-dev
-sudo pip install ed25519
-sudo pip install base58
-```
-
-Then run the script on the command line with:
-
-```bash
-python writeFactomEntryAPI.py
-```
-
-Edit some of the values at the top of the python script to make different Entries. Specifically, modify `entryContent` and `externalIDs`. \(Note the same Entry can be made multiple times\)
 
 ### **Evaluating Success**
 
