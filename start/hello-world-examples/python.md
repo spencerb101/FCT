@@ -341,18 +341,12 @@ def wait_for_entry(entryhash):
     :param str entryhash: the hash of the entry to wait for
     :returns: None
     """
-    wait = True    
-    while wait:
-        pending_entries = factomd.pending_entries()
-        if not pending_entries:
-            wait = False
+    while True:
+        r_pending_entries = factomd.pending_entries()
+        if any(entry["entryhash"] == entryhash for entry in r_pending_entries):
+            sleep(1)
         else:
-            for entry in pending_entries:
-                if entryhash == entry['entryhash']:
-                    pass
-                else:
-                    wait = False
-        sleep(1)
+            break
 
 # Wallets, remember to import the FCT address and generate the EC address.
 FCT_ADDR = 'FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q'
