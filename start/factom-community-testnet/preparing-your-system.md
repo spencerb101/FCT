@@ -8,7 +8,7 @@ This complete tutorial is fully covered in the video shown above.
 
 ## Before you begin
 
-Deployment of the test net software will be done using a program called «Docker».
+Deployment of the testnet software will be done using a program called «Docker».
 
 Docker is compatible with Linux, MacOS and Windows, as well as with AWS-/Azure-cloud services. It creates a virtual container that contains and runs the software provided by Factom.
 
@@ -164,7 +164,7 @@ This part of tutorial is covered in the video shown above.
 
 ### Storing the docker swarm certificate and key
 
-Make sure you store the docker swarm test net key and certificate on your system.  The files can be found at [here](https://github.com/FactomProject/factomd-authority-toolkit/tree/master/tls). You can store these files in the directory /etc/docker for instance:
+Make sure you store the docker swarm testnet key and certificate on your system.  The files can be found at [here](https://github.com/FactomProject/factomd-authority-toolkit/tree/master/tls). You can store these files in the directory /etc/docker for instance:
 
 You can store these files in the directory /etc/docker for instance: 
 
@@ -269,7 +269,7 @@ docker swarm join --token SWMTKN-1-0bv5pj6ne5sabqnt094shexfj6qdxjpuzs0dpigckrsqm
 Joining as a worker means you have no ability to control containers on another node.
 {% endhint %}
 
-Once you have joined the swarm network, you will be issued a control panel login by the test net adminstrator. Please submit this [form](https://docs.google.com/forms/d/e/1FAIpQLSd-t33chnGOyLZ6kJ-QC-L0EgOExzY7GQ8y9e0I0E4AIbdKBQ/viewform) and a staff member will contact you as soon as possible.
+Once you have joined the swarm network, you will be issued a control panel login by the testnet adminstrator. Please submit this [form](https://docs.google.com/forms/d/e/1FAIpQLSd-t33chnGOyLZ6kJ-QC-L0EgOExzY7GQ8y9e0I0E4AIbdKBQ/viewform) and a staff member will contact you as soon as possible.
 
 {% hint style="danger" %}
 Only accept logins at [https://testnet.federation.factomd.com](https://testnet.federation.factomd.com/). Any other login endpoints are fraudulent and not to be trusted.
@@ -295,7 +295,7 @@ If you want the Factomd container to start at system boot \(reboots\) you can ad
 
 After this your node will be started. You can check for the existence of a Factom container using the command `docker ps`. 
 
-**You're now almost ready to be included in the test net**. Stop the `factomd` container with `docker stop factomd` and download the `factomd.conf` file [here](https://github.com/FactomProject/factomd-testnet-toolkit/blob/master/factomd.conf.EXAMPLE), or run:
+**You're now almost ready to be included in the testnet**. Stop the `factomd` container with `docker stop factomd` and download the `factomd.conf` file [here](https://github.com/FactomProject/factomd-testnet-toolkit/blob/master/factomd.conf.EXAMPLE), or run:
 
 ```bash
 wget -O factomd.conf https://raw.githubusercontent.com/FactomProject/factomd-testnet-toolkit/master/factomd.conf.EXAMPLE
@@ -333,7 +333,7 @@ You can check if the daemon is up by running `docker ps` . A container with the 
 Latest version of the Factom Daemon can be found [here.](https://github.com/FactomProject/distribution/releases)
 {% endhint %}
 
-To be able to join the test net as an authority server you will need a «personal» server identity. The identity is generated using the serveridentity program. Entry Credits are required to create your identity to the blockchain.
+To be able to join the testnet as an authority server you will need a «personal» server identity. The identity is generated using the serveridentity program. Entry Credits are required to create your identity to the blockchain.
 
 ### Create and fund a new Test Credit address
 
