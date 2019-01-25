@@ -2,7 +2,7 @@
 
 ## Javascript Client
 
-An interface to factomd API to make it super simple to query, create transactions, chains and entries.
+An interface to `factomd` API to make it super simple to query, create transactions, chains and entries.
 
 [Factom Client Library](https://github.com/PaulBernier/factomjs) 
 
@@ -22,7 +22,7 @@ Java Library integrates Java \(JEE & Spring\) with the Factom blockchain.
 
 ## C\#/.NET Client
 
-The .NET-library supports the complete factomd- and walletd-API.
+The .NET-library supports the complete `factomd` and `factom-walletd` API.
 
 [C\#/.NET Client Library](https://github.com/FactoidAuthority/FactomSharp)
 
