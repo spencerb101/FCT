@@ -25,7 +25,7 @@ The factomd version in the above command may be outdated, be sure to check what 
 
 This is only required if you want to create a new node, using your existing identity.
 
-### Notes: <a id="page_Notes"></a>
+#### Notes:
 
 * Replace your appropriate username
 * Replace the IP of your hosts as appropriate
