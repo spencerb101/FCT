@@ -9,7 +9,7 @@ The Factoid Authority \(TFA\) and De Facto has set up individual node monitoring
 
 ## Local tools
 
-`Factomd` comes with a few ways to monitor your node's health. The most obvious tool is the control panel found at localhost:8080. Information about the control panel can be found here [Factomd control panel](https://developers.factomprotocol.org/start/factomd-control-panel)
+`Factomd` comes with a few ways to monitor your node's health. The most obvious tool is the control panel found at localhost:8090. Information about the control panel can be found here [Factomd control panel](https://developers.factomprotocol.org/start/factomd-control-panel)
 
 `Factomd` also used to come with more monitoring tools called Prometheus and Grafana. If you want to include them in your package, you can run Grafana and Prometheus docker images:
 
