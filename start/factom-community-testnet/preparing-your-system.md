@@ -85,6 +85,7 @@ In addition, the following ports must be opened for factomd to function which we
 * `8090` to `0.0.0.0`, the factomd Control panel
   * Keeping this open to the world is beneficial on testnet for debugging purposes
 * `8110` to `0.0.0.0`, the factomd testnet port
+* `8088` to `178.62.125.252`, the factomd API port to [fct.tools](https://fct.tools/) monitoring server
 
 An example using `iptables`:
 
@@ -93,6 +94,7 @@ sudo iptables -A INPUT ! -s 54.171.68.124/32 -p tcp -m tcp --dport 2376 -m connt
 sudo iptables -A DOCKER-USER ! -s 54.171.68.124/32  -i <external if> -p tcp -m tcp --dport 8090 -j REJECT --reject-with icmp-port-unreachable
 sudo iptables -A DOCKER-USER ! -s 54.171.68.124/32  -i <external if> -p tcp -m tcp --dport 2222 -j REJECT --reject-with icmp-port-unreachable
 sudo iptables -A DOCKER-USER ! -s 54.171.68.124/32  -i <external if> -p tcp -m tcp --dport 8088 -j REJECT --reject-with icmp-port-unreachable
+sudo iptables -A DOCKER-USER ! -s 178.62.125.252/32  -i <external if> -p tcp -m tcp --dport 8088 -j REJECT --reject-with icmp-port-unreachable
 sudo iptables -A DOCKER-USER -p tcp -m tcp --dport 8110 -j ACCEPT
 ```
 
@@ -284,7 +286,7 @@ Only accept logins at [https://testnet.federation.factomd.com](https://testnet.f
 Run the following command _exactly:_
 
 ```bash
-docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8110:8110" -l "name=factomd" factominc/factomd:v6.1.1-rc1 -broadcastnum=16 -network=CUSTOM -customnet=fct_community_test -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf
+docker run -d --name "factomd" -v "factom_database:/root/.factom/m2" -v "factom_keys:/root/.factom/private" -p "8088:8088" -p "8090:8090" -p "8110:8110" -l "name=factomd" factominc/factomd:v6.2.0-alpine -broadcastnum=16 -network=CUSTOM -customnet=fct_community_test -startdelay=600 -faulttimeout=120 -config=/root/.factom/private/factomd.conf
 ```
 
 {% hint style="info" %}
