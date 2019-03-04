@@ -85,9 +85,9 @@ In addition, the following ports must be opened for factomd to function which we
 * `8090` to `0.0.0.0`, the factomd Control panel
   * Keeping this open to the world is beneficial on testnet for debugging purposes
 * `8110` to `0.0.0.0`, the factomd testnet port
-* `8088` to `178.62.125.252`, the factomd API port to [fct.tools](https://fct.tools/) monitoring server
+* **OPTIONAL**: `8088` to `178.62.125.252`, the factomd API port to [fct.tools](https://fct.tools/) monitoring server
 
-An example using `iptables`:
+An example using `iptables`with the optional setting at line 5:
 
 ```bash
 sudo iptables -A INPUT ! -s 54.171.68.124/32 -p tcp -m tcp --dport 2376 -m conntrack --ctstate NEW,ESTABLISHED -j REJECT --reject-with icmp-port-unreachable
