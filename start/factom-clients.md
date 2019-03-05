@@ -10,6 +10,8 @@ An interface to `factomd` API to make it super simple to query, create transacti
 
 [Factom Client Library](https://github.com/PaulBernier/factomjs) 
 
+[Hello world example for JavaScript](https://developers.factomprotocol.org/start/hello-world-examples/javascript)
+
 ### Python Client
 
 Provides Python clients for interacting with the `factomd` and `factom-walletd` APIs. The API client is fully tested under Python 2.7, 3.4, 3.5, and 3.6, and likely works with other versions as well.
@@ -35,6 +37,11 @@ The .NET-library supports the complete `factomd` and `factom-walletd` API.
 Integrate Factom blockchain in your PHP application with just a few lines of code.
 
 [PHP SDK for Factom Enterprise API](https://github.com/DeFacto-Team/Factom-EnterpriseAPI-php)
+
+### Golang client
+
+[Golang client library](https://github.com/FactomProject/factom) for writing Factom clients in go.  
+
 
 ## Harmony Connect Clients
 
