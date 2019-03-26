@@ -293,7 +293,7 @@ The second argument is a predicate that allows you to halt the loop. If that pre
 
 ## Let's build a factomizer
 
-We now have all the components we need write our first Factom application. This will a simple "factomizer": an app that allows to store the hash of a file on Factom and then later verify the integrity of the file against the data stored in the entry.
+We now have all the components we need write our first Factom application. This will be a simple "factomizer": an app that allows to store the hash of a file on Factom and then later verify the integrity of the file against the data stored in the entry.
 
 {% hint style="warning" %}
 This basic implementation of a factomizer is not to be considered suitable for real world usage. For the sake of simplicity we didn't address some flaws, the biggest one being the authentication of the data recorded \(remember that anyone could write in your chain\).
