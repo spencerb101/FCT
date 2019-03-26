@@ -34,5 +34,5 @@ The .NET-library supports the complete `factomd` and `factom-walletd` API.
 
 ### Rust client
 
-[Rust client library](https://github.com/MitchellBerry/Factom-Client) to interact with `factomd` and `factom-walletd` API.
+[Rust client library](https://github.com/MitchellBerry/Factom-Client) for the `factomd` and `factom-walletd` APIs.
 
