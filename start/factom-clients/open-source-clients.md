@@ -2,7 +2,7 @@
 
 ### Javascript Client
 
-An interface to `factomd` API to make it super simple to query, create transactions, chains and entries.
+A high level JS library I to make it easy to make queries, create transactions, chains and entries on Factom. Includes helper functions to manipulate Factoid and Entry Credit addresses.
 
 [Factom Client Library](https://github.com/PaulBernier/factomjs) 
 
@@ -31,4 +31,8 @@ The .NET-library supports the complete `factomd` and `factom-walletd` API.
 ### Golang client
 
 [Golang client library](https://github.com/FactomProject/factom) for writing Factom clients in go.
+
+### Rust client
+
+[Rust client library](https://github.com/MitchellBerry/Factom-Client) to interact with `factomd` and `factom-walletd` API.
 
