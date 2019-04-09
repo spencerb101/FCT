@@ -6,6 +6,7 @@ The Factoid Authority \(TFA\) and De Facto has set up individual node monitoring
 
 * A web interface showing current active nodes is available at [http://fct.tools/](http://fct.tools/).
 * Factom node monitoring discord bot: [https://git.factoid.org/TFA/TFA-Bot](https://git.factoid.org/TFA/TFA-Bot)
+* [Monitoring Factom nodes with Grafana](https://medium.com/@TheFactoidAuth/monitoring-factom-nodes-with-grafana-an-introduction-a6ba7ceeb0e0)
 
 ## Local tools
 
