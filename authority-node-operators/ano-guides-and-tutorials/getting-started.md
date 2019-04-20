@@ -79,7 +79,7 @@ Place the `factomd.conf` in the correct folder:
 
 ```bash
 wget https://raw.githubusercontent.com/FactomProject/factomd/master/factomd.conf
-sudo cp factomd.conf /var/docker/volumes/factom_keys/_data/factomd.conf
+sudo cp factomd.conf /var/lib/docker/volumes/factom_keys/_data/factomd.conf
 ```
 
 Run `factomd` in Docker:
