@@ -19,7 +19,7 @@ There are three options for running a sandbox.
 
 ### **Install Factom Binaries**
 
-Download the appropriate Factom binary package from factom.org. Installers for for Windows, Mac, and Linux are hosted at [https://github.com/FactomProject/distribution](https://github.com/FactomProject/distribution). Directions for installing Factom Federation may be found [here](https://docs.factom.com/#install-factom-federation-ff).
+Download the appropriate Factom binary package from factom.org. Installers for for Windows, Mac, and Linux are hosted at [https://github.com/FactomProject/distribution](https://github.com/FactomProject/distribution). Directions for installing Factom Federation may be found [here](https://developers.factomprotocol.org/start/enterprise-wallet#install-factom-federation-ff).
 
 Install the binaries like you would any other for your OS. The install directions walk you through various operating systems. Do not run them yet, as you will be making your own fresh blockchain instead of using the public one.
 
@@ -27,7 +27,7 @@ Install the binaries like you would any other for your OS. The install direction
  If you did run `factomd` before setup, follow the directions found [here ](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#resetting-the-blockchain)to reset the blockchain.
 {% endhint %}
 
-Three programs are installed: `factomd`, `factom-walletd`, and `factom-cli`. You may also wish to install the GUI [Enterprise Wallet](https://docs.factom.com/#enterprise-wallet).
+Three programs are installed: `factomd`, `factom-walletd`, and `factom-cli`. You may also wish to install the GUI [Enterprise Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet-setup#install-enterprise-wallet).
 
 * `Factomd` is the main program. It manages the blockchain, connects to the public network, and enforces the network rules.
 * `factom-walletd` is an application for holding private keys. It builds Factoid transactions and handles crypto related operations to add user data into Factom.
@@ -274,7 +274,7 @@ Your Factom sandbox container is now setup, you're now ready to interact with th
 
 On a remote machine, setup a Factom server. Both the client and server must be run of different machines.  
   
-Use the same directions as [Install Factom Binaries](https://github.com/FactomProject/FactomDocs/blob/master/developerSandboxSetup.md#setup-a-local-sandbox-factom-server) and [Configure Factomd for Sandbox use](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#configure-factomd-for-sandbox-use). Run `factomd`. Make sure that port 8110 is open on the server. Only factomd needs to be running on the remote server.
+Use the same directions as [Install Factom Binaries](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#install-factom-binaries) and [Configure Factomd for Sandbox use](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#configure-factomd-for-sandbox-use). Run `factomd`. Make sure that port 8110 is open on the server. Only factomd needs to be running on the remote server.
 
 ### **Setup Client to use Sandbox Server**
 
@@ -305,8 +305,6 @@ The local machine should be set as a client in the `factomd.conf`, which is defa
 ```bash
 factomd -network=CUSTOM -customnet="mycustomnet" -exclusive=true -peers="SERVERIP:8110" -prefix="notaserver"
 ```
-
-The rest of the steps with [factom-walletd and factom-cli](https://github.com/FactomProject/FactomDocs/blob/master/developerSandboxSetup.md#run-factomd) should work on the local machine.
 
 {% hint style="success" %}
 Your Factom sandbox container is now setup, you're now ready to interact with the Factom blockchain! Why not follow one of the hello-world examples for your favorite client? Head over to the [Hello-world examples](https://developers.factomprotocol.org/start/hello-world-examples) section for an overview.
