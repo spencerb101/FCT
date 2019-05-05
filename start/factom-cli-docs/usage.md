@@ -40,7 +40,7 @@ There are two options now, one for people who have run Factom Genesis \(FG\), ou
 
 ### If you have used FG
 
-If you have run our previous software release “Factom Genesis \(FG\)” you need to import your FG wallet file \(named _factoid\_wallet\_bolt.db_\) the first time your run _factom-walletd_ to make sure all its previous addresses and balances are transferred over. You have learned how to backup your wallet file in our [Backup Your Wallet File!](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backup-your-wallets) guide and you should know if still in the default location within the .factom folder at ~/.factom/factoid\_wallet\_bolt.db.
+If you have run our previous software release “Factom Genesis \(FG\)” you need to import your FG wallet file \(named _factoid\_wallet\_bolt.db_\) the first time your run _factom-walletd_ to make sure all its previous addresses and balances are transferred over. You have learned how to backup your wallet file in our [Backup Your Wallet File!](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#backup-your-wallets) guide and you should know if still in the default location within the .factom folder at ~/.factom/factoid\_wallet\_bolt.db.
 
 Simply run the next command with a special flag and the path to your wallet file:
 
@@ -54,8 +54,6 @@ This command will tell factom-walletd to look for the file at the specified path
 
 If by any chance the operation fails, quit factom-walletd, delete the new wallet file located at ~/.factom/wallet/factoid\_wallet.db and try again until you get all your addresses back.  
 Remember, you only need to do this once the first time you run factom-walletd, after that you can run it normally.
-
-Once you are happy, continue by following the instructions to run the factom-cli command below.
 
 ### If you have never used FG
 
@@ -363,7 +361,7 @@ In this example, the sendfct command moved 1.234 FCT from the source address to 
 
 **To receive Factoids** use the same command as above. For instance, you may move FCT between two FA addresses within your local wallet.
 
-However, if you are sending yourself FCT from an exchange or want to receive FCT from a third party, just provide your FA Address. Once sent you can [verify your local FCT balance](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#verify-fct-and-ec-balances). 
+However, if you are sending yourself FCT from an exchange or want to receive FCT from a third party, just provide your FA Address. Once sent you can [verify your local FCT balance](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#verify-fct-and-ec-balances). 
 
 {% hint style="info" %}
 The TxID is a very useful way to verify that FCT have moved to the correct address. We recommend noting it down especially when sending or receiving to and from a third party.
@@ -436,7 +434,7 @@ FA3cih2o2tjEUsnnFR4jX1tQXPpSXFwsp3rhVp6odL5PNCHWvZV1 20
 
 In this example, we successfully imported the FA address showing a balance of 20 factoids. The terminal output will give you a list of all FA and EC addresses in your wallet with their current balances. 
 
-You can use the Factom Explorer to [verify your local FCT balance](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#verify-fct-and-ec-balances). In your case, the FA address and its balance will be different.
+You can use the Factom Explorer to [verify your local FCT balance](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#verify-fct-and-ec-balances). In your case, the FA address and its balance will be different.
 
   
 The 12-word master passphrase was shown once at the time of purchase to contributors who were prompted to keep it in a safe place. Without the Master Passphrase, it is impossible to redeem Factoids, and neither Factom nor Koinify can recover it. Do not share your passphrase with anybody or they will be able to access your FCT. There is no expiry date for the 12-word master passphrase. You will be able to redeem your FCT at your leisure, anytime in the future.
@@ -483,7 +481,7 @@ You have successfully imported a Factoid Private Key and ready to use your balan
 
 ## Verify FCT and EC Balances
 
-To know how to verify your FCT and EC balances [follow this guide](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#verify-fct-and-ec-balances).
+To know how to verify your FCT and EC balances [follow this guide](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#verify-fct-and-ec-balances).
 
 ## Create a Factom Chain
 

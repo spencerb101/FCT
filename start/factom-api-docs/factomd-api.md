@@ -82,7 +82,7 @@ Retrieve administrative blocks for any given height.
 
 The admin block contains data related to the identities within the factom system and the decisions the system makes as it builds the block chain. The ‘abentries’ \(admin block entries\) in the JSON response can be of various types, the most common is a directory block signature \(DBSig\). A majority of the federated servers sign every directory block, meaning every block after m5 will contain 5 DBSigs in each admin block.
 
-## Ack
+## ack
 
 > Example Request
 

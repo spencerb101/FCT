@@ -13,7 +13,6 @@ Here is a step by step guide on how to install FF binaries on Mac, Windows, and 
 1. Download the installer for Mac, Windows, or Linux on [GitHub](https://github.com/FactomProject/distribution/releases). There are various versions, make sure to select the one best suited for your system.
 2. Save it to your desktop or downloads folder on your local hard drive.
 3. Follow the instructions for your OS.
-   1. Mac
 
 ### Mac
 
@@ -44,10 +43,6 @@ Enter your username and password then click Install Software.
 The installer will proceed with the installation and once finished it will prompt with “The installation was successful.” Then click close.
 
 ![Installer Step 4](https://docs.factom.com/images/wallet_009.png)
-
-You made it so far! Wasn’t that hard, was it?
-
-You are now ready to [install Enterprise Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/installation#install-enterprise-wallet).
 
 ### Windows
 
@@ -86,8 +81,6 @@ Select “Yes” to continue if you get the following message.
 When the installation is over select “Finish” to exit the installer.
 
 ![Installer Step 5](https://docs.factom.com/images/wallet_017.png)
-
-You made it so far, and ready to [install Enterprise Wallet](https://developers.factomprotocol.org/start/enterprise-wallet#install-enterprise-wallet).
 
 ### Linux
 

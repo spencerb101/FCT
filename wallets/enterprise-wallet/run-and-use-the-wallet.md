@@ -23,7 +23,7 @@ The online wallet option is still experimental, and the hosted factomd node may 
 
 This only applies to users who have previously run Factom Genesis and have an old wallet file. If running Factom for the first time, you can skip this step.
 
-If you have run our previous software release “Factom Genesis \(FG\)” you need to import your FG wallet file \(named _factoid\_wallet\_bolt.db_\) the first time you run the Enterprise Wallet app to make sure all its previous addresses and balances are transferred over. You have learned how to backup your wallet file in our [Backup Your Wallet File!](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backup-wallet-file) guide and you should know if still in the default location within the .factom folder at ~/.factom/factoid\_wallet\_bolt.db.
+If you have run our previous software release “Factom Genesis \(FG\)” you need to import your FG wallet file \(named _factoid\_wallet\_bolt.db_\) the first time you run the Enterprise Wallet app to make sure all its previous addresses and balances are transferred over. You have learned how to backup your wallet file in our [Backup Your Wallet File!](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#backup-wallet-file) guide and you should know if still in the default location within the .factom folder at ~/.factom/factoid\_wallet\_bolt.db.
 
 If your old wallet file is in the default place you don’t need to do anything, the new wallet will recognize the file and import it automatically. You can simply follow the same instructions for who has never used FG below.
 
@@ -55,7 +55,7 @@ You will then need to enter a strong password for your wallet, tick the box next
 This will automatically generate a new “factom\_wallet\_encrypted.db” file in your .factom folder \(which will be encrypted with the password you just chose\). You will need the same password every time you want to access your Secure Wallet, make sure to write it down and keep it safe.
 
 ![Online Wallet 00](https://docs.factom.com/images/wallet_142.png)  
-Opening a secure wallet will encrypt all private keys and the seed. Keep in mind this means that if you forget your password and seed, there is no recovery option. Be careful selecting this option, When using an encrypted wallet, be sure to immediately [back up your seed](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backing-up-your-wallet-seed). This allows you to regenerate your wallet if you lose the password or the database gets corrupted. This option will not convert a v1 wallet if found on disk. This is intentional, as converting any wallet to an encrypted wallet means the original wallet still exists, and still insecure. Addresses and seeds can still be imported/exported using the settings and address book tabs.
+Opening a secure wallet will encrypt all private keys and the seed. Keep in mind this means that if you forget your password and seed, there is no recovery option. Be careful selecting this option, When using an encrypted wallet, be sure to immediately [back up your seed](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#backing-up-your-wallet-seed). This allows you to regenerate your wallet if you lose the password or the database gets corrupted. This option will not convert a v1 wallet if found on disk. This is intentional, as converting any wallet to an encrypted wallet means the original wallet still exists, and still insecure. Addresses and seeds can still be imported/exported using the settings and address book tabs.
 
 Once you are happy, continue by following the instructions below for either the Online or Local Enterprise Wallet setup.
 
@@ -68,13 +68,13 @@ To create a Not Secure Wallet simply click on the Not Secure button.
 Make sure to tick the box next to “I acknowledge that my private keys will not be encrypted and are thus unprotected,” and finally click the “Proceed to Unencrypted Wallet” button to access the Secure Wallet.
 
 ![Online Wallet 00](https://docs.factom.com/images/wallet_144.png)  
-A non-secure wallet does not use encryption, and therefore it can be accessed by other users on your machine or malware. This will leave your private keys exposed and unencrypted on your hard drive. Choose your options carefully and be sure to immediately [back up your seed](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backing-up-your-wallet-seed). 
+A non-secure wallet does not use encryption, and therefore it can be accessed by other users on your machine or malware. This will leave your private keys exposed and unencrypted on your hard drive. Choose your options carefully and be sure to immediately [back up your seed](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#backing-up-your-wallet-seed). 
 
 {% hint style="info" %}
 We strongly recommend everyone to use the secure option.
 {% endhint %}
 
-Learn how to transfer FCT from a Not Secure wallet to a Secure one by following our guide [here](https://developers.factomprotocol.org/start/enterprise-wallet#transfer-fct-to-secure-wallet).
+Learn how to transfer FCT from a Not Secure wallet to a Secure one by following our guide [here](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#transfer-fct-to-secure-wallet).
 
 Once you are happy, continue by following the instructions below for either the Online or Local Enterprise Wallet setup.
 
@@ -181,7 +181,7 @@ When you first load up your enterprise wallet, you’ll probably notice a messag
 
 Addresses that you generate using the enterprise wallet are going to be based on a common seed. This seed is the most private of private keys. Anyone who has it can regenerate and claim all of the addresses that are spawned by it one by one. This means that it’s a good idea to keep this seed around, but it’s also smart to make sure that no one else can gain access to it. We’ll give you a quick guide on how to get the seed for your wallet, but be sure to only go through these steps in a place where you can have some privacy.
 
-To begin, select the Backup button on the sidebar. If you have some addresses that originate from another seed, you’ll see a warning about those addresses first. The seed you’re about to view does not cover these public keys… You won’t be able to recreate them with your back up. On the main screen, this is notated by these addresses not having a filled star next to them. We’ll deal with external addresses [below](https://docs.factom.com/#external_addresses)… For now, just know that you’ll have to back these up separately. Alternatively, you can move any Factoids held by these addresses into addresses based on your current seed.
+To begin, select the Backup button on the sidebar. If you have some addresses that originate from another seed, you’ll see a warning about those addresses first. The seed you’re about to view does not cover these public keys… You won’t be able to recreate them with your back up. On the main screen, this is notated by these addresses not having a filled star next to them. We’ll deal with external addresses [below](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#external-addresses)… For now, just know that you’ll have to back these up separately. Alternatively, you can move any Factoids held by these addresses into addresses based on your current seed.
 
 #### Viewing your Seed Phrase
 
@@ -276,7 +276,7 @@ _Unencrypted Wallet File Locations_
 * **Windows** `C:\Users\YourUsername\.factom\wallet\factom_wallet.db`
 * **Linux** `~/.factom/wallet/factom_wallet.db`
 
-Learn more on how to setup a Secure or Not Secure Wallet by following the [Choose Your Wallet Type guide](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#choose-your-wallet-type).
+Learn more on how to setup a Secure or Not Secure Wallet by following the [Choose Your Wallet Type guide](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#choose-your-wallet-type).
 
 {% hint style="info" %}
 Note that the .factom folder is a hidden folder on Mac and Linux so perform a Google search for “how to show hidden files and folders on YOUR OS”, replacing YOUR OS with Mac or Linux accordingly.
@@ -291,11 +291,9 @@ Note that the .factom folder is a hidden folder on Mac and Linux so perform a Go
 **To restore** a previous FF wallet file backup, quit factomd and EnterpriseWallet, make sure you have a backup of the current wallet first, then drag & drop the previous backup in the .factom folder, overwrite if needed. Restart factomd and factom-walletd and your previous wallet will now be used instead.  
 Pay attention when performing backups and restores. Each wallet file has its unique seed and addresses. Overwriting a wallet may result in losing all your Factoids and Entry Credits. Not cool.
 
-
-
 ## Create A Factoid Address
 
-The first thing you need is most probably a Factoid Address \(FA\), and it’s very easy to do that with our new wallet. If you haven’t already done so, [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
+The first thing you need is most probably a Factoid Address \(FA\), and it’s very easy to do that with our new wallet. If you haven’t already done so, [Run Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
 Click on Address Book.
 
@@ -323,9 +321,10 @@ If you want to, click on “Open address in new tab” to see more details inclu
 
 If needed, you can quickly copy the address to your smartphone with any QR code reader app, otherwise, click “COPY TO CLIPBOARD” to use on your computer instead. Once done, click on “MANAGE ADDRESSES” or the X button at the top right to return to your Address Book.
 
-You will see your newly created address in the list.
+You will see your newly created address in the list
 
-![Wallet 09](https://docs.factom.com/images/wallet_028.png)  
+![Wallet 09](https://docs.factom.com/images/wallet_028.png)
+
 Note that some addresses have a “full white star” on their left, others have an “empty star”. This is to show you the addresses that have been created with your wallet “seed” \(full white star\) and the ones that have been imported \(empty star\) also known as “External Addresses.” As we mentioned in the “Backup Your Wallets!” guide only addresses created with the wallet seed can be recovered with the “seed file.”
 
 ![Wallet 10](https://docs.factom.com/images/wallet_029.png)
@@ -346,15 +345,19 @@ Another thing you notice is the “DISPLAY PRIVATE KEY” button, if you click i
 
 Let’s give it a try so you can get familiar with another important function. Go to “Settings,” select “Enable ability to export private keys” then hit “SAVE CHANGES.”
 
-![Wallet 14](https://docs.factom.com/images/wallet_033.png)  
+![Wallet 14](https://docs.factom.com/images/wallet_033.png)
+
 You can view the seed phrases that generate your internal addresses by clicking the Backup button on the sidebar.
 
 Then go back to your Address Book and click on the “blue pencil” to edit your address. If you now click on “DISPLAY PRIVATE KEY” it will appear on the left.
 
-![Wallet 15](https://docs.factom.com/images/wallet_034.png)  
+![Wallet 15](https://docs.factom.com/images/wallet_034.png)
+
 We strongly recommend saving the Private Keys of all your External Addresses by clicking the “COPY TO CLIPBOARD” button and pasting to a file or simply by writing them down. This is to be able to import your External Addresses in case you \[restore your original seed\]\(\#restore-a-seed\) when, for example, you switch to a new computer or your hard drive fails. The seed will not be able to re-generate External Addresses. Alternatively, save your wallet file as mentioned in the Backup Your Wallets! guide. As uncle Bob used to say, better be safe than sorry!
 
-You have learned how to generate a new FCT address and quite a few more things in between. \(thumbs up\)
+{% hint style="success" %}
+You have learned how to generate a new FCT address and quite a few more things in between.
+{% endhint %}
 
 ## Create an Entry Credit Address
 
@@ -362,7 +365,7 @@ Perform this step only if you intend to make entries into Factom or want to stoc
 
 You are now ready to generate a new Entry Credit \(EC\) address. It’s very easy with our new wallet.
 
-If you haven’t already, [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
+If you haven’t already, [Run Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
 Click on Address Book.
 
@@ -396,7 +399,8 @@ If needed, you can quickly copy the address to your smartphone with any QR code 
 
 You will see your newly created address in the list.
 
-![Wallet 42](https://docs.factom.com/images/wallet_040.png)  
+![Wallet 42](https://docs.factom.com/images/wallet_040.png)
+
 Note that some addresses have a “full white star” on their left, others have an “empty star”. This is to show you the addresses that have been created with your wallet “seed” \(full white star\) and the ones that have been imported \(empty star\) also known as “External Addresses.” As we mentioned in the “Backup Your Wallets!” guide only addresses created with the wallet seed can be recovered with the “seed file.”
 
 ![Wallet43](https://docs.factom.com/images/wallet_041.png)
@@ -415,14 +419,16 @@ In the “EDIT ENTRY CREDIT ADDRESS” screen you can simply change its Nickname
 
 Another thing you notice is the “DISPLAY PRIVATE KEY” button, if you click it, it will show “Displaying private key is disabled in settings.”
 
-Let’s give it a try so that you get familiar with another important function. Go to “Settings,” select “Enable ability to export private keys” then hit “SAVE CHANGES.”
+Let’s give it a try so that you get familiar with another important function. Go to “Settings,” select “Enable ability to export private keys” then hit “SAVE CHANGES.
 
-![Wallet 47](https://docs.factom.com/images/wallet_033.png)  
+![Wallet 47](https://docs.factom.com/images/wallet_033.png)
+
 You can view your the seed phrases that generate your internal addresses by clicking the Backup button on the sidebar.
 
-Then go back to your Address Book and click on the “blue pencil” to edit your address. If you now click on “DISPLAY PRIVATE KEY” it will appear on the left.
+Then go back to your Address Book and click on the “blue pencil” to edit your address. If you now click on “DISPLAY PRIVATE KEY” it will appear on the left
 
-![Wallet 48](https://docs.factom.com/images/wallet_044.png)  
+![Wallet 48](https://docs.factom.com/images/wallet_044.png)
+
 We strongly recommend saving the Private Keys of all your External Addresses by clicking the “COPY TO CLIPBOARD” button and pasting to a file or simply by writing them down. This is to be able to import your External Addresses in case you \[restore your original seed\]\(\#restore-a-seed\) when, for example, you switch to a new computer or your hard drive fails. The seed will not be able to re-generate External Addresses. Alternatively, save your wallet file as mentioned in the Backup Your Wallets! guide. As uncle Bob used to say, better be safe than sorry!
 
 You have learned how to generate a new FCT address and quite a few more things in between. \(thumbs up\)
@@ -441,17 +447,14 @@ From the drop-down menu select “Import from Private Key.” Type it or paste i
 
 ![Wallet 88](https://docs.factom.com/images/wallet_073.png)
 
-Follow the same procedure to import a private key for an EC address.  
-In this example we copied and pasted our private key in the address bar, yours will be different and unique to yourself.  
+Follow the same procedure to import a private key for an EC address. In this example we copied and pasted our private key in the address bar, yours will be different and unique to yourself.  
 Always take extra care when handling Private Keys with other people around to keep your factoids and entry credits safe. Anyone with access to your private keys can potentially redeem your tokens.
-
-You are so good at this already! You are ready to use your FCT balance.
 
 ## Send and Receive FCT
 
 **You can send Factoids** \(FCT\) from your local wallet to another Factoid Address \(FA\) within your wallet or a third party. To do so, you will need a source address and a destination address to execute the necessary command. You need to perform this action when you want to send FCT to an exchange, a friend, etc. Assuming you have a local FA address containing some FCT you wish to send and have a destination address you will need to:
 
-[Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet). \(Yes, we know it’s growing on you\)
+[Run Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet). \(Yes, we know it’s growing on you\)
 
 **You can receive Factoids** using the same instructions below, for instance, if you want to move FCT between two FA addresses within your local wallet. If instead, you want to receive FCT from an exchange or a third party, you simply provide your FA Address to the sender. Once sent you can verify the transaction has confirmed as well as your local FCT balance. Our wallet makes it easy to grab the info you need for your FA addresses.
 
@@ -471,9 +474,10 @@ Select “RECEIVE FACTOIDS” from the menu.
 
 ![Wallet 52](https://docs.factom.com/images/wallet_054.png)
 
-From the “RECEIVE FACTOIDS/ENTRY CREDIT PAGE,” you can “COPY TO CLIPBOARD” the FA address and paste where needed as well as use a QR code reader app to do so on a smartphone.
+From the “RECEIVE FACTOIDS/ENTRY CREDIT PAGE,” you can “COPY TO CLIPBOARD” the FA address and paste where needed as well as use a QR code reader app to do so on a smartphone
 
-![Wallet 53](https://docs.factom.com/images/wallet_055.png)  
+![Wallet 53](https://docs.factom.com/images/wallet_055.png)
+
 The TxID is a very useful way to verify that FCT have moved to the correct address. We recommend noting it down especially when sending or receiving to and from a third party.
 
 You are now ready to make you first FCT transaction; it’s very easy with our new wallet.
@@ -511,13 +515,17 @@ The wallet will prompt you with the outcome of the transaction as well as the Tr
 
 ![Wallet 61](https://docs.factom.com/images/wallet_051.png)
 
-You can then go back to your transactions list, select the transaction and get more info about it with “VIEW IN EXPLORER” or “LOCAL EXPLORER.”  
-Note, transactions on the Factom blockchain confirm every 10 minutes so you may have to wait until the next 00, 10, 20, 30th, and so on, minute of every hour. For example, if the time is 12:58, you have to wait 2 minutes until 13:00 before a transaction confirms.
+You can then go back to your transactions list, select the transaction and get more info about it with “VIEW IN EXPLORER” or “LOCAL EXPLORER.”
 
-![Wallet 62](https://docs.factom.com/images/wallet_052.png)  
+{% hint style="info" %}
+Note, transactions on the Factom blockchain confirm every 10 minutes
+{% endhint %}
+
+![Wallet 62](https://docs.factom.com/images/wallet_052.png)
+
 Most users would be happy up to here with our guide for what they need; simply sending and receiving Factoids. However, we strongly recommend reading further to get familiar with other wallet uses, functions and settings.
 
-### Advanced FCT Transactions
+## Advanced FCT Transactions
 
 You can use the instructions below if and when it’s required to have more control over your transactions. For example:
 
@@ -573,7 +581,7 @@ If you decide to send, the wallet will notify you with the TxID.
 
 ![Transaction sent notification](https://docs.factom.com/images/wallet_058.png)
 
-### **Signing, Exporting, Importing Transactions**
+## **Signing, Exporting, Importing Transactions**
 
 There are times when recurring transactions with multiple inputs and outputs can be time-consuming. So instead of having to set all details one by one each time, our wallet allows you to export them to a file ready to use them at a later date and repeatedly.
 
@@ -594,12 +602,9 @@ The “IMPORT/EXPORT TRANSACTIONS” page works as previously shown, with multip
 
 You can then choose if exporting or editing the transaction further.
 
-![Wallet 73](https://docs.factom.com/images/wallet_061.png)  
+![Wallet 73](https://docs.factom.com/images/wallet_061.png)
+
 Do some practice with signing and exporting/importing transactions before you commit to send them.
-
-You have now mastered the advanced wallet features. \(high five\)
-
-
 
 ## Convert FCT to Entry Credits
 
@@ -613,7 +618,7 @@ You will need a source address containing some FCT and a destination EC address 
 
 To get ECs proceed as follows.
 
-If you haven’t already [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
+If you haven’t already [Run Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
 Select “NEW TRANSACTION.”
 
@@ -634,12 +639,10 @@ We also got confirmation of the transaction together with its ID from the wallet
 You can then go back to your transactions list, select the transaction and get more info about it with “VIEW IN EXPLORER” or “LOCAL EXPLORER.”
 
 {% hint style="info" %}
-Note, transactions in Factom confirm every 10 minutes so you may have to wait until the next 00, 10, 20, 30th, and so on, minute of every hour. For example, if the time is 12:58, you have to wait 2 minutes until 13:00 before a transaction confirms.
+Note, transactions in Factom confirm every 10 minutes, so you might have to wait a little.
 {% endhint %}
 
-Most users would be happy up to here with our guide for what they need, simply send and receive Factoids. However, we strongly recommend reading further to get familiar with other wallet uses, functions and settings.
-
-### Advanced EC Transactions
+## Advanced EC Transactions
 
 Go to settings and select “Enable coin control \(specific or multiple input addresses for new transactions\).”  
 Note, “Enable ability to import/export transactions” doesn’t apply to Entry Credits.
@@ -664,14 +667,13 @@ So we corrected our mistake by specifying the right amount of FCT required, \(1.
 
 ![Wallet 82](https://docs.factom.com/images/wallet_064.png)
 
-The transaction finally went through as we can see from the prompt with TxID
+The transaction finally went through as we can see from the prompt with TxI
 
-![Wallet 83](https://docs.factom.com/images/wallet_065.png)  
+![Wallet 83](https://docs.factom.com/images/wallet_065.png)
+
 Double check all details before using “SEND TRANSACTION,” if in doubt you can always try later when sure, transactions in Factom are irreversible.
 
 Once submitted, from your transactions list, select the transaction for info about confirmation, amounts, addresses and more with “VIEW IN EXPLORER” or “LOCAL EXPLORER.”
-
-You made it so far; you will be fine going forward. We have touched all of the advanced wallet features. Have a well-deserved break! \(clap\)
 
 ## Redeem FCT from Koinify
 
@@ -707,7 +709,7 @@ You are a champ! You are ready to use your FCT to trade or buy EC.
 
 ### Create Backup of Your Current Wallet
 
-First of all, make sure to [Backup Your Wallets!](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backup-your-wallets)
+First of all, make sure to [Backup Your Wallets!](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#backup-your-wallets)
 
 {% hint style="warning" %}
 Important: This backup should be copied to a safe location.
@@ -715,11 +717,11 @@ Important: This backup should be copied to a safe location.
 
 ### Upgrade Factom Enterprise Wallet
 
-Then upgrade Enterprise Wallet to the latest version by following our [Install Enterprise Wallet guide](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
+Then upgrade Enterprise Wallet to the latest version by following our [Install Enterprise Wallet guide](https://developers.factomprotocol.org/wallets/enterprise-wallet/installation#install-enterprise-wallet).
 
 ### Create Secure Wallet & FCT Address
 
-**1.** [Run Enterprise Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
+**1.** [Run Enterprise Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
 **2.** On the first screen, choose the “Secure” option.
 
@@ -729,7 +731,7 @@ Then upgrade Enterprise Wallet to the latest version by following our [Install E
 
 ![Online Wallet 00](https://docs.factom.com/images/wallet_142.png)
 
-**4.** From the Enterprise Wallet application, you can now [create a new factoid address](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#create-a-factoid-address).
+**4.** From the Enterprise Wallet application, you can now [create a new factoid address](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#create-a-factoid-address).
 
 **5.** Copy the address you generated in the previous step so that you can fund it with factoids later in the process. You may want to save this in a separate text document for future reference \(and to make it easy to copy and paste later on\).
 
@@ -737,12 +739,12 @@ Then upgrade Enterprise Wallet to the latest version by following our [Install E
 
 ### Create Backup of Your Secure Wallet
 
-Now it’s time to backup your newly created secure wallet \(encrypted\) by following the [Backup Your Wallets!](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backup-your-wallets) guide.  
+Now it’s time to backup your newly created secure wallet \(encrypted\) by following the [Backup Your Wallets!](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#backup-your-wallets) guide.  
 Important: This backup should be copied to a safe location, and should be clearly distinguished from the first backup you made \(in other words, make sure that you can keep the Secure and Not Secure backups safe\).
 
 ### Send FCT to Your Secure Wallet
 
-**1.** Once again, run [Enterprise Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
+**1.** Once again, run [Enterprise Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
 **2.** On the first screen, choose the “Not Secure” option.
 
@@ -752,14 +754,17 @@ On the second screen tick the checkbox and click the “Proceed to Unencrypted W
 
 ![Online Wallet 00](https://docs.factom.com/images/wallet_144.png)
 
-**3.** When the wallet has fully loaded, you should see your original factoid balances again. You can now send your factoids to the new Secure Wallet address you just generated by following the [Send and Receive FCT Guide](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#send-and-receive-fct).  
+**3.** When the wallet has fully loaded, you should see your original factoid balances again. You can now send your factoids to the new Secure Wallet address you just generated by following the [Send and Receive FCT Guide](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#send-and-receive-fct).
+
+{% hint style="warning" %}
 Important: Double-check the address you are funding before sending the transaction.
+{% endhint %}
 
 **4.** Once you have sent your factoids from the Not Secure wallet addresses to the new, Secure wallet address\(es\) and waited for the transaction\(s\) to confirm, exit the application once again and make sure that it is no longer running.
 
-If you have followed the above steps, when you next [Run Enterprise Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet) and select the “Secure” option using the password you chose earlier, your balances will include the factoids that you sent to it, and your wallet will be securely encrypted.
+If you have followed the above steps, when you next [Run Enterprise Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet) and select the “Secure” option using the password you chose earlier, your balances will include the factoids that you sent to it, and your wallet will be securely encrypted.
 
-Users who hold Entry Credits in a Not Secure wallet \(unencrypted\) can also import them into a Secure Wallet \(encrypted\) by simply [importing the private keys](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#import-private-key) of their EC Addresses.
+Users who hold Entry Credits in a Not Secure wallet \(unencrypted\) can also import them into a Secure Wallet \(encrypted\) by simply [importing the private keys](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#import-private-key) of their EC Addresses.
 
 ## Verify FCT and EC Balances
 
@@ -767,7 +772,7 @@ After sending or receiving factoids, importing secret keys, or redeeming your 12
 
 ### **With the Factom Control Panel**
 
-The Factom Control Panel is easy to use and great for verifying your FA or EC balances. Simply [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet) and open the Control Panel webpage in your browser: [http://localhost:8090/](http://localhost:8090/)
+The Factom Control Panel is easy to use and great for verifying your FA or EC balances. Simply [Run Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet) and open the Control Panel webpage in your browser: [http://localhost:8090/](http://localhost:8090/)
 
 Find the search bar on the upper right-hand corner of the Factom Control Panel.
 
@@ -830,7 +835,7 @@ An alternative explorer, ran by The Factoid Authority,  can be found here: [http
 {% endhint %}
 
 {% hint style="success" %}
-You made it this far and got the knowledge, now is time to teach others how to use Factom!   
+You made it this far and got the knowledge, now is time to teach others how to use Factom! 
 {% endhint %}
 
   

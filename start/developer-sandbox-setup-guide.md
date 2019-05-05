@@ -19,7 +19,7 @@ There are three options for running a sandbox.
 
 ### **Install Factom Binaries**
 
-Download the appropriate Factom binary package from factom.org. Installers for for Windows, Mac, and Linux are hosted at [https://github.com/FactomProject/distribution](https://github.com/FactomProject/distribution). Directions for installing Factom Federation may be found [here](https://developers.factomprotocol.org/start/enterprise-wallet#install-factom-federation-ff).
+Download the appropriate Factom binary package from factom.org. Installers for for Windows, Mac, and Linux are hosted at [https://github.com/FactomProject/distribution](https://github.com/FactomProject/distribution). Directions for installing Factom Federation may be found [here](https://developers.factomprotocol.org/start/factom-cli-docs/installation#install-factom-federation-ff).
 
 Install the binaries like you would any other for your OS. The install directions walk you through various operating systems. Do not run them yet, as you will be making your own fresh blockchain instead of using the public one.
 
@@ -27,9 +27,9 @@ Install the binaries like you would any other for your OS. The install direction
  If you did run `factomd` before setup, follow the directions found [here ](https://developers.factomprotocol.org/start/developer-sandbox-setup-guide#resetting-the-blockchain)to reset the blockchain.
 {% endhint %}
 
-Three programs are installed: `factomd`, `factom-walletd`, and `factom-cli`. You may also wish to install the GUI [Enterprise Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet-setup#install-enterprise-wallet).
+Three programs are installed: `factomd`, `factom-walletd`, and `factom-cli`. You may also wish to install the GUI [Enterprise Wallet](https://developers.factomprotocol.org/wallets/enterprise-wallet/installation#install-enterprise-wallet).
 
-* `Factomd` is the main program. It manages the blockchain, connects to the public network, and enforces the network rules.
+* `Factomd`is the main program. It manages the blockchain, connects to the public network, and enforces the network rules.
 * `factom-walletd` is an application for holding private keys. It builds Factoid transactions and handles crypto related operations to add user data into Factom.
 * `Factom-cli` is a program for users to interface with `factomd` and `factom-walletd`. It may be used to create Chains, Entries, and Factoid transactions.
 
@@ -94,7 +94,7 @@ Wallet API Version: 2.0
 Windows users have a desktop shortcut for both first and second command, for the last one you might have to browse to the install location of `factom-cli`, or it might be in the path.
 {% endhint %}
 
-Once `factomd` is running you can use an internet browser and navigate to view the `factomd` Control Panel, found at [http://localhost:8090](http://localhost:8090).
+Once `factomd` is running you can use an internet browser and navigate to view the `factomd`Control Panel, found at [http://localhost:8090](http://localhost:8090).
 
 ### **Charge an Entry Credit key**
 

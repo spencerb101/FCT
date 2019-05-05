@@ -18,7 +18,6 @@
   * [factom-walletd](start/factom-api-docs/factom-walletd-api.md)
   * [Debug](start/factom-api-docs/debug-api.md)
 * [Factom CLI Docs](start/factom-cli-docs/README.md)
-  * [Before you begin](start/factom-cli-docs/before-you-begin.md)
   * [Installation](start/factom-cli-docs/installation.md)
   * [Usage](start/factom-cli-docs/usage.md)
 * [Factom data structures](start/factom-data-structures/README.md)
