@@ -1,14 +1,10 @@
-# Factom API Docs
-
-Welcome to the Factom APIs documentation. Here you’ll find intructions for factomd and factom-walletd JSON-RPC APIs. The API call examples are in curl, but the json structures are also provided for programming solutions. If using GoLang, there is a factom library solution created here: [https://github.com/FactomProject/factom](https://github.com/FactomProject/factom)
-
-## factomd API <a id="factomd-api"></a>
+# Factomd
 
 This is the API reference for the factomd process. The API is designed for outside application to process transactions and interact with the Factom federated servers. It’s listening port can be configured and runs on 8088 by default.
 
 All these APIs use JSON-RPC, which is a remote procedure call protocol encoded in JSON. It is a very simple protocol \(and very similar to XML-RPC\), defining only a handful of data types and commands.
 
-They can be invoked in your terminal as
+They can be invoked in your terminal as:
 
 `curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "METHOD_HERE", "params": {"PARAM_1":"PARAM_DATA_1"}}' -H 'content-type:text/plain;' http://localhost:8088/v2`
 
@@ -16,7 +12,7 @@ The output will also be JSON.
 
 The right panel will contain the curl commands to be run in your terminal, as well as the JSON structures of the request and response. The JSON structs detail the required parameters for each call.
 
-### ablock-by-height <a id="ablock-by-height"></a>
+## ablock-by-height
 
 > Example Request
 
@@ -86,7 +82,7 @@ Retrieve administrative blocks for any given height.
 
 The admin block contains data related to the identities within the factom system and the decisions the system makes as it builds the block chain. The ‘abentries’ \(admin block entries\) in the JSON response can be of various types, the most common is a directory block signature \(DBSig\). A majority of the federated servers sign every directory block, meaning every block after m5 will contain 5 DBSigs in each admin block.
 
-### ack <a id="ack"></a>
+## Ack
 
 > Example Request
 
@@ -97,7 +93,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0,
 -H 'content-type:text/plain;' http://localhost:8088/v2
 ```
 
-This api call is used to find the status of a transaction, whether it be a factoid, reveal entry, or commit entry. When using this, you must specify the type of the transaction by giving the `chainid` field 1 of 3 values:
+This API call is used to find the status of a transaction, whether it be a factoid, reveal entry, or commit entry. When using this, you must specify the type of the transaction by giving the `chainid` field 1 of 3 values:
 
 * `f` for factoid transactions
 * `c` for entry credit transactions \(commit entry/chain\)
@@ -106,16 +102,16 @@ This api call is used to find the status of a transaction, whether it be a facto
 
 The status types returned are as follows:
 
-* “Unknown” : Not found anywhere 
-* “NotConfirmed” : Found on local node, but not in network \(Holding Map\) 
-* “TransactionACK” : Found in network, but not written to the blockchain yet \(ProcessList\) 
-* “DBlockConfirmed” : Found in Blockchain
+* “_Unknown_” : Not found anywhere
+* “_NotConfirmed_” : Found on local node, but not in network \(Holding Map\)
+* “_TransactionACK_” : Found in network, but not written to the blockchain yet \(ProcessList\)
+* “_DBlockConfirmed_” : Found in Blockchain
 
 You may also provide the full marshaled transaction, instead of a hash, and it will be hashed for you.
 
 The responses vary based on the type:
 
-#### Entries <a id="entries"></a>
+### Entries
 
 > Entry Example Response
 
@@ -140,10 +136,13 @@ Requesting an entry requires you to specify if the hash you provide is a commit 
 
 For commit/reveal acks, the response has 2 sections, one for the commit, one for the reveal. If you provide the entryhash and chainid, both will be filled \(if found\). If you only provide the commit txid and `c` as the chainid, then only the commitdata is guaranteed to come back with data. The `committxid` and `entryhash` fields correspond to the `commitdata`and `entrydata` objects.
 
-_Extra notes_:  
-Why `c`? It is short for `000000000000000000000000000000000000000000000000000000000000000c`, which is the chainid for all entry credit blocks. All commits are placed in the entry credit block \(assuming they are valid and are properly paid for\)
+{% hint style="info" %}
+Why `c`? It is short for:`000000000000000000000000000000000000000000000000000000000000000c`
 
-#### Factoid Transactions <a id="factoid-transactions"></a>
+which is the chainid for all entry credit blocks. All commits are placed in the entry credit block \(assuming they are valid and are properly paid for\).  
+{% endhint %}
+
+### Factoid Transactions
 
 > Factoid Example Response
 
@@ -166,10 +165,15 @@ The `hash` field for a factoid transaction is equivalent to `txid`. To indicate 
 
 The response will look different than entry related ack calls.
 
-_Extra notes_:  
-Why `f`? It is short for `000000000000000000000000000000000000000000000000000000000000000f`, which is the chainid for all factoid blocks. All factoid transactions are placed in the factoid \(assuming they are valid\)
+{% hint style="info" %}
+Why `f`? It is short for:
 
-### admin-block <a id="admin-block"></a>
+`000000000000000000000000000000000000000000000000000000000000000f`
+
+which is the chainid for all factoid blocks. All factoid transactions are placed in the factoid \(assuming they are valid\).
+{% endhint %}
+
+## admin-block
 
 > Example Request
 
@@ -219,7 +223,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Retrieve a specified admin block given its merkle root key.
 
-### chain-head <a id="chain-head"></a>
+## chain-head
 
 > Example Request
 
@@ -244,7 +248,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Return the keymr of the head of the chain for a chain ID \(the unique hash created when the chain was created\).
 
-### commit-chain <a id="commit-chain"></a>
+## commit-chain
 
 > Example Request
 
@@ -270,16 +274,17 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "commit-chain"
 }
 ```
 
-Send a Chain Commit Message to factomd to create a new Chain. The commit chain hex encoded string is documented here: [Github Documentation](https://github.com/FactomProject/FactomDocs/blob/master/factomDataStructureDetails.md#chain-commit)
+Send a Chain Commit Message to factomd to create a new Chain. The commit chain hex encoded string is documented [here](https://developers.factomprotocol.org/start/factom-data-structures/user-elements#chain-commit).
 
-The commit-chain API takes a specifically formated message encoded in hex that includes signatures. If you have a factom-walletd instance running, you can construct this commit-chain API call with [compose-chain](https://docs.factom.com/api#compose-chain) which takes easier to construct arguments.
+The commit-chain API takes a specifically formated message encoded in hex that includes signatures. If you have a factom-walletd instance running, you can construct this commit-chain API call with [compose-chain](https://developers.factomprotocol.org/start/factom-api-docs/factom-walletd-api#compose-chain) which takes easier to construct arguments.
 
-The [compose-chain](https://docs.factom.com/api#compose-chain) api call has two api calls in it’s response: [commit-chain](https://docs.factom.com/api#commit-chain) and [reveal-chain](https://docs.factom.com/api#reveal-chain). To successfully create a chain, the [reveal-chain](https://docs.factom.com/api#reveal-chain) must be called after the [commit-chain](https://docs.factom.com/api#commit-chain).
+The [compose-chain](https://developers.factomprotocol.org/start/factom-api-docs/factom-walletd-api#compose-chain) api call has two api calls in it’s response: commit-chain and [reveal-chain](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#reveal-chain). To successfully create a chain, the reveal-chain must be called after the commit-chain.
 
-_Notes:_  
-It is possible to be unable to send a commit, if the commit already exists \(if you try to send it twice\). This is a mechanism to prevent you from double spending. If you encounter this error, just skip to the [reveal-chain](https://docs.factom.com/api#reveal-chain). The error format can be found here: [repeated-commit](https://docs.factom.com/api#repeated-commit)
+{% hint style="warning" %}
+It is possible to be unable to send a commit, if the commit already exists \(if you try to send it twice\). This is a mechanism to prevent you from double spending. If you encounter this error, just skip to the [reveal-chain](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#reveal-chain). The error format can be found here: [repeated-commit](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#repeated-commit)  
+{% endhint %}
 
-### commit-entry <a id="commit-entry"></a>
+## commit-entry
 
 > Example Request
 
@@ -303,16 +308,17 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "commit-entry"
 }
 ```
 
-Send an Entry Commit Message to factom to create a new Entry. The entry commit hex encoded string is documented here: [Github Documentation](https://github.com/FactomProject/FactomDocs/blob/master/factomDataStructureDetails.md#entry-commit)
+Send an Entry Commit Message to factom to create a new Entry. The entry commit hex encoded string is documented [here](https://developers.factomprotocol.org/start/factom-data-structures/user-elements#entry-commit).
 
-The commit-entry API takes a specifically formated message encoded in hex that includes signatures. If you have a factom-walletd instance running, you can construct this commit-entry API call with [compose-entry](https://docs.factom.com/api#compose-entry) which takes easier to construct arguments.
+The commit-entry API takes a specifically formated message encoded in hex that includes signatures. If you have a factom-walletd instance running, you can construct this commit-entry API call with [compose-entry](https://developers.factomprotocol.org/start/factom-api-docs/factom-walletd-api#compose-entry) which takes easier to construct arguments.
 
-The [compose-entry](https://docs.factom.com/api#compose-entry) api call has two api calls in it’s response: [commit-entry](https://docs.factom.com/api#commit-entry) and [reveal-entry](https://docs.factom.com/api#reveal-entry). To successfully create an entry, the [reveal-entry](https://docs.factom.com/api#reveal-entry) must be called after the [commit-entry](https://docs.factom.com/api#commit-entry).
+The compose-entry api call has two api calls in it’s response: commit-entry and [reveal-entry](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#reveal-entry). To successfully create an entry, the reveal-entry must be called after the commit-entry.
 
-_Notes:_  
-It is possible to be unable to send a commit, if the commit already exists \(if you try to send it twice\). This is a mechanism to prevent you from double spending. If you encounter this error, just skip to the [reveal-entry](https://docs.factom.com/api#reveal-entry). The error format can be found here: [repeated-commit](https://docs.factom.com/api#repeated-commit)
+{% hint style="warning" %}
+It is possible to be unable to send a commit, if the commit already exists \(if you try to send it twice\). This is a mechanism to prevent you from double spending. If you encounter this error, just skip to the [reveal-entry](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#reveal-entry). The error format can be found here: [repeated-commit](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#repeated-commit)
+{% endhint %}
 
-### current-minute <a id="current-minute"></a>
+## current-minute
 
 > Example Request
 
@@ -355,7 +361,9 @@ The _current-minute_ API call returns:
 * `faulttimeout` returns the number of seconds before leader node is faulted for failing to provide a necessary message.
 * `roundtimeout` returns the number of seconds between rounds of an election during a fault.
 
-### dblock-by-height <a id="dblock-by-height"></a>
+## dblock-by-height
+
+Retrieves a directory block given only its height.
 
 > Example Request
 
@@ -406,9 +414,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 }
 ```
 
-Retrieve a directory block given only its height.
-
-### directory-block <a id="directory-block"></a>
+## directory-block
 
 > Example Request
 
@@ -450,7 +456,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Every directory block has a KeyMR \(Key Merkle Root\), which can be used to retrieve it. The response will contain information that can be used to navigate through all transactions \(entry and factoid\) within that block. The header of the directory block will contain information regarding the previous directory block’s keyMR, directory block height, and the timestamp.
 
-### directory-block-head <a id="directory-block-head"></a>
+## directory-block-head
 
 > Example Request
 
@@ -474,7 +480,7 @@ curl -X POST --data-binary \
 
 The directory block head is the last known directory block by factom, or in other words, the most recently recorded block. This can be used to grab the latest block and the information required to traverse the entire blockchain.
 
-### ecblock-by-height <a id="ecblock-by-height"></a>
+## ecblock-by-height
 
 > Example Request
 
@@ -564,7 +570,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Retrieve the entry credit block for any given height. These blocks contain entry credit transaction information.
 
-### entry <a id="entry"></a>
+## entry
 
 > Example Request
 
@@ -592,7 +598,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":"entry","params
 
 Get an Entry from factomd specified by the Entry Hash.
 
-### entry-ack <a id="entry-ack"></a>
+## entry-ack
 
 > Example Request
 
@@ -628,11 +634,13 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0,
 }
 ```
 
-**Deprecated**: Please refer to [ack](https://docs.factom.com/api#ack)
+{% hint style="danger" %}
+**Deprecated**: Please refer to [ack](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#Ack)
+{% endhint %}
 
 Entry Acknowledgements will give the current status of a transaction. “DBlockConfirmed” is the highest level of confirmation you can obtain. This means the entry has made it into Factom.
 
-### entry-block <a id="entry-block"></a>
+## entry-block
 
 > Example Request
 
@@ -668,7 +676,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":"entry-block",
 
 Retrieve a specified entry block given its merkle root key. The entry block contains 0 to many entries
 
-### entry-credit-balance <a id="entry-credit-balance"></a>
+## entry-credit-balance
 
 > Example Request
 
@@ -693,7 +701,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Return its current balance for a specific entry credit address.
 
-### entrycredit-block <a id="entrycredit-block"></a>
+## entrycredit-block
 
 > Example Request
 
@@ -791,7 +799,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Retrieve a specified entrycredit block given its merkle root key. The numbers are minute markers.
 
-### entry-credit-rate <a id="entry-credit-rate"></a>
+## entry-credit-rate
 
 > Example Request
 
@@ -815,7 +823,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0,
 
 Returns the number of Factoshis \(Factoids \*10^-8\) that purchase a single Entry Credit. The minimum factoid fees are also determined by this rate, along with how complex the factoid transaction is.
 
-### factoid-ack <a id="factoid-ack"></a>
+## factoid-ack
 
 > Example Request
 
@@ -843,11 +851,13 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0,
 }
 ```
 
-**Deprecated**: Please refer to [ack](https://docs.factom.com/api#ack)
+{% hint style="danger" %}
+**Deprecated**: Please refer to [ack](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#Ack)
+{% endhint %}
 
 Factoid Acknowledgements will give the current status of a transaction. “DBlockConfirmed” is the highest level of confirmation you can obtain. This means the transaction has completed.
 
-### factoid-balance <a id="factoid-balance"></a>
+## factoid-balance
 
 > Example Request
 
@@ -871,7 +881,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 This call returns the number of Factoshis \(Factoids \*10^-8\) that are currently available at the address specified.
 
-### factoid-block <a id="factoid-block"></a>
+## factoid-block
 
 > Example Request
 
@@ -1002,7 +1012,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Retrieve a specified factoid block given its merkle root key.
 
-### factoid-submit <a id="factoid-submit"></a>
+## factoid-submit
 
 > Example Request
 
@@ -1025,11 +1035,11 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "factoid-submi
 }
 ```
 
-Submit a factoid transaction. The transaction hex encoded string is documented here: [Github Documentation](https://github.com/FactomProject/FactomDocs/blob/master/factomDataStructureDetails.md#factoid-transaction)
+Submit a factoid transaction. The transaction hex encoded string is documented [here](https://developers.factomprotocol.org/start/factom-data-structures/user-elements#factoid-transaction)**.**
 
-The factoid-submit API takes a specifically formatted message encoded in hex that includes signatures. If you have a factom-walletd instance running, you can construct this factoid-submit API call with [compose-transaction](https://docs.factom.com/api#compose-transaction) which takes easier to construct arguments.
+The factoid-submit API takes a specifically formatted message encoded in hex that includes signatures. If you have a factom-walletd instance running, you can construct this factoid-submit API call with [compose-transaction](https://developers.factomprotocol.org/start/factom-api-docs/factom-walletd-api#compose-transaction) which takes easier to construct arguments.
 
-### fblock-by-height <a id="fblock-by-height"></a>
+## fblock-by-height
 
 > Example Request
 
@@ -1117,7 +1127,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Retrieve the factoid block for any given height. These blocks contain factoid transaction information.
 
-### heights <a id="heights"></a>
+## heights
 
 > Example Request
 
@@ -1151,7 +1161,7 @@ Returns various heights that allows you to view the state of the blockchain. The
 
 A fully synced node should show the same number for all, \(except between minute 0 and 1, when leaderheight will be 1 block ahead.\)
 
-### multiple-ec-balances <a id="multiple-ec-balances"></a>
+## multiple-ec-balances
 
 > Example Request
 
@@ -1200,9 +1210,11 @@ The _multiple-ec-balances_ API is used to query the acknowledged and saved balan
 * If the list of addresses contains an incorrectly formatted address the call will return: {“currentheight”:0,“lastsavedheight”:0,“balances”:\[{“ack”:0,“saved”:0,“err”:“Error decoding address”}\]}
 * If an address in the list is valid but has never been part of a transaction the call will return: “balances”:\[{“ack”:0,“saved”:0,“err”:“Address has not had a transaction”}\]“
 
-**Referring to the example request:** This Example is for simulation, these addresses may not work or have the same value for mainnet or testnet
+{% hint style="warning" %}
+**Referring to the example request:** This Example is for simulation, these addresses may not work or have the same value for mainnet or testnet.
+{% endhint %}
 
-### multiple-fct-balances <a id="multiple-fct-balances"></a>
+## multiple-fct-balances
 
 > Example Request
 
@@ -1245,15 +1257,17 @@ The _multiple-fct-balances_ API is used to query the acknowledged and saved bala
   * `ack` is the balance after processing any in-flight transactions known to the Factom node responding to the API call
   * `saved` is the last saved to the database
   * `err` is just used to display any error that might have happened during the request. If it is `""` that means there was no error.
-* If the syntax of the parameters is off e.g. missing a quote, a comma, or a square bracket, it will return: {"jsonrpc”:“2.0”,“id”:null,“error”:{“code”:-32600,“message”:“Invalid Request”}}
-* If the parameters are labeled incorrectly the call will return: “{“code”:-32602,“message”:“Invalid params”,“data”:“ERROR! Invalid params passed in, expected 'addresses’”}”
-* If factomd is not loaded up all the way to the last saved block it will return: {“currentheight”:0,“lastsavedheight”:0,“balances”:\[{“ack”:0,“saved”:0,“err”:“Not fully booted”}\]}
-* If the list of addresses contains an incorrectly formatted address the call will return: {“currentheight”:0,“lastsavedheight”:0,“balances”:\[{“ack”:0,“saved”:0,“err”:“Error decoding address”}\]}
-* If an address in the list is valid but has never been part of a transaction it will return: “balances”:\[{“ack”:0,“saved”:0,“err”:“Address has not had a transaction”}\]“
+* If the syntax of the parameters is off e.g. missing a quote, a comma, or a square bracket, it will return: `{"jsonrpc”:“2.0”,“id”:null,“error”:{“code”:-32600,“message”:“Invalid Request”}}`
+* If the parameters are labeled incorrectly the call will return: `{“code”:-32602,“message”:“Invalid params”,“data”:“ERROR! Invalid params passed in, expected 'addresses’”}`
+* If factomd is not loaded up all the way to the last saved block it will return: `{“currentheight”:0,“lastsavedheight”:0,“balances”:[{“ack”:0,“saved”:0,“err”:“Not fully booted”}]}`
+* If the list of addresses contains an incorrectly formatted address the call will return: `{“currentheight”:0,“lastsavedheight”:0,“balances”:[{“ack”:0,“saved”:0,“err”:“Error decoding address”}]}`
+* If an address in the list is valid but has never been part of a transaction it will return: `“balances”:[{“ack”:0,“saved”:0,“err”:“Address has not had a transaction”}]`“
 
-**Referring to the example request:** This Example is for simulation, these addresses may not work or have the same value for mainnet or testnet
+{% hint style="warning" %}
+**Referring to the example request:** This Example is for simulation, these addresses may not work or have the same value for mainnet or testnet.
+{% endhint %}
 
-### pending-entries <a id="pending-entries"></a>
+## pending-entries
 
 > Example Request
 
@@ -1285,7 +1299,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Returns an array of the entries that have been submitted but have not been recorded into the blockchain.
 
-### pending-transactions <a id="pending-transactions"></a>
+## pending-transactions
 
 > Example Request
 
@@ -1328,7 +1342,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "pending-trans
 
 Returns an array of factoid transactions that have not yet been recorded in the blockchain, but are known to the system.
 
-### properties <a id="properties"></a>
+## properties
 
 > Example Request
 
@@ -1352,7 +1366,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Retrieve current properties of the Factom system, including the software and the API versions.
 
-### raw-data <a id="raw-data"></a>
+## raw-data
 
 > Example Request
 
@@ -1376,7 +1390,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Retrieve an entry or transaction in raw format, the data is a hex encoded string.
 
-### receipt <a id="receipt"></a>
+## receipt
 
 > Example Request
 
@@ -1450,7 +1464,7 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
 
 Retrieve a receipt providing cryptographically verifiable proof that information was recorded in the factom blockchain and that this was subsequently anchored in the bitcoin blockchain.
 
-### reveal-chain <a id="reveal-chain"></a>
+## reveal-chain
 
 > Example Request
 
@@ -1475,13 +1489,13 @@ curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "reveal-chain"
 }
 ```
 
-Reveal the First Entry in a Chain to factomd after the Commit to complete the Chain creation. The reveal-chain hex encoded string is documented here: [Github Documentation](https://github.com/FactomProject/FactomDocs/blob/master/factomDataStructureDetails.md#entry)
+Reveal the First Entry in a Chain to factomd after the Commit to complete the Chain creation. The reveal-chain hex encoded string is documented [here](https://developers.factomprotocol.org/start/factom-data-structures/user-elements#entry).
 
-The reveal-chain API takes a specifically formatted message encoded in hex that includes signatures. If you have a factom-walletd instance running, you can construct this reveal-chain API call with [compose-chain](https://docs.factom.com/api#compose-chain) which takes easier to construct arguments.
+The reveal-chain API takes a specifically formatted message encoded in hex that includes signatures. If you have a factom-walletd instance running, you can construct this reveal-chain API call with [compose-chain](https://developers.factomprotocol.org/start/factom-api-docs/factom-walletd-api#compose-chain) which takes easier to construct arguments.
 
-The [compose-chain](https://docs.factom.com/api#compose-chain) api call has two api calls in its response: [commit-chain](https://docs.factom.com/api#commit-chain) and [reveal-chain](https://docs.factom.com/api#reveal-chain). To successfully create a chain, the [reveal-chain](https://docs.factom.com/api#reveal-chain) must be called after the [commit-chain](https://docs.factom.com/api#commit-chain).
+The compose-chain api call has two api calls in its response: [commit-chain](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#commit-chain) and [reveal-chain](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#reveal-chain). To successfully create a chain, the reveal-chain must be called after the commit-chain.
 
-### reveal-entry <a id="reveal-entry"></a>
+## reveal-entry
 
 > Example Request
 
@@ -1505,17 +1519,17 @@ curl -X POST --data '{"jsonrpc": "2.0", "id": 0, "method": "reveal-entry", "para
 }
 ```
 
-Reveal an Entry to factomd after the Commit to complete the Entry creation. The reveal-entry hex encoded string is documented here: [Github Documentation](https://github.com/FactomProject/FactomDocs/blob/master/factomDataStructureDetails.md#entry)
+Reveal an Entry to factomd after the Commit to complete the Entry creation. The reveal-entry hex encoded string is documented [here](https://developers.factomprotocol.org/start/factom-data-structures/user-elements#entry).
 
-The reveal-entry API takes a specifically formatted message encoded in hex that includes signatures. If you have a factom-walletd instance running, you can construct this reveal-entry API call with [compose-entry](https://docs.factom.com/api#compose-entry) which takes easier to construct arguments.
+The reveal-entry API takes a specifically formatted message encoded in hex that includes signatures. If you have a factom-walletd instance running, you can construct this reveal-entry API call with [compose-entry](https://developers.factomprotocol.org/start/factom-api-docs/factom-walletd-api#compose-entry) which takes easier to construct arguments.
 
-The [compose-entry](https://docs.factom.com/api#compose-entry) api call has two api calls in it’s response: [commit-entry](https://docs.factom.com/api#commit-entry) and [reveal-entry](https://docs.factom.com/api#reveal-entry). To successfully create an entry, the [reveal-entry](https://docs.factom.com/api#reveal-entry) must be called after the [commit-entry](https://docs.factom.com/api#commit-entry).
+The compose-entry api call has two api calls in it’s response: [commit-entry](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#commit-entry) and [reveal-entry](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#reveal-entry). To successfully create an entry, the reveal-entry must be called after the commit-entry.
 
-### send-raw-message <a id="send-raw-message"></a>
+## send-raw-message
 
 Send a raw hex encoded binary message to the Factom network. This is mostly just for debugging and testing.
 
-#### To Check Commit Chain Example <a id="to-check-commit-chain-example"></a>
+### To Check Commit Chain Example
 
 > Example Commit Chain Request
 
@@ -1550,7 +1564,7 @@ p://localhost:8088/v2
 
 Entry Hash : 23af5f7c05a89c0097eed7378c60b8bcc89a284094a81da85fb8faab7b297247
 
-#### To Check Reveal Chain Example <a id="to-check-reveal-chain-example"></a>
+### To Check Reveal Chain Example
 
 > Example Reveal Chain Request
 
@@ -1586,7 +1600,7 @@ Entry Hash : 23af5f7c05a89c0097eed7378c60b8bcc89a284094a81da85fb8faab7b297247
 
 Chain ID : d05f245ae96f954dbb4da9c5dc82eea40df0a11823efa47733e374237d626146
 
-### transaction <a id="transaction"></a>
+## transaction
 
 > Example Request
 
@@ -1663,23 +1677,25 @@ Retrieve details of a factoid transaction using a transaction’s hash \(or corr
 
 Note that information regarding the
 
-* directory block height,
-* directory block keymr, and
+* directory block height
+* directory block keymr
 * transaction block keymr
 
 are also included.
 
-The "blockheight” parameter in the response will always be 0 when using this call, refer to “includedindirectoryblockheight” if you need the height.
+The "_blockheight_” parameter in the response will always be 0 when using this call, refer to “_includedindirectoryblockheight_” if you need the height.
 
-Note: This call will also accept an entry hash as input, in which case the returned data concerns the entry. The returned fields and their format are shown in the 2nd Example Response at right.
+{% hint style="info" %}
+This call will also accept an entry hash as input, in which case the returned data concerns the entry. The returned fields and their format are shown in the 2nd Example Response at right.
 
-Note: If the input hash is non-existent, the returned fields will be as follows:
+If the input hash is non-existent, the returned fields will be as follows:
 
-* “includedintransactionblock”:“”
-* “includedindirectoryblock”:“”
-* “includedindirectoryblockheight”:-1
+* `“includedintransactionblock”:“”`
+* `“includedindirectoryblock”:“”`
+* `“includedindirectoryblockheight”:-1`
+{% endhint %}
 
-### _Errors_ <a id="errors"></a>
+## Errors
 
 There are various errors you can get back from the API. Here we will detail what they mean, and sometimes how to handle them.
 
@@ -1692,7 +1708,7 @@ Error types:
 * Method not found
 * Repeated Commit
 
-#### Parse Error <a id="parse-error"></a>
+### Parse Error
 
 > Parse Error
 
@@ -1713,7 +1729,7 @@ The server had an error parsing the JSON
 **What to do?**  
 Check the JSON you provided and ensure it is valid.
 
-#### Invalid Request <a id="invalid-request"></a>
+### Invalid Request
 
 > Invalid Request
 
@@ -1734,7 +1750,7 @@ The JSON sent is not a valid Request object.
 **What to do?**  
 Ensure that your request matches our JSON-RPC standard.
 
-#### Invalid params <a id="invalid-params"></a>
+### Invalid params
 
 > Invalid params
 
@@ -1755,7 +1771,7 @@ The params sent do not match the expected parameters
 **What to do?**  
 Ensure that your parameters are correct for the API endpoint you are trying to call. Also, ensure that you have all the required fields.
 
-#### Internal error <a id="internal-error"></a>
+### Internal error
 
 > Internal error
 
@@ -1776,7 +1792,7 @@ There was an internal error when processing your request.
 **What to do?**  
 This error is hard to fix from the clientside, many times it is related to database lookups.
 
-#### Method not found <a id="method-not-found"></a>
+### Method not found
 
 > Method not found
 
@@ -1797,7 +1813,7 @@ If you provide a method that is not a supported API method, this error will be r
 **What to do?**  
 Check the method you provided for a typo, and ensure that your URL you provide is correct \(factomd API call to factomd, wallet API call to factom-walletd\).
 
-#### Repeated Commit <a id="repeated-commit"></a>
+### Repeated Commit
 
 > Repeated Commit
 
@@ -1824,1616 +1840,5 @@ If this error occurs, just send the reveal, as the entry has already been paid f
 
 In Factom every entry is paid for by the commit, and the data is given by the reveal. So if the commit is already paid for, you do not need to send another. This prevents you from double spending for an entry. Now if your entry requires more entry credits than the existing commit, you must send a new commit with more funds, and that will override the existing commit \(but both commits will spend, so get it right the first time\).
 
-If you wish to find the existing commit, you can use the [ack](https://docs.factom.com/api#ack) call, using the entryhash and the chainid.
-
-## factom-walletd API <a id="factom-walletd-api"></a>
-
-API reference documentation for factom-walletd. factom-walletd serves the wallet API on port 8089.
-
-All these APIs use JSON-RPC, which is a remote procedure call protocol encoded in JSON. It is a very simple protocol \(and very similar to XML-RPC\), defining only a handful of data types and commands.
-
-They can be invoked as:
-
-`curl -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "METHOD_NAME", "params":{"PARAM_1":"DATA_1"}}' -H 'content-type:text/plain;' http://localhost:8089/v2`
-
-The output will also be JSON.
-
-An example of a request and a response are given in the right panel for each of the RPC Methods.
-
-### add-ec-output <a id="add-ec-output"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc":"2.0","id":0,"method":"add-ec-output"
-,"params":{"tx-name":"TX_NAME","address":
-"EC22MrL8CT4iTfRhxPvAStm9v4XEn5cJPvUpY39GLgU9GPnKMffn","amount":10000}}' \
- -H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "feesrequired":22000,
-      "signed":false,
-      "name":"TX_NAME",
-      "timestamp":1484934602,
-      "totalecoutputs":10,
-      "totalinputs":2000000000,
-      "totaloutputs":1000000000,
-      "inputs":[  
-         {  
-            "address":"FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q",
-            "amount":2000000000
-         }
-      ],
-      "outputs":[  
-         {  
-            "address":"FA2H7gecy8Nr7cxF7ngtByW23PxvrysuzYMAiAhbRTddCWZTLs4P",
-            "amount":1000000000
-         }
-      ],
-      "ecoutputs":[  
-         {  
-            "address":"EC22MrL8CT4iTfRhxPvAStm9v4XEn5cJPvUpY39GLgU9GPnKMffn",
-            "amount":10000
-         }
-      ],
-      "txid":"65ec0f3990c49bd18ec4e9c10c6f1d0fa91572dd7cdbf61e5b47b67ab0f011f6"
-   }
-}
-```
-
-When adding entry credit outputs, the amount given is in factoshis, not entry credits. This means math is required to determine the correct amount of factoshis to pay to get X EC.
-
-`(ECRate * ECTotalOutput)`
-
-In our case, the rate is 1000, meaning 1000 entry credits per factoid. We added 10 entry credits, so we need 1,000 \* 10 = 10,000 factoshis
-
-To get the ECRate search in the search bar above for “entry-credit-rate”
-
-### add-fee <a id="add-fee"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc":"2.0","id":0,"method":"add-fee","params":
-{"tx-name":"TX_NAME","address":"FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q"}}' \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "feespaid":22000,
-      "feesrequired":22000,
-      "signed":false,
-      "name":"TX_NAME",
-      "timestamp":1484934602,
-      "totalecoutputs":10000,
-      "totalinputs":1000032000,
-      "totaloutputs":1000000000,
-      "inputs":[  
-         {  
-            "address":"FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q",
-            "amount":1000032000
-         }
-      ],
-      "outputs":[  
-         {  
-            "address":"FA2H7gecy8Nr7cxF7ngtByW23PxvrysuzYMAiAhbRTddCWZTLs4P",
-            "amount":1000000000
-         }
-      ],
-      "ecoutputs":[  
-         {  
-            "address":"EC22MrL8CT4iTfRhxPvAStm9v4XEn5cJPvUpY39GLgU9GPnKMffn",
-            "amount":10000
-         }
-      ],
-      "txid":"0afa940a04f2423135fef1c62c6785dc105850079583c2b1881b6b23017266b3"
-   }
-}
-```
-
-Addfee is a shortcut and safeguard for adding the required additional factoshis to covert the fee. The fee is displayed in the returned transaction after each step, but addfee should be used instead of manually adding the additional input. This will help to prevent overpaying.
-
-Addfee will complain if your inputs and outputs do not match up. For example, in the steps above we added the inputs first. This was done intentionally to show a case of overpaying. Obviously, no one wants to overpay for a transaction, so addfee has returned an error and the message: ‘Inputs and outputs don’t add up’. This is because we have 2,000,000,000 factoshis as input and only 1,000,000,000 + 10,000 as output. Let’s correct the input by doing 'add-input’, and putting 1000010000 as the amount for the address. It will overwrite the previous input.
-
-Curl to do that:
-
-`curl -X POST --data-binary '{"jsonrpc":"2.0","id":0,"method":"add-input","params": {"tx-name":"TX_NAME","address":"FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q","amount":1000010000}}' \ -H 'content-type:text/plain;' http://localhost:8089/v2`
-
-Run the addfee again, and the feepaid and feerequired will match up
-
-### add-input <a id="add-input"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc":"2.0","id":0,"method":"add-input","params":
-{"tx-name":"TX_NAME","address":"FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q","amount":2000000000}}' \
- -H 'content-type:text/plain;' http://localhost:8089/v2 
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "feespaid":2000000000,
-      "feesrequired":2000,
-      "signed":false,
-      "name":"TX_NAME",
-      "timestamp":1484934602,
-      "totalecoutputs":0,
-      "totalinputs":2000000000,
-      "totaloutputs":0,
-      "inputs":[  
-         {  
-            "address":"FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q",
-            "amount":2000000000
-         }
-      ],
-      "outputs":null,
-      "ecoutputs":null,
-      "txid":"e713c13c4b3868cc884d1baa68f77cacbe74a2a248f38d4ac5883550fce0c961"
-   }
-}
-```
-
-Adds an input to the transaction from the given address. The public address is given, and the wallet must have the private key associated with the address to successfully sign the transaction.
-
-The input is measured in factoshis, so to send ten factoids, you must input 1,000,000,000 factoshis \(without commas in JSON\)
-
-### add-output <a id="add-output"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc":"2.0","id":0,"method":"add-output",
-"params":{"tx-name":"TX_NAME","address":
-"FA2H7gecy8Nr7cxF7ngtByW23PxvrysuzYMAiAhbRTddCWZTLs4P","amount":1000000000}}'  \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "feespaid":1000000000,
-      "feesrequired":12000,
-      "signed":false,
-      "name":"TX_NAME",
-      "timestamp":1484934602,
-      "totalecoutputs":0,
-      "totalinputs":2000000000,
-      "totaloutputs":1000000000,
-      "inputs":[  
-         {  
-            "address":"FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q",
-            "amount":2000000000
-         }
-      ],
-      "outputs":[  
-         {  
-            "address":"FA2H7gecy8Nr7cxF7ngtByW23PxvrysuzYMAiAhbRTddCWZTLs4P",
-            "amount":1000000000
-         }
-      ],
-      "ecoutputs":null,
-      "txid":"e713d93303077cb87634489c9fd335b394925bf3ae167e5f226b523fa882dd71"
-   }
-}
-```
-
-Adds a factoid address output to the transaction. Keep in mind the output is done in factoshis. 1 factoid is 1,000,000,000 factoshis.
-
-So to send ten factoids, you must send 1,000,000,000 factoshis \(no commas in JSON\).
-
-### address <a id="address"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
-"address", "params":{"address":"FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q"}}' \ 
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "public": "FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q",
-        "secret": "Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK"
-    }
-}
-```
-
-Retrieve the public and private parts of a Factoid or Entry Credit address stored in the wallet.
-
-### all-addresses <a id="all-addresses"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "all-addresses"}' \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "addresses": [
-            {
-                "public": "FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q",
-                "secret": "Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK"
-            },
-            {
-                "public": "EC3MAHiZyfuEb5fZP2fSp2gXMv8WemhQEUFXyQ2f2HjSkYx7xY1S",
-                "secret": "Es3ETdf64QnorrJzosZuCbcdSVPTu1NZVezUXTjjTTSzNb12JtES"
-            }
-        ]
-    }
-}
-```
-
-Retrieve all of the Factoid and Entry Credit addresses stored in the wallet.
-
-### compose-chain <a id="compose-chain"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
- "compose-chain", "params": {"chain": {"firstentry":
- {"extids":["61626364", "31323334"], "content":"3132333461626364"}},
-  "ecpub":"EC2DKSYyRcNWf7RS963VFYgMExo1824HVeCfQ9PGPmNzwrcmgm2r"}}'\
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "commit":{  
-         "jsonrpc":"2.0",
-         "id":2885,
-         "params":{  
-            "message":"00015a9177f43d5df6e0e2761359d30a8275058e299fcc0381534545f55cf43e41983f5d4c9456abc6ea48b1287d0e5f2cf64798647221842e46b37e920cfaea62723c15195c320a9c707c2dfe35d43a21255c51012dae80cefbb14cf6571b6e195f5365bac7d30b3b6a27bcceb6a42d62a3a8d02a6f0d73653215771de243a63ac048a18b59da29e84f101bcf1d3a8ca45ad5c1a0ab3cf8ab935a2ad4f75914a0fb08e267facd9540cefe6833f3ea0295c3c2035bcd42a94e26477f096474b05e67538a34945a09"
-         },
-         "method":"commit-chain"
-      },
-      "reveal":{  
-         "jsonrpc":"2.0",
-         "id":2886,
-         "params":{  
-            "entry":"00e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b85500080002abcd000212341234abcd"
-         },
-         "method":"reveal-chain"
-      }
-   }
-}
-```
-
-This method, compose-chain, will return the appropriate API calls to create a chain in factom. You must first call the [commit-chain](https://docs.factom.com/api#commit-chain), then the [reveal-chain](https://docs.factom.com/api#reveal-chain) API calls. To be safe, wait a few seconds after calling commit.
-
-**Notes**:  
-Ensure that all data given in the `firstentry` fields are encoded in hex. This includes the content section.
-
-### compose-entry <a id="compose-entry"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{ "jsonrpc": "2.0", "id": 0, "method":
- "compose-entry", "params": { "entry": 
- {"chainid":"48e0c94d00bf14d89ab10044075a370e1f55bcb28b2ff16206d865e192827645", 
- "extids":["cd90", "90cd"], "content":"abcdef"}, "ecpub":"EC2DKSYyRcNWf7RS963VFYgMExo1824HVeCfQ9PGPmNzwrcmgm2r"}}'\
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "commit":{  
-         "jsonrpc":"2.0",
-         "id":2889,
-         "params":{  
-            "message":"00015a91804aa917606c4f9717f13e157e0b80c6f482888a62bd20440c7eb49f90393c9c279457013b6a27bcceb6a42d62a3a8d02a6f0d73653215771de243a63ac048a18b59da29e95f7957b0555b7cb80e93c6923b43e98e9a308503197af70af607fc30abc1b36d52b3388d0507460caf4d30a1be8fba80c5416f34bf6c0394e26a9a9814070a"
-         },
-         "method":"commit-entry"
-      },
-      "reveal":{  
-         "jsonrpc":"2.0",
-         "id":2890,
-         "params":{  
-            "entry":"0048e0c94d00bf14d89ab10044075a370e1f55bcb28b2ff16206d865e19282764500080002cd90000290cdabcdef"
-         },
-         "method":"reveal-entry"
-      }
-   }
-}
-```
-
-This method, compose-entry, will return the appropriate API calls to create an entry in factom. You must first call the [commit-entry](https://docs.factom.com/api#commit-entry), then the [reveal-entry](https://docs.factom.com/api#reveal-entry) API calls. To be safe, wait a few seconds after calling commit.
-
-**Notes**:  
-Ensure all data given in the `entry` fields are encoded in hex. This includes the content section.
-
-### compose-transaction <a id="compose-transaction"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc":"2.0","id":0,"method":"compose-transaction",
-"params":{"tx-name":"TX_NAME"}}' -H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "jsonrpc":"2.0",
-      "id":3,
-      "params":{  
-         "transaction":"020159bcffde4d01010183dcebe210646f3e8750c550e4582eca5047546ffef89c13a175985e320232bacac81cc42883dce9e81028f458993c24c1cee28b34f77fc633c92603f36e1c1cd1f21350753f00eccdefce1022883c5223b3344e0a0e0a9a5a23856890507d4451a5ee2de0ca6c6d699d4cdf01718b5edd2914acc2e4677f336c1a32736e5e9bde13663e6413894f57ec272e28a30347ad7a0b4d449a0e644e5b4bd53eda240677a450b6f19482b63558031c027ae7ca84d713a4eac48a3e9f57603fe270318fc8144eb107fa10c6cf349c9006"
-      },
-      "method":"factoid-submit"
-   }
-}
-```
-
-Compose transaction marshals the transaction into a hex encoded string. The string can be inputted into the factomd API [factoid-submit](https://docs.factom.com/api#factoid-submit) to be sent to the network.
-
-### delete-transaction <a id="delete-transaction"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, 
-"method":"delete-transaction", "params":{"tx-name":"TX_NAME"}}' \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "signed":false,
-      "name":"TX_NAME",
-      "timestamp":-62135596800,
-      "totalecoutputs":0,
-      "totalinputs":0,
-      "totaloutputs":0,
-      "inputs":null,
-      "outputs":null,
-      "ecoutputs":null
-   }
-}
-```
-
-Deletes a working transaction in the wallet. The full transaction will be returned, and then deleted.
-
-### generate-ec-address <a id="generate-ec-address"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "generate-ec-address"}' \ 
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "public": "EC2LV5w7pMD9fwtoAnv2wiCSGm2WzYpxjCMz84reWmBsxLuCPoBp",
-        "secret": "Es3tXbGBVKZDhUWzDKzQtg4rcpmmHPXAY9vxSM2JddwJSD5td3f8"
-    }
-}
-```
-
-Create a new Entry Credit Address and store it in the wallet.
-
-### generate-factoid-address <a id="generate-factoid-address"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "generate-ec-address"}' \ 
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "public": "FA2uGBEmmW5VUy3obcT12DWkW91cVVRV9yppifhkGANBQCzd3pNi",
-        "secret": "Fs2G4Hs9YxqBZ8TkfyWwNKmJbwet3Zg1JNXt8MrQReCEph6rGt9v"
-    }
-}
-```
-
-Create a new Entry Credit Address and store it in the wallet.
-
-### get-height <a id="get-height"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "get-height"}' \ 
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "height": 1030
-    }
-}
-```
-
-Get the current hight of blocks that have been cached by the wallet while syncing.
-
-### import-addresses <a id="import-addresses"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "import-addresses", "params":{"addresses":[{"secret":"Fs2G4Hs9YxqBZ8TkfyWwNKmJbwet3Zg1JNXt8MrQReCEph6rGt9v"},{"secret":"Es3tXbGBVKZDhUWzDKzQtg4rcpmmHPXAY9vxSM2JddwJSD5td3f8"}]}}' \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "addresses": [
-            {
-                "public": "FA2uGBEmmW5VUy3obcT12DWkW91cVVRV9yppifhkGANBQCzd3pNi",
-                "secret": "Fs2G4Hs9YxqBZ8TkfyWwNKmJbwet3Zg1JNXt8MrQReCEph6rGt9v"
-            },
-            {
-                "public": "EC2LV5w7pMD9fwtoAnv2wiCSGm2WzYpxjCMz84reWmBsxLuCPoBp",
-                "secret": "Es3tXbGBVKZDhUWzDKzQtg4rcpmmHPXAY9vxSM2JddwJSD5td3f8"
-            }
-        ]
-    }
-}
-```
-
-Import Factoid and/or Entry Credit address secret keys into the wallet.
-
-### import-koinify <a id="import-koinify"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "import-koinify", "params":
-{"words":"yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow"}}' \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "public": "FA3cih2o2tjEUsnnFR4jX1tQXPpSXFwsp3rhVp6odL5PNCHWvZV1",
-        "secret": "Fs1Nifx4n5BCsS277ozuWpHqX4vRo54eYNvT3cv3wLdFbfSMMjyx"
-    }
-}
-```
-
-Import a Koinify crowd sale address into the wallet. In our examples we used the word “yellow” twelve times, note that in your case the master passphrase will be different.
-
-### new-transaction <a id="new-transaction"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method":"new-transaction", 
-"params":{"tx-name":"TX_NAME"}}' -H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "feesrequired":1000,
-      "signed":false,
-      "name":"TX_NAME",
-      "timestamp":1484933437,
-      "totalecoutputs":0,
-      "totalinputs":0,
-      "totaloutputs":0,
-      "inputs":null,
-      "outputs":null,
-      "ecoutputs":null,
-      "txid":"4ab170433f9384f3e77a25a5d21a58f794bef19b9a363bcd88048203d73cf3ba"
-   }
-}
-```
-
-This will create a new transaction. The txid is in flux until the final transaction is signed. Until then, it should not be used or recorded.
-
-When dealing with transactions all factoids are represented in factoshis. 1 factoid is 1e8 factoshis, meaning you can never send anything less than 0 to a transaction \(0.5\).
-
-### properties <a id="properties"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "properties"}'  \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "walletversion": "0.2.0.0",
-        "walletapiversion": "2.0"
-    }
-}
-```
-
-Retrieve current properties of factom-walletd, including the wallet and wallet API versions.
-
-### sign-transaction <a id="sign-transaction"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc":"2.0","id":0,"method":"sign-transaction","params":{"tx-name":"TX_NAME"}}' \
- -H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "feespaid":22000,
-      "feesrequired":22000,
-      "signed":true,
-      "name":"TX_NAME",
-      "timestamp":1484934602,
-      "totalecoutputs":10000,
-      "totalinputs":1000010000,
-      "totaloutputs":999978000,
-      "inputs":[  
-         {  
-            "address":"FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q",
-            "amount":1000010000
-         }
-      ],
-      "outputs":[  
-         {  
-            "address":"FA2H7gecy8Nr7cxF7ngtByW23PxvrysuzYMAiAhbRTddCWZTLs4P",
-            "amount":999978000
-         }
-      ],
-      "ecoutputs":[  
-         {  
-            "address":"EC22MrL8CT4iTfRhxPvAStm9v4XEn5cJPvUpY39GLgU9GPnKMffn",
-            "amount":10000
-         }
-      ],
-      "txid":"32fbdc624fb31927f60a1cd52a836b1c65cc49ddc98b41d4d7adb50780ebf305"
-   }
-}
-```
-
-Signs the transaction. It is now ready to be executed.
-
-### sub-fee <a id="sub-fee"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc":"2.0","id":0,"method"
-:"sub-fee","params": {"tx-name":"TX_NAME","address":
-"FA2H7gecy8Nr7cxF7ngtByW23PxvrysuzYMAiAhbRTddCWZTLs4P"}}' \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "feespaid":22000,
-      "feesrequired":22000,
-      "signed":false,
-      "name":"TX_NAME",
-      "timestamp":1484934602,
-      "totalecoutputs":10000,
-      "totalinputs":1000010000,
-      "totaloutputs":999978000,
-      "inputs":[  
-         {  
-            "address":"FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q",
-            "amount":1000010000
-         }
-      ],
-      "outputs":[  
-         {  
-            "address":"FA2H7gecy8Nr7cxF7ngtByW23PxvrysuzYMAiAhbRTddCWZTLs4P",
-            "amount":999978000
-         }
-      ],
-      "ecoutputs":[  
-         {  
-            "address":"EC22MrL8CT4iTfRhxPvAStm9v4XEn5cJPvUpY39GLgU9GPnKMffn",
-            "amount":10000
-         }
-      ],
-      "txid":"32fbdc624fb31927f60a1cd52a836b1c65cc49ddc98b41d4d7adb50780ebf305"
-   }
-}
-```
-
-When paying from a transaction, you can also make the receiving transaction pay for it. Using sub fee, you can use the receiving address in the parameters, and the fee will be deducted from their output amount.
-
-This allows a wallet to send all it’s factoids, by making the input and output the remaining balance, then using sub fee on the output address.
-
-### tmp-transactions <a id="tmp-transactions"></a>
-
-> Example Request
-
-```text
-curl  -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, 
-"method":"tmp-transactions"}' -H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc":"2.0",
-    "id":0,
-    "result":{
-        "transactions":[
-            {
-                "tx-name":"TX_NAME",
-                "txid":"e387d89510f16e69ca979bde111caf97d2fc1cf273fe82bf41e241980df76dba",
-                "totalinputs":0,
-                "totaloutputs":0,
-                "totalecoutputs":0
-            }
-        ]
-    }
-}
-```
-
-Lists all the current working transactions in the wallet. These are transactions that are not yet sent.
-
-### transactions \(Retrieving\) <a id="transactions-retrieving"></a>
-
-There are a few ways to search for a transaction
-
-#### Using a Range <a id="using-a-range"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method"
-:"transactions", "params":{"range":{"start":1,"end":2}}}' \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "transactions":[  
-         {  
-            "blockheight":2,
-            "feespaid":7999200,
-            "signed":true,
-            "timestamp":1441138236,
-            "totalecoutputs":100000000,
-            "totalinputs":107999200,
-            "totaloutputs":0,
-            "inputs":[  
-               {  
-                  "address":"FA21zXEUHMPiRtzBgiMY15cGrSpgXCsZqrDPxPv4oUZsR5f2AcjP",
-                  "amount":107999200
-               }
-            ],
-            "outputs":null,
-            "ecoutputs":[  
-               {  
-                  "address":"EC2LQ673tP3bRPgzuY6iyNVNvzHxVtzAcG5yw6KyBJpftGWsdS2t",
-                  "amount":100000000
-               }
-            ],
-            "txid":"82bd7f0461cfc915b539075faac07488e911ea6dcf1512ca913a876e020ff251"
-         },
-         {  
-            "blockheight":1,
-            "feespaid":7999200,
-            "signed":true,
-            "timestamp":1441138021,
-            "totalecoutputs":200000000,
-            "totalinputs":207999200,
-            "totaloutputs":0,
-            "inputs":[  
-               {  
-                  "address":"FA2vGRwutdPdTHQa7kkpX3LkSgqKQ1MS2nur4UqbxqP5MGHcziWa",
-                  "amount":207999200
-               }
-            ],
-            "outputs":null,
-            "ecoutputs":[  
-               {  
-                  "address":"EC1whAxbYYsfQoAFLuzHCsz4Qz29WePBcrrGj5MqMQ1PR43wjiBH",
-                  "amount":200000000
-               }
-            ],
-            "txid":"f1d9919829fa71ce18caf1bd8659cce8a06c0026d3f3fffc61054ebb25ebeaa0"
-         }
-      ]
-   }
-}
-```
-
-This will retrieve all transactions within a given block height range.
-
-#### By TxID <a id="by-txid"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method":
-"transactions", "params":{"txid":
-"f1d9919829fa71ce18caf1bd8659cce8a06c0026d3f3fffc61054ebb25ebeaa0"}}' \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "transactions":[  
-         {  
-            "feespaid":7999200,
-            "signed":true,
-            "timestamp":8,
-            "totalecoutputs":200000000,
-            "totalinputs":207999200,
-            "totaloutputs":0,
-            "inputs":[  
-               {  
-                  "address":"FA2vGRwutdPdTHQa7kkpX3LkSgqKQ1MS2nur4UqbxqP5MGHcziWa",
-                  "amount":207999200
-               }
-            ],
-            "outputs":null,
-            "ecoutputs":[  
-               {  
-                  "address":"EC1whAxbYYsfQoAFLuzHCsz4Qz29WePBcrrGj5MqMQ1PR43wjiBH",
-                  "amount":200000000
-               }
-            ],
-            "txid":"f1d9919829fa71ce18caf1bd8659cce8a06c0026d3f3fffc61054ebb25ebeaa0"
-         }
-      ]
-   }
-}
-```
-
-This will retrieve a transaction by the given TxID. This call is the fastest way to retrieve a transaction, but it will not display the height of the transaction. If a height is in the response, it will be 0. To retrieve the height of a transaction, use the 'By Address’ method
-
-This call in the backend actually pushes the request to factomd. For a more informative response, it is advised to use the [factomd transaction method](https://docs.factom.com/api#transaction)
-
-#### By Address <a id="by-address"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0,
-"method":"transactions", "params":
-{"address":"FA2vGRwutdPdTHQa7kkpX3LkSgqKQ1MS2nur4UqbxqP5MGHcziWa"}}' \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{  
-   "jsonrpc":"2.0",
-   "id":0,
-   "result":{  
-      "transactions":[  
-         {  
-            "blockheight":1,
-            "feespaid":7999200,
-            "signed":true,
-            "timestamp":1441138021,
-            "totalecoutputs":200000000,
-            "totalinputs":207999200,
-            "totaloutputs":0,
-            "inputs":[  
-               {  
-                  "address":"FA2vGRwutdPdTHQa7kkpX3LkSgqKQ1MS2nur4UqbxqP5MGHcziWa",
-                  "amount":207999200
-               }
-            ],
-            "outputs":null,
-            "ecoutputs":[  
-               {  
-                  "address":"EC1whAxbYYsfQoAFLuzHCsz4Qz29WePBcrrGj5MqMQ1PR43wjiBH",
-                  "amount":200000000
-               }
-            ],
-            "txid":"f1d9919829fa71ce18caf1bd8659cce8a06c0026d3f3fffc61054ebb25ebeaa0"
-         },
-         {  
-            "feespaid":1673832600,
-            "signed":true,
-            "timestamp":1441137600,
-            "totalecoutputs":0,
-            "totalinputs":178826890364500,
-            "totaloutputs":178825216531900,
-            "inputs":[  
-               {  
-                  "address":"FA2L6Vng4jBMbbDZtYLsxKQbAAin4Rxg2CgvnyzXrwENSK1t2QUx",
-                  "amount":178826890364500
-               }
-            ],
-            "outputs":[  
-               {  
-                  "address":"FA2vGRwutdPdTHQa7kkpX3LkSgqKQ1MS2nur4UqbxqP5MGHcziWa",
-                  "amount":224108800
-               }
-            ],
-            "ecoutputs":null,
-            "txid":"18b13f36b22d6cc23cab2a42fc277ecb0033a0281e646f14e0339e1fbc2ee464"
-         }
-      ]
-   }
-}
-```
-
-Retrieves all transactions that involve a particular address.
-
-#### All Transactions <a id="all-transactions"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, 
-"method":"transactions"}' -H 'content-type:text/plain;' \
-http://localhost:8089/v2
-```
-
-_The developers were so preoccupied with whether or not they could, they didn’t stop to think if they should._
-
-The amount of data returned by this is so large, I couldn’t get you a sample output as it froze my terminal window. It is strongly recommended to use other techniques to retrieve transactions; it is rarely the case to require EVERY transaction in the blockchain. If you are still determined to retrieve EVERY transaction in the blockchain, use other techniques such as using the 'range’ method and specifically requesting for transactions between blocks X and Y, then incrementing your X’s and Y’s until you reach the latest block. This is much more manageable.
-
-### wallet-backup <a id="wallet-backup"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "wallet-backup"}' \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "wallet-seed": "yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow",
-        "addresses": [
-            {
-                "public": "FA2jK2HcLnRdS94dEcU27rF3meoJfpUcZPSinpb7AwQvPRY6RL1Q",
-                "secret": "Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK"
-            },
-            {
-                "public": "FA3cih2o2tjEUsnnFR4jX1tQXPpSXFwsp3rhVp6odL5PNCHWvZV1",
-                "secret": "Fs1Nifx4n5BCsS277ozuWpHqX4vRo54eYNvT3cv3wLdFbfSMMjyx"
-            },
-            {
-                "public": "EC1r4PvxinJgUVXA1j5RhvHZSWuCHtxtH3KsA5jqKAVsxY53F3tU",
-                "secret": "Es3XpT2AZaG6vWGWYEjru17mS5rP4rzKUmLfwjEiez9R3fSuy5pB"
-            },
-            {
-                "public": "EC2LV5w7pMD9fwtoAnv2wiCSGm2WzYpxjCMz84reWmBsxLuCPoBp",
-                "secret": "Es3tXbGBVKZDhUWzDKzQtg4rcpmmHPXAY9vxSM2JddwJSD5td3f8"
-            },
-        ]
-    }
-}
-```
-
-Return the wallet seed and all addresses in the wallet for backup and offline storage.
-
-### wallet-balances <a id="wallet-balances"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "wallet-balances"}'
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "fctaccountbalances": {
-            "ack": 1999857527000,
-            "saved": 1999857527000
-        },
-        "ecaccountbalances": {
-            "ack": 7893,
-            "saved": 7893
-        }
-    }
-}
-```
-
-The _wallet-balances_ API is used to query the acknowledged and saved balances for all addresses in the currently running factom-walletd. The saved balance is the last saved to the database and the acknowledged or “ack” balance is the balance after processing any in-flight transactions known to the Factom node responding to the API call. The factoid address balance will be returned in factoshis \(a factoshi is 10^8 factoids\) not factoids\(FCT\) and the entry credit balance will be returned in entry credits.
-
-* If walletd and factomd are not **both** running this call will not work.
-* If factomd is not loaded up all the way to last saved block it will return: “result”:{“Factomd Error”:“Factomd is not fully booted, please wait and try again.”}
-* If an address is not in the correct format the call will return: “result”:{“Factomd Error”:”There was an error decoding an address”}
-* If an address does not have a public and private address known to the wallet it will not be included in the balance.
-* `"fctaccountbalances"` are the total of all factoid account balances returned in factoshis.
-* `"ecaccountbalances"` are the total of all entry credit account balances returned in entry credits.
-
-### _Errors_ <a id="errors"></a>
-
-> Example Request
-
-```text
-curl  -X GET --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "bad"}'  \
--H 'content-type:text/plain;' http://localhost:8089/v2
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "error": {
-        "code": -32601,
-        "message": "Method not found"
-    }
-}
-```
-
-Example of an invalid method
-
-## Debug API <a id="debug-api"></a>
-
-These API calls were initially created for the Factom team’s internal use to help them develop better tools and quickly monitor processes, nodes, and servers. These API calls are primarily for debugging purposes.
-
-You can see an example of a request and a response in the right panel for each of the RPC Methods.
-
-### holding-queue <a id="holding-queue"></a>
-
-> Example Request
-
-```text
- curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "holding-queue"}' \
- -H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-"jsonrpc":"2.0",
-"id":0,
-"result":{
-    "Messages":null
-    }
-}
-```
-
-Show current holding messages in the queue.
-
-### network-info <a id="network-info"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "network-info"}' \ 
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-"jsonrpc":"2.0",
-"id":0,
-"result":{
-    "NetworkNumber":1,
-    "NetworkName":"MAIN",
-    "NetworkID":4203931043
-    }
-}
-```
-
-Get information on the current network factomd is connected to \(TEST, MAIN, etc\).
-
-### predictive-fer <a id="predictive-fer"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "predictive-fer"}' \ 
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-"jsonrpc":"2.0",
-"id":0,
-"result":{
-    "PredictiveFER":666600
-    }
-}
-```
-
-Get the predicted future entry credit rate.
-
-### audit-servers <a id="audit-servers"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "audit-servers"}' \ 
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-"jsonrpc":"2.0",
-"id":0,
-"result":{
-    "AuditServers":[]
-    }
-}
-```
-
-Get a list of the current network audit servers along with their information.
-
-### federated-servers <a id="federated-servers"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "federated-servers"}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-"jsonrpc":"2.0",
-"id":0,
-"result":{
-    "FederatedServers":[
-        {
-        "ChainID":"0000000000000000000000000000000000000000000000000000000000000000",
-        "Name":"",
-        "Online":true,
-        "Replace":null
-        }
-    ]
-    }
-}
-```
-
-Get a list of the current network federated servers along with their information.
-
-### configuration <a id="configuration"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "configuration"}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-"jsonrpc":"2.0",
-"id":0,
-"result":
-    {
-    "App":
-        {
-        "PortNumber":8088,
-        "HomeDir":"/home/.factom/m2/",
-        "ControlPanelPort":8090,
-        "ControlPanelFilesPath":"/home/.factom/m2/",
-        "ControlPanelSetting":"readonly",
-        "DBType":"LDB",
-        "LdbPath":"/home/.factom/m2/test-database/ldb",
-        "BoltDBPath":"/home/.factom/m2/test-database/bolt",
-        "DataStorePath":"/home/.factom/m2/test-data/export",
-        "DirectoryBlockInSeconds":6,
-        "ExportData":false,
-        "ExportDataSubpath":"/home/.factom/m2/test-database/export/",
-        "NodeMode":"FULL","IdentityChainID":"",
-        "LocalServerPrivKey":"4c38c72fc5cdad68f13b74674d3ffb1f3d63a112710868c9b08946553448d26d",
-        "LocalServerPublicKey":"cc1985cdfae4e32b5a454dfda8ce5e1361558482684f3367649c3ad852c8e31a",
-        "ExchangeRate":0,
-        "ExchangeRateChainId":"111111118d918a8be684e0dac725493a75862ef96d2d3f43f84b26969329bf03",
-        "ExchangeRateAuthorityPublicKey":"daf5815c2de603dbfa3e1e64f88a5cf06083307cf40da4a9b539c41832135b4a",
-        "ExchangeRateAuthorityPublicKeyMainNet":"daf5815c2de603dbfa3e1e64f88a5cf06083307cf40da4a9b539c41832135b4a",
-        "ExchangeRateAuthorityPublicKeyTestNet":"1d75de249c2fc0384fb6701b30dc86b39dc72e5a47ba4f79ef250d39e21e7a4f",
-        "ExchangeRateAuthorityPublicKeyLocalNet":"3b6a27bcceb6a42d62a3a8d02a6f0d73653215771de243a63ac048a18b59da29",
-        "Network":"MAIN",
-        "MainNetworkPort":"8108",
-        "PeersFile":"/home/.factom/m2/test-peers.json",
-        "MainSeedURL":"https://raw.githubusercontent.com/FactomProject/factomproject.github.io/master/seed/mainseed.txt",
-        "MainSpecialPeers":"",
-        "TestNetworkPort":"8109",
-        "TestSeedURL":"https://raw.githubusercontent.com/FactomProject/factomproject.github.io/master/seed/testseed.txt",
-        "TestSpecialPeers":"",
-        "LocalNetworkPort":"8110",
-        "LocalSeedURL":"https://raw.githubusercontent.com/FactomProject/factomproject.github.io/master/seed/localseed.txt",
-        "LocalSpecialPeers":"",
-        "CustomBootstrapIdentity":"38bab1455b7bd7e5efd15c53c777c79d0c988e9210f1da49a99d95b3a6417be9",
-        "CustomBootstrapKey":"cc1985cdfae4e32b5a454dfda8ce5e1361558482684f3367649c3ad852c8e31a",
-        "FactomdTlsEnabled":false,
-        "FactomdTlsPrivateKey":"/full/path/to/factomdAPIpriv.key",
-        "FactomdTlsPublicCert":"/full/path/to/factomdAPIpub.cert",
-        "FactomdRpcUser":"",
-        "FactomdRpcPass":"",
-        "ChangeAcksHeight":0
-        },
-    "Peer":
-        {
-        "AddPeers":null,
-        "ConnectPeers":null,
-        "Listeners":null,
-        "MaxPeers":0,
-        "BanDuration":0,
-        "TestNet":false,
-        "SimNet":false
-        },
-    "Log":
-        {
-        "LogPath":"/home/mjb/.factom/m2/test-database/Log",
-        "LogLevel":"error",
-        "ConsoleLogLevel":"standard"
-        },
-    "Wallet":
-        {
-        "Address":"",
-        "Port":0,
-        "DataFile":"",
-        "RefreshInSeconds":"",
-        "BoltDBPath":"",
-        "FactomdAddress":"",
-        "FactomdPort":0
-        },
-    "Walletd":
-        {
-        "WalletRpcUser":"",
-        "WalletRpcPass":"",
-        "WalletTlsEnabled":false,
-        "WalletTlsPrivateKey":"/full/path/to/walletAPIpriv.key",
-        "WalletTlsPublicCert":"/full/path/to/walletAPIpub.cert",
-        "FactomdLocation":"localhost:8088",
-        "WalletdLocation":"localhost:8089"
-        }
-    }
-}
-```
-
-Get the current configuration state from factomd.
-
-### process-list <a id="process-list"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "process-list"}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-### authorities <a id="authorities"></a>
-
-List of authority servers in the management chain.
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "authorities"}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-"jsonrpc":"2.0",
-"id":0,
-"result":
-    {
-    "Authorities"[
-        {
-        "AuthorityChainID":"0000000000000000000000000000000000000000000000000000000000000000",
-        "ManagementChainID":"0000000000000000000000000000000000000000000000000000000000000000",
-        "MatryoshkaHash":"0000000000000000000000000000000000000000000000000000000000000000",
-        "SigningKey":"49b6edd274e7d07c94d4831eca2f073c207248bde1bf989d2183a8cebca227b7",
-        "Status":1,
-        "AnchorKeys":null,
-        "KeyHistory":null
-        }
-    ]
-    }
-}
-```
-
-Get the process list known to the current factomd instance.
-
-### reload-configuration <a id="reload-configuration"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "reload-configuration"}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-"jsonrpc":"2.0",
-"id":0,
-"result":{
-    "App":{
-        "PortNumber":8088,
-        "HomeDir":"/home/.factom/m2/",
-        "ControlPanelPort":8090,
-        "ControlPanelFilesPath":"/home/.factom/m2/",
-        "ControlPanelSetting":"readonly",
-        "DBType":"LDB","LdbPath":"/home/.factom/m2/test-database/ldb",
-        "BoltDBPath":"/home/.factom/m2/test-database/bolt",
-        "DataStorePath":"/home/.factom/m2/test-data/export",
-        "DirectoryBlockInSeconds":6,"ExportData":false,
-        "ExportDataSubpath":"/home/.factom/m2/test-database/export/",
-        "NodeMode":"FULL",
-        "IdentityChainID":"",
-        "LocalServerPrivKey":"4c38c72fc5cdad68f13b74674d3ffb1f3d63a112710868c9b08946553448d26d",
-        "LocalServerPublicKey":"cc1985cdfae4e32b5a454dfda8ce5e1361558482684f3367649c3ad852c8e31a",
-        "ExchangeRate":0,
-        "ExchangeRateChainId":"111111118d918a8be684e0dac725493a75862ef96d2d3f43f84b26969329bf03",
-        "ExchangeRateAuthorityPublicKey":"daf5815c2de603dbfa3e1e64f88a5cf06083307cf40da4a9b539c41832135b4a",
-        "ExchangeRateAuthorityPublicKeyMainNet":"daf5815c2de603dbfa3e1e64f88a5cf06083307cf40da4a9b539c41832135b4a",
-        "ExchangeRateAuthorityPublicKeyTestNet":"1d75de249c2fc0384fb6701b30dc86b39dc72e5a47ba4f79ef250d39e21e7a4f",
-        "ExchangeRateAuthorityPublicKeyLocalNet":"3b6a27bcceb6a42d62a3a8d02a6f0d73653215771de243a63ac048a18b59da29",
-        "Network":"MAIN",
-        "MainNetworkPort":"8108","PeersFile":"/home/.factom/m2/test-peers.json",
-        "MainSeedURL":"https://raw.githubusercontent.com/FactomProject/factomproject.github.io/master/seed/mainseed.txt",
-        "MainSpecialPeers":"",
-        "TestNetworkPort":"8109",
-        "TestSeedURL":"https://raw.githubusercontent.com/FactomProject/factomproject.github.io/master/seed/testseed.txt",
-        "TestSpecialPeers":"",
-        "LocalNetworkPort":"8110",
-        "LocalSeedURL":"https://raw.githubusercontent.com/FactomProject/factomproject.github.io/master/seed/localseed.txt",
-        "LocalSpecialPeers":"",
-        "CustomBootstrapIdentity":"38bab1455b7bd7e5efd15c53c777c79d0c988e9210f1da49a99d95b3a6417be9",
-        "CustomBootstrapKey":"cc1985cdfae4e32b5a454dfda8ce5e1361558482684f3367649c3ad852c8e31a",
-        "FactomdTlsEnabled":false,
-        "FactomdTlsPrivateKey":"/full/path/to/factomdAPIpriv.key",
-        "FactomdTlsPublicCert":"/full/path/to/factomdAPIpub.cert",
-        "FactomdRpcUser":"",
-        "FactomdRpcPass":"",
-        "ChangeAcksHeight":0
-    },
-    "Peer":{
-        "AddPeers":null,
-        "ConnectPeers":null,
-        "Listeners":null,
-        "MaxPeers":0,
-        "BanDuration":0,
-        "TestNet":false,
-        "SimNet":false
-    },
-    "Log":{
-        "LogPath":"/home/.factom/m2/test-database/Log",
-        "LogLevel":"error",
-        "ConsoleLogLevel":"standard"
-    },
-    "Wallet":{
-        "Address":"",
-        "Port":0,
-        "DataFile":"",
-        "RefreshInSeconds":"",
-        "BoltDBPath":"",
-        "FactomdAddress":"",
-        "FactomdPort":0
-    },
-    "Walletd":{
-        "WalletRpcUser":"",
-        "WalletRpcPass":"",
-        "WalletTlsEnabled":false,
-        "WalletTlsPrivateKey":"/full/path/to/walletAPIpriv.key",
-        "WalletTlsPublicCert":"/full/path/to/walletAPIpub.cert",
-        "FactomdLocation":"localhost:8088",
-        "WalletdLocation":"localhost:8089"
-    }
-}
-}
-```
-
-Causes factomd to re-read the configuration from the config file. Note: This may cause consensus problems and could be impractical even in testing.
-
-### drop-rate <a id="drop-rate"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "drop-rate"}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc":"2.0",
-    "id":0,
-    "result":{
-        "DropRate":0
-    }
-}
-```
-
-Get the current package drop rate for network testing.
-
-### set-drop-rate <a id="set-drop-rate"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "set-drop-rate", "params":{"DropRate":10}}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc":"2.0",
-    "id":0,
-    "result":{
-        "DropRate":10
-    }
-}
-```
-
-Change the network drop rate for testing.
-
-### delay <a id="delay"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "delay"}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc":"2.0",
-    "id":0,"result":{
-        "Delay":0
-    }
-}
-```
-
-Get the current msg delay time for network testing.
-
-### set-delay <a id="set-delay"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "set-delay", "params":{"Delay":10}}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc":"2.0",
-    "id":0,
-    "result":{
-        "Delay":10
-    }
-}
-```
-
-### summary <a id="summary"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "summary"}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-    "jsonrpc":"2.0",
-    "id":0,
-    "result":{
-        "Summary":"    FNode0[b1455b]
-        L___vm00  0/ 0  0.0%  0.000  2832[1aac21] 2830/2833/2834   1/ 1        
-        0/0/0/0                    0/0/0/0      0     0        0/0/0          
-        0/0/0   0.00/0.00 0/0 -"
-    }
-}
-```
-
-Get the nodes summary string.
-
-### messages <a id="messages"></a>
-
-> Example Request
-
-```text
-curl -X POST --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "messages"}' \
--H 'content-type:text/plain;' http://localhost:8088/debug
-```
-
-> Example Response
-
-```text
-{
-"jsonrpc":"2.0",
-"id":0,
-"result":{
-    "Messages":[
-        "... Messages ..."
-    ]}
-}
-```
-
-Get a list of messages from the message journal \(must run factomd with -journaling=true\).
-
-## Security <a id="security"></a>
-
-### Encrypted Connections <a id="encrypted-connections"></a>
-
-When you run factomd with TLS enabled, the calling program needs to specify the certificate file generated by factomd. This is how to use curl with TLS.
-
-> Example Request
-
-```text
-`curl -X POST --cacert ~/.factom/m2/factomdAPIpub.cert --data-binary '{"jsonrpc":"2.0","id":0,"method":"properties"}' \
--H 'content-type:text/plain;' https://localhost:8088/v2`
-```
-
-### Password Protection <a id="password-protection"></a>
-
-When you run factomd with a password, it uses HTTP Basic Authentication. It is recommended to encrypt the connection when using a password because otherwise the password can be sniffed on the network. Here is how to run with just the password:
-
-> Example Request
-
-```text
-`curl -X POST -u userHere:securePassHere --data-binary '{"jsonrpc":"2.0","id":0,"method":"properties"}' \
--H 'content-type:text/plain;' http://localhost:8088/v2`
-```
-
-### Combined Password and Encryption <a id="combined-password-and-encryption"></a>
-
-> Example Request
-
-```text
-`curl -X POST -u userHere:securePassHere --cacert ~/.factom/m2/factomdAPIpub.cert \
---data-binary '{"jsonrpc":"2.0","id":0,"method":"properties"}' \
--H 'content-type:text/plain;' https://localhost:8088/v2`
-```
-
-### Creating Certificates <a id="creating-certificates"></a>
-
-Normally, when started, the program creates a new certificate if one is not found. The certificates are bound to a set of specific IP addresses.
-
-Normally it finds the IP address by asking the OS. When using cloud services that use a different public IP than the server sees \(AWS, Azure\) you’ll need to manually tell the certificate what the external IP address is. There are two options for doing this.
-
-1 - Edit the config file to show the external IP address instead of localhost for FactomdLocation.
-
-2 - Start factomd with the selfaddr flag and pass a comma-separated list of authorized domains and IP addresses:
-
-`factomd -tls=true -selfaddr=domain.net,123.23.111.44`
+If you wish to find the existing commit, you can use the [ack](https://developers.factomprotocol.org/start/factom-api-docs/factomd-api#Ack) call, using the entryhash and the chainid.
 

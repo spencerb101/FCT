@@ -1,309 +1,10 @@
-# Factom CLI Docs
+---
+description: This page describes how to use the Factom CLI
+---
 
-This is the Factom CLI documentation. The following guides will allow you to install, run and/or compile and build the command line apps and tools necessary to run Factom Federation software.
+# Usage
 
-These new Factom guides replace all our previous ones. The Factom CLI guides are intended for users who know their way around the command line \(you should know enough to be dangerous and get yourself out of trouble\).
-
-## Factom CLI Guides <a id="factom-cli-guides"></a>
-
-### Before We Begin <a id="before-we-begin"></a>
-
-Before attempting to transact factoids \(FCT\) read these guides thoroughly \(at least once\). The software is still in beta, so use the instructions at your risk. Do not use a large number of Factoids in case there are issues, bugs, or you mistype a command. Phoning a friend after the damage is done will not fix things. Sorry, this is just the way of the Blockchain. If you are unsure how to use the command line, we suggest you try our Factom Foundation Wallet instead which is simpler to use and has a Graphic User Interface \(GUI\).
-
-The following directions and commands are optimized for Linux but should work with minor modifications for Mac or Windows. Be aware of slight differences in commands on different platforms:
-
-**Mac**
-
-`./factom-cli < rest of the command >`
-
-**Windows**
-
-`factom-cli.exe < rest of the command >`
-
-**Linux**
-
-`factom-cli < rest of the command >`
-
-Make sure to modify the commands accordingly.
-
-The interface you will be using to run Factom Federation software related commands is called:
-
-* “Terminal” on the Mac and Linux
-* “CMD Prompt” or “Windows Power Shell” on Windows
-
-Give it a try and get familiar before you go any further. Going forward we will use “Terminal” to describe the interface where you type commands, just don’t forget it has a different name in Windows.
-
-FF is composed of three main components:
-
-* factomd
-* factom-walletd
-* factom-cli
-
-To run Factom Federation via command line, you need factomd, factom-walletd, and factom-cli. Each one of these apps needs to be run in separate Terminal windows.  
-Pop quiz  
-How many windows will you need?  
-Answer: Three Terminal windows.  
-What your tech-savvy mother would say?  
-Do not run Factom Federation while connected to an unsafe network, like at a cafe, an airport, public wifi hotspot, etc. The wallet is not encrypted, and hackers could potentially steal your precious Factoids. You do not want to feel like Gollum without his ring.
-
-#### Starting Factom Via Bootstrap <a id="starting-factom-via-bootstrap"></a>
-
-Factom takes a while to download the blockchain. It can be expedited by downloading the first 70k blocks via HTTP. Factomd still checks the blockchain on each boot, so it will check for inconsistencies in the download.  
-Note: currently factomd uses a lot of drive accesses when running. It is recommended to hold the blockchain on a solid state drive. Running factomd on a spinning hard drive will be arduously slow. Since factomd currently scans the entire blockchain each time it is started, bootup takes a while \(~30 min on an SSD\). You can watch the progress on the Control Panel.
-
-Download the blockchain [here](https://www.factom.com/assets/site/factom_bootstrap.zip).
-
-Extract the zip file to your home directory. It will create files in the location:
-
-~/.factom/m2/main-database/ldb/MAIN/factoid\_level.db/  
-The newly created .factom folder is an invisible folder on Mac and Linux so you won’t be able to see it unless you browse to it via Terminal. On Mac, in Finder, you can also use Go/Go to Folder… and type ~/.factom to see its content.
-
-The blockchain is currently about 12 GB at the time of writing.  
-After factomd boots for the first time and is 100% synced, you will have your own local copy of the Factom blockchain. Successive restarts will only require you to download new blocks and not the entire blockchain.
-
-### Backup Your Wallet File! <a id="backup-your-wallet-file"></a>
-
-**If you’ve used Factom Genesis \(FG\)**, our previous software release, you should have a local wallet file. We highly recommend you backup your \(FG\) wallet file every time you import or generate a new address. Do read this guide fully, at least once.
-
-**If you have never run FG** you can skip the backup right now, but we strongly recommend backing up your new FF wallet once you get FF running.
-
-Get back to this guide when you are ready to do your backup, don’t forget!  
-Factom Federation \(FF\) introduced a new way to generate addresses compared to our FG release. Simply put, it generates all new addresses from a seed. The seed is a 12-word passphrase which allows you to recover all your addresses, created with the seed in question, at a later date even if you lose your wallet file. There are many reasons why you may have misplaced your original wallet file such as because you changed computer, your hard drive failed, have overwritten the wallet file by mistake, and so on.  
-  
-The seed comes to the rescue because if you ever lose your wallet file, you can always re-generate your addresses from it. However, some of you may have imported a Private Key generated with the Factoid Papermill app, or have imported a 12-word Koinify passphrase, or generated addresses with our previous FG wallet, these types of addresses are called “External Addresses.” Please remember that a seed file will only allow you to recover addresses that were created with the same seed, external addresses will not be recovered.  
-  
-So how to recover External Addresses?  
-The simple way: if you have any balances on addresses not generated from your wallet seed, you may want to transfer them to an address generated from your seed.  
-The easy way: keep a backup of your wallet file, whatever addresses are in there will always be, no need to recover them.   
-The alternative way: make sure to keep your external addresses’ Private Keys safe, write them down or copy/paste them to a file, you can always import them even if you create a new wallet.  
-  
-Keep this in mind especially if you are migrating from our FG wallet to our FF wallet. If you are not careful, you may lose access to your Factoids and Entry Credits!
-
-**Backup your Factom Genesis \(FG\) wallet file**
-
-Make sure to backup your FG wallet file before you run the new Factom Federation software. The wallet file is called “factoid\_wallet\_bolt.db” and is located in the .factom folder at the following locations:
-
-* **Mac** `/Users/YourUsername/.factom/factoid_wallet_bolt.db`
-* **Windows** `C:\Users\YourUsername\.factom\factoid_wallet_bolt.db`
-* **Linux** `~/.factom/factoid_wallet_bolt.db`
-
-  
-Note that the .factom folder is a hidden folder on Mac and Linux so perform a Google search for “how to show hidden files and folders on YOUR OS”, replacing YOUR OS with Mac or Linux accordingly.
-
-**To backup** your FG wallet file, locate the factoid\_wallet\_bolt.db file, make a copy, and save it to a location outside the .factom folder such as your documents folder, an external drive, a USB stick, or cloud storage.  
-By having a backup somewhere safe, if something goes wrong, you can always try again, but most importantly, you’ll be able to import all your FG addresses and their balances into your new FF wallet the first time you run FF. We will explain to you how to do that when “we cross that bridge” in the Run Factom Federation guide.
-
-**Backup your Factom Federation \(FF\) wallet file**
-
-The wallet file is called “factom\_wallet.db” and is located in the .factom folder at the following locations:
-
-* **Mac** `/Users/YourUsername/.factom/wallet/factom_wallet.db`
-* **Windows** `C:\Users\YourUsername\.factom\wallet\factom_wallet.db`
-* **Linux** `~/.factom/wallet/factom_wallet.db`
-
-  
-Note that the .factom folder is a hidden folder on Mac and Linux so perform a Google search for “how to show hidden files and folders on YOUR OS,” replacing YOUR OS with Mac or Linux accordingly.
-
-**To backup** your FF wallet file, quit factomd and factom-walletd, locate the factom\_wallet.db file, make a copy, and save it to a location outside the .factom folder such as your documents folder, an external drive, a USB stick, or cloud storage.
-
-**To create a fresh** FF wallet file, quit factomd and factom-walletd then move your wallet file to a safe location out of the .factom folder. There should be no wallet file in the .factom folder. Restart factomd and factom-walletd and a new empty wallet will be generated.
-
-**To restore** a previous FF wallet file backup, quit factomd and factom-walletd, make sure you have a backup of the current wallet first, then drag & drop the previous backup in the .factom folder, overwrite if needed. Restart factomd and factom-walletd and your previous wallet will now be used instead.  
-Pay attention when performing backups and restores. Each wallet file has its unique seed and addresses. Overwriting a wallet may result in losing all your Factoids and Entry Credits. Not cool.
-
-### Install Factom Federation <a id="install-factom-federation"></a>
-
-If you got this far, you are doing well Grasshopper. Ready to get your hands on FF? You will be up and running in a few minutes. Promise.
-
-Here is a step by step guide on how to install FF binaries on Mac, Windows, and Linux.
-
-**Step 1** Download the installer for Mac, Windows, or Linux on [GitHub](https://github.com/FactomProject/distribution). There are various versions, make sure to select the one best suited for your system.
-
-**Step 2** Save it to your desktop or downloads folder on your local hard drive.
-
-**Step 3** Follow the instructions for your OS.
-
-#### Mac <a id="mac"></a>
-
-This installer is for factomd, factom-walletd, factom-cli, the 3 binaries will be installed in /Applications/Factom/ together with a .factom folder in the root of the local user Home Folder. These are all required to run Factom via command line or the Factom Foundation Wallet.
-
-Before you start, go to System Preferences/Security & Privacy, click on the lock at the bottom left of the window, type your username and password, then select “Allow apps downloaded from: Anywhere.” At the prompt click on “Allow From Anywhere.”
-
-![Security &amp; Privacy](https://docs.factom.com/images/wallet_005.png)  
-Note that after running the Factom installer it is recommended you revert back your Security & Privacy settings to their original state.
-
-Next, locate the “factom.mpkg.zip” file you just downloaded, double-click to unzip it, then double-click the “factom.mpkg” file to run the installer.
-
-The installer will open, click continue.
-
-![Installer Step 1](https://docs.factom.com/images/wallet_006.png)
-
-Then click install.
-
-![Installer Step 2](https://docs.factom.com/images/wallet_007.png)
-
-The installer will prompt for your username and password; you need to have Admin privileges on the Mac \(means you need to be able to install applications on your Mac\).
-
-Enter your username and password then click Install Software.
-
-![Installer Step 3](https://docs.factom.com/images/wallet_008.png)
-
-The installer will proceed with the installation and once finished it will prompt with “The installation was successful.” Then click close.
-
-![Installer Step 4](https://docs.factom.com/images/wallet_009.png)
-
-You made it so far! Wasn’t that hard, was it?
-
-You are now ready to [run Factom Federation](https://docs.factom.com/cli#run-factom-federation).
-
-#### Windows <a id="windows"></a>
-
-This installer is for factomd, factom-walletd, factom-cli, the three binaries will be installed in c:\Program Files \(x86\)\Factom\ or c:\Program Files\Factom\ \(depending on your system\) together with a .factom folder in the root of the local user Home Folder. These are all required to run Factom via command line or the Factom Wallet GUI.
-
-Next, locate the “FactomInstall-amd64.msi” or “FactomInstall-i386.msi” file you just downloaded in Step 1.
-
-Double click the .msi installer to run it, but you may be prompted with the following message.
-
-![Windows Prompt 1](https://docs.factom.com/images/wallet_010.png)
-
-Click on “more info” to expand it then select “Run anyway.”
-
-![Windows Prompt 2](https://docs.factom.com/images/wallet_011.png)
-
-The Installer will open, click “Next.”
-
-![Installer Step 1](https://docs.factom.com/images/wallet_012.png)
-
-Select “I accept the terms in the Licence Agreement” and click “Next” to continue.
-
-![Installer Step 2](https://docs.factom.com/images/wallet_013.png)
-
-Make sure Factom is installed into c:\Program Files \(x86\)\Factom\ folder and click “Next” to continue.
-
-![Installer Step 3](https://docs.factom.com/images/wallet_014.png)
-
-Then click “Install.”
-
-![Installer Step 4](https://docs.factom.com/images/wallet_015.png)
-
-Select “Yes” to continue if you get the following message.
-
-![Windows Prompt 3](https://docs.factom.com/images/wallet_016.png)
-
-When the installation is over select “Finish” to exit the installer.
-
-![Installer Step 5](https://docs.factom.com/images/wallet_017.png)
-
-You made it so far, and ready to [run Factom Federation](https://docs.factom.com/cli#run-factom-federation) on Windows!
-
-#### Linux <a id="linux"></a>
-
-This installer is for factomd, factom-walletd, factom-cli, the three binaries will be installed on your local drive together with a .factom folder in the root of the local user Home Folder ~/.factom. These are all required to run Factom via command line or the Factom Foundation Wallet.
-
-Download the “factom-amd64.deb” or “factom-i386.deb” installer that suits your system as per Step 1 then run the following command to install.
-
-`sudo dpkg -i ./factom-amd64.deb`
-
-or
-
-`sudo dpkg -i ./factom-i386.deb`
-
-We are aware Linux users are hardcore, so we made sure one command is all they need to be ready to [run Factom Federation](https://docs.factom.com/cli#run-factom-federation).
-
-#### Docker <a id="docker"></a>
-
-If you’ve made it this far, you may not have an operating system. This will make it very difficult to run Factom Federation since, at this point, we do still require you to use a computing device. However, if you’re simply looking for a way to get started in ANY environment, you’ve come to the right place.
-
-Because we are a very modern organization, we’ve made arrangements for you to get started in a containerized environment. All you need is [Docker](https://www.docker.com/) at minimum v17 and a clone of the [factomd repo](https://github.com/FactomProject/factomd).
-
-**Build**
-
-From wherever you have cloned the factomd repo, run
-
-`docker build -t factomd_container .`
-
-\(yes, you can replace **factomd\_container** with whatever you want to call the container. e.g. **factomd**, **foo**, etc.\)  
-**Cross-Compile**   
-
-
-To cross-compile for a different target, you can pass in a `build-arg` as so   
-  
-`docker build -t factomd_container --build-arg GOOS=darwin .`
-
-**Run**
-
-**No Persistence**
-
-`docker run --rm -p 8090:8090 factomd_container`
-
-* This will start up **factomd** with no flags.
-* The Control Panel is accessible at port 8090 
-* When the container terminates, all data will be lost
-
- In the above, replace **factomd\_container** with whatever you called it when you built it - e.g. **factomd**, **foo**, etc.
-
-**With Persistence**
-
-1. `docker volume create factomd_volume`
-2. `docker run --rm -v $(PWD)/factomd.conf:/source -v factomd_volume:/destination busybox /bin/cp /source /destination/factomd.conf`
-3. `docker run --rm -p 8090:8090 -v factomd_volume:/root/.factom/m2 factomd_container`
-
-* This will start up **factomd** with no flags.
-* The Control Panel is accessible at port 8090 
-* When the container terminates, the data will remain persisted in the volume **factomd\_volume**
-* The above copies **factomd.conf** from the local directory into the container. Put _your_ version in there, or change the path appropriately.
-
- In the above
-
-* replace **factomd\_container** with whatever you called it when you built it - e.g. **factomd**, **foo**, etc.
-* replace **factomd\_volume** with whatever you might want to call it - e.g. **myvolume**, **barbaz**, etc.
-
-**Additional Flags**
-
-In all cases, you can startup with additional flags by passing them at the end of the docker command, e.g.
-
-`docker run --rm -p 8090:8090 factomd_container -port 9999`
-
-**Copy**
-
-```text
-docker run --rm --entrypoint='' \
-    -v <FULLY_QUALIFIED_PATH_TO_TARGET_DIRECTORY>:/destination factomd_container \
-    /bin/cp /go/bin/factomd /destination
-```
-
-> The following will copy the binary to `/tmp/factomd`
-
-```text
-docker run --rm --entrypoint='' \
--v /tmp:/destination factomd_container \
-/bin/cp /go/bin/factomd /destination
-```
-
-So yeah, you want to get your binary _out_ of the container. To do so, you basically mount your target into the container and copy the binary over as shown.You should replace **factomd\_container** with whatever you called it in the [build](https://docs.factom.com/cli#build) section above e.g. **factomd**, **foo**, etc.
-
-**Cross-Compile Copy**
-
-> Cross-Compile copy
-
-```text
-docker run --rm --entrypoint='' \
--v <FULLY_QUALIFIED_PATH_TO_TARGET_DIRECTORY>:/destination \
-factomd_container \
-/bin/cp /go/bin/darwin_amd64/factomd /destination
-```
-
-> To copy the darwin\_amd64 version of the binary to `/tmp/factomd`…
-
-```text
-docker run --rm --entrypoint='' 
--v /tmp:/destination factomd_container \
-/bin/cp /go/bin/darwin_amd64/factomd /destination
-```
-
-If you cross-compiled to a different target, your binary will be in `/go/bin/<target>/factomd`. e.g. If you built with `--build-arg GOOS=darwin`, then you can copy out the binary using the commands shown on the right.You should replace **factomd\_container** with whatever you called it in the **build** section above e.g. **factomd**, **foo**, etc.
-
-### Run Factom Federation <a id="run-factom-federation"></a>
+## Run Factom Federation
 
 _Time to remember Mr. Miyagi’s lesson._
 
@@ -330,16 +31,16 @@ On Mac, Windows and Linux, run “factomd” first
 
 Then browse to [http://localhost:8090](http://localhost:8090/) to see the Control Panel for your local FF node.
 
-![node 01](https://docs.factom.com/images/wallet_018.png)  
-If this is the first time you are running FF, and haven’t downloaded the blockchain via HTTP as recommended above, now’s a very good time to check your Facebook feed or take your dog for a walk. The blockchain is… big. Syncing the Factom blockchain may take a little while. The Factom Control panel will display the progress and notify you when it has finished syncing. This will also occur when it has been a while since the last time you have run factomd. However, after the first full sync is complete, successive syncs are faster and you will only have to sync blocks since the last full sync.   
-You can alternatively download the first 70,000 blocks via disk image by following our [Bootstrap Guide](https://docs.factom.com/cli#starting-factom-via-bootstrap).
+![Control panel](https://docs.factom.com/images/wallet_018.png)
 
-Once you are synced, in a new Terminal window browse \(cd\) to the location of your FF installation as you did above \(Mac and Windows only\).  
+Syncing the Factom blockchain may take a little while. The Factom Control panel will display the progress and notify you when it has finished syncing. This will also occur when it has been a while since the last time you have run factomd. However, after the first full sync is complete, successive syncs are faster and you will only have to sync blocks since the last full sync. 
+
+Once you are synced, in a new Terminal window browse \(`cd`\) to the location of your FF installation as you did above \(Mac and Windows only\).  
 There are two options now, one for people who have run Factom Genesis \(FG\), our previous software release, and one for people who haven’t. The former has to import their old FG wallet file; the latter doesn’t. Choose the next step accordingly.
 
-#### If you have used FG <a id="if-you-have-used-fg"></a>
+### If you have used FG
 
-If you have run our previous software release “Factom Genesis \(FG\)” you need to import your FG wallet file \(named _factoid\_wallet\_bolt.db_\) the first time your run _factom-walletd_ to make sure all its previous addresses and balances are transferred over. You have learned how to backup your wallet file in our [Backup Your Wallet File!](https://docs.factom.com/cli#backup-your-wallet-file) guide and you should know if still in the default location within the .factom folder at ~/.factom/factoid\_wallet\_bolt.db.
+If you have run our previous software release “Factom Genesis \(FG\)” you need to import your FG wallet file \(named _factoid\_wallet\_bolt.db_\) the first time your run _factom-walletd_ to make sure all its previous addresses and balances are transferred over. You have learned how to backup your wallet file in our [Backup Your Wallet File!](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backup-your-wallets) guide and you should know if still in the default location within the .factom folder at ~/.factom/factoid\_wallet\_bolt.db.
 
 Simply run the next command with a special flag and the path to your wallet file:
 
@@ -356,7 +57,7 @@ Remember, you only need to do this once the first time you run factom-walletd, a
 
 Once you are happy, continue by following the instructions to run the factom-cli command below.
 
-#### If you have never used FG <a id="if-you-have-never-used-fg"></a>
+### If you have never used FG
 
 Run:
 
@@ -385,11 +86,7 @@ Database started from: /Home/.factom/wallet/factoid_blocks.cache
 2016/11/24 06:28:37 web.go serving :8089
 ```
 
-Sample Terminal output is shown on the right.   
-  
-
-
-You are now ready to use factom-cli to run commands in your third Terminal window. Run the command -h \(help\) to see all the available commands and their descriptions. cd to the location of your FF installation first, then run:
+You are now ready to use factom-cli to run commands in your third Terminal window. Run the command `-h` \(help\) to see all the available commands and their descriptions. `cd` to the location of your FF installation first, then run:
 
 `factom-cli -h`
 
@@ -589,16 +286,9 @@ factom-cli subtxfee TXNAME ADDRESS
     Subtract the transaction fee from an output of a transaction in the wallet
 ```
 
-Sample Terminal output is shown on the right.   
-  
+## Generate a Factoid Address
 
-
-Pat yourself on the back for making it this far! You have now “Run FF” for the first time. \(thumbs up\)  
-Now it’s a good time to [Backup Your Wallet File!](https://docs.factom.com/cli#backup-your-wallet-file)
-
-### Generate a Factoid Address <a id="generate-a-factoid-address"></a>
-
-To get started, [Run FF](https://docs.factom.com/cli#run-factom-federation).
+To get started, [Run FF](https://developers.factomprotocol.org/start/factom-cli-docs/usage#run-factom-federation).
 
 You are now ready to use factom-cli to generate a new Factoid Address \(FA\).
 
@@ -609,22 +299,20 @@ Run:
 > Terminal output for:  
 > `factom-cli newfctaddress`
 
-```text
+```bash
 > factom-cli newfctaddress
 FA28PitepUziaDrLeVAcioNfzHdBc7mvyJJHvag2vyhWm7JR3t8S
 ```
 
-Sample Terminal output is shown on the right.   
-  
  The new factoid address will be unique to your wallet and different from our example.
 
-You are on a roll and a proud owner of a Factoid address! \#Winning
+## Generate an Entry Credit Address
 
-### Generate an Entry Credit Address <a id="generate-an-entry-credit-address"></a>
-
+{% hint style="info" %}
 Perform this step only if you intend to make entries into Factom or want to stock up on Entry Credits \(EC\) for future use. Remember, ECs are non-transferrable and cannot be sold or traded on an exchange. Make sure you need them before you go ahead.
+{% endhint %}
 
-To proceed, [Run FF](https://docs.factom.com/cli#run-factom-federation).
+To proceed, [Run FF](https://developers.factomprotocol.org/start/factom-cli-docs/usage#run-factom-federation).
 
 You are now ready to use factom-cli to generate a new Entry Credit \(EC\) address.
 
@@ -632,73 +320,73 @@ Run:
 
 `factom-cli newecaddress`
 
+Sample Terminal output is shown below.
+
 > Terminal output for:  
 > `factom-cli newecaddress`
 
-```text
+```bash
 > factom-cli newecaddress
 EC27kDNpFcJQwvdpFXaXjPqhtDSf6VK8kRN8Fv7EkhvS9tVkuAfX
 ```
 
-Sample Terminal output is shown on the right.   
-  
- The new EC address will be unique to your wallet and different from the above.
+  The new EC address will be unique to your wallet and different from the above.
 
+{% hint style="success" %}
 Congratulations on your first EC address. You are seriously killing it.
+{% endhint %}
 
-### Send and Receive Factoids <a id="send-and-receive-factoids"></a>
+## Send and Receive Factoids
 
 **To send Factoids** \(FCT\) from your local wallet to an external Factoid Address \(FA\) you will need a source address and a destination address to execute the necessary command.
 
 You need to perform this action when you want to send FCT to an exchange, a friend, or a third party.  
-Assuming you have already [created a local FA address](https://docs.factom.com/cli#generate-a-factoid-address) \(source address\) and have a destination address, you will need to:
+Assuming you have already [created a local FA address](https://developers.factomprotocol.org/start/factom-cli-docs/usage#generate-a-factoid-address) \(source address\) and have a destination address, you will need to:
 
-[Run FF](https://docs.factom.com/cli#run-factom-federation) \(Yes, we know it’s growing on you\)
+[Run FF](https://developers.factomprotocol.org/start/factom-cli-docs/usage#run-factom-federation) \(Yes, we know it’s growing on you\)
 
-Then type the sendfct command with:
+Here's an example for thesendfct command with:
 
-Here is an example.
+ Terminal output for:  
+`factom-cli sendfct`
 
-`factom-cli sendfct FA1zT4aFpEvcnPqPCigB3fvGu4Q4mTXY22iiuV69DqE1pNhdF2MC FA28PitepUziaDrLeVAcioNfzHdBc7mvyJJHvag2vyhWm7JR3t8S 1.234` Note that your FA addresses and FCT amount will be different.
-
-> Terminal output for:  
-> `factom-cli sendfct`
-
-```text
+```bash
 > factom-cli sendfct FA1zT4aFpEvcnPqPCigB3fvGu4Q4mTXY22iiuV69DqE1pNhdF2MC FA28PitepUziaDrLeVAcioNfzHdBc7mvyJJHvag2vyhWm7JR3t8S 1.234
 TxID: 0de09676c65ad18179c5a27cfbfae4f0392a42773b4024aed71eca937f7ce7a6
 ```
 
-Sample Terminal output is shown on the right.   
-  
-
+{% hint style="info" %}
+Note that your FA addresses and FCT amount will be different.
+{% endhint %}
 
 In this example, the sendfct command moved 1.234 FCT from the source address to the destination address. You should be able to see the Transaction ID \(TxID\) on the terminal.
 
 **To receive Factoids** use the same command as above. For instance, you may move FCT between two FA addresses within your local wallet.
 
-However, if you are sending yourself FCT from an exchange or want to receive FCT from a third party, just provide your FA Address. Once sent you can [verify your local FCT balance](https://docs.factom.com/cli#verify-fct-and-ec-balances). The TxID is a very useful way to verify that FCT have moved to the correct address. We recommend noting it down especially when sending or receiving to and from a third party.
+However, if you are sending yourself FCT from an exchange or want to receive FCT from a third party, just provide your FA Address. Once sent you can [verify your local FCT balance](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#verify-fct-and-ec-balances). 
 
-### Convert Factoids to Entry Credits <a id="convert-factoids-to-entry-credits"></a>
+{% hint style="info" %}
+The TxID is a very useful way to verify that FCT have moved to the correct address. We recommend noting it down especially when sending or receiving to and from a third party.
+{% endhint %}
+
+## Convert Factoids to Entry Credits
 
 _“It’s still magic even if you know how it’s done.”_  
 _― Terry Pratchett, A Hat Full of Sky_
 
 Before we automagically convert Factoids \(FCT\) to Entry Credits \(EC\), here is how the spell works. FCT are burned to create ECs. The number of FCT used will be deducted from your wallet’s balance, so don’t freak out when you see your FCT balance reduced. Just look for the newly created ECs on the EC address. Now if you don’t see the newly created ECs, it’s time to freak out and repeat these words, “Houston, we have a problem.” \(Disclaimer: Factom has no customer service center in Houston.\)
 
-Moving on…and getting down to business.
-
 You will need a source address containing some FCT and a destination EC address to be able to execute the necessary command.
 
+{% hint style="warning" %}
 In this example, we assume that you have already created a local EC address \(destination\) and you have some FCT in your local FA address \(source\).
+{% endhint %}
 
 To get ECs proceed as follows.
 
-[Run FF](https://docs.factom.com/cli#run-factom-federation).
+[Run FF](https://developers.factomprotocol.org/start/factom-cli-docs/usage#run-factom-federation).
 
 Then use the buyec command with: .
-
-`factom-cli buyec FA28PitepUziaDrLeVAcioNfzHdBc7mvyJJHvag2vyhWm7JR3t8S EC27kDNpFcJQwvdpFXaXjPqhtDSf6VK8kRN8Fv7EkhvS9tVkuAfX 30` Remember this is an example, and your FA and EC address, as well as the amount, will be different.
 
 > Terminal output for:  
 > `factom-cli buyec`
@@ -708,79 +396,59 @@ Then use the buyec command with: .
 TxID: f378ef393897d5cc5ef910eb3c9aeea5988dfdbb8b94a6cc6a31c5876f629b6a
 ```
 
-Sample Terminal output is shown on the right.   
-  
-
+{% hint style="info" %}
+Remember this is an example, and your FA and EC address, as well as the amount, will be different.
+{% endhint %}
 
 The buyec command burned some Factoids from the FA address and deposited 30 EC in the specified EC address. The Terminal also presented the TxID \(Transaction ID\). The TxID is useful for checking that ECs have moved to the right address. Take note of it for your records.
 
-### Redeem Factoids from Koinify <a id="redeem-factoids-from-koinify"></a>
+## Redeem Factoids from Koinify
 
 This section is relevant if you participated in the Koinify Software Token Sale hosted by Koinify back in 2015 and haven’t redeemed your Factoids \(FCT\). Although Koinify closed their operations, they never held your FCT, and you only need your 12-word master passphrase to access your FCT.
 
 The 12-word master passphrase can be used with the factom-cli importwords command to create the crypto signatures required to reassign the Factoids to another address or purchase Entry Credits. So, go find that magical piece of paper where you wrote down your unique 12-word magic spell and follow the instructions below:
 
-[Run FF](https://docs.factom.com/cli#run-factom-federation).
+[Run FF](https://developers.factomprotocol.org/start/factom-cli-docs/usage#run-factom-federation).
 
 In this example, we use the word “yellow” 12 times, but you probably have a different 12-word master passphrase.
 
 In the factom-cli Terminal window run this command:
 
-`factom-cli importwords "yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow"`
-
 > Terminal output for:  
 > `factom-cli importwords`
 
-```text
+```bash
 > factom-cli importwords "yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow"
 FA3cih2o2tjEUsnnFR4jX1tQXPpSXFwsp3rhVp6odL5PNCHWvZV1
 ```
 
-Sample Terminal output is shown on the right.   
-  
-
-
-The operation will create a new Factoid Address in your local wallet and present the public key in the terminal output. Make a note of the FA address for your records. You will need it to verify that the FA address successfully imported with its balance.
+The operation will create a new Factoid Address in your local wallet and present the public key in the terminal output as shown above. Make a note of the FA address for your records. You will need it to verify that the FA address successfully imported with its balance.
 
 Run the listaddresses command to list all the addresses in your wallet.
-
-`factom-cli listaddresses`
 
 > Terminal output for:  
 > `factom-cli listaddresses`
 
-```text
+```bash
 > factom-cli listaddresses
 FA3cih2o2tjEUsnnFR4jX1tQXPpSXFwsp3rhVp6odL5PNCHWvZV1 20
 ```
 
-Sample Terminal output is shown on the right.   
+In this example, we successfully imported the FA address showing a balance of 20 factoids. The terminal output will give you a list of all FA and EC addresses in your wallet with their current balances. 
+
+You can use the Factom Explorer to [verify your local FCT balance](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#verify-fct-and-ec-balances). In your case, the FA address and its balance will be different.
+
   
+The 12-word master passphrase was shown once at the time of purchase to contributors who were prompted to keep it in a safe place. Without the Master Passphrase, it is impossible to redeem Factoids, and neither Factom nor Koinify can recover it. Do not share your passphrase with anybody or they will be able to access your FCT. There is no expiry date for the 12-word master passphrase. You will be able to redeem your FCT at your leisure, anytime in the future.
 
-
-In this example, we successfully imported the FA address showing a balance of 20 factoids. The terminal output will give you a list of all FA and EC addresses in your wallet with their current balances. You can use the Node Visualizer or the Factom Explorer to [verify your local FCT balance](https://docs.factom.com/cli#verify-fct-and-ec-balances). In your case, the FA address and its balance will be different.
-
-You can now trade your factoids on an exchange or use them to purchase Entry Credits. Life is good. \(thumbs up\)  
-The 12-word master passphrase was shown once at the time of purchase to contributors who were prompted to keep it in a safe place.   
-Without the Master Passphrase, it is impossible to redeem Factoids, and neither Factom nor Koinify can recover it. We really meant what we said.   
-Do not share your passphrase with anybody or they will be able to access your FCT.   
-There is no expiry date for the 12-word master passphrase. You will be able to redeem your FCT at your leisure, anytime in the future.
-
-### Import a Private Key <a id="import-a-private-key"></a>
+## Import a Private Key
 
 To import a Factoid Address \(FA\) created with the Factoid Papermill app or by a third party you need the Factoid Private Key for the FA you want to import.
 
-First, [Run FF](https://docs.factom.com/cli#run-factom-federation).
+First, [Run FF](https://developers.factomprotocol.org/start/factom-cli-docs/usage#run-factom-federation).
 
-Then run the following command in the factom-cli Terminal window:
+Then run the following command in the factom-cli Terminal window:  
 
-`factom-cli importaddress Fs1KWJrpLdfucvmYwN2nWrwepLn8ercpMbzXshd1g8zyhKXLVLWj`  
-Note that in our example we use a sample FA address Private Key, replace it with yours.  
-
-
-This will import the below address below to your local wallet.
-
-FA1zT4aFpEvcnPqPCigB3fvGu4Q4mTXY22iiuV69DqE1pNhdF2MC
 
 > Terminal output for:  
 > `factom-cli importaddress`
@@ -789,15 +457,15 @@ FA1zT4aFpEvcnPqPCigB3fvGu4Q4mTXY22iiuV69DqE1pNhdF2MC
 > factom-cli importaddress Fs1KWJrpLdfucvmYwN2nWrwepLn8ercpMbzXshd1g8zyhKXLVLWj
 ```
 
-Sample Terminal output is shown on the right.   
-  
+This will import the below address below to your local wallet.
 
+`FA1zT4aFpEvcnPqPCigB3fvGu4Q4mTXY22iiuV69DqE1pNhdF2MC`
 
-  
-  
+{% hint style="info" %}
+Note that in our example we use a sample FA address Private Key, replace it with yours.
+{% endhint %}
+
 To verify that the FA address and its balance has successfully imported, run the listaddresses command to list all the addresses in your wallet.
-
-`factom-cli listaddresses`
 
 > Terminal output for:  
 > `factom-cli listaddresses`
@@ -807,93 +475,35 @@ To verify that the FA address and its balance has successfully imported, run the
 FA1zT4aFpEvcnPqPCigB3fvGu4Q4mTXY22iiuV69DqE1pNhdF2MC 10
 ```
 
-Sample Terminal output is shown on the right.   
-  
-  
 Our FA address has a balance of 10 factoids, but your balance will likely be different.
 
-You have successfully imported a Factoid Private Key and ready to use your balances! \(thumbs up\)
+{% hint style="success" %}
+You have successfully imported a Factoid Private Key and ready to use your balances! 
+{% endhint %}
 
-### Verify FCT and EC Balances <a id="verify-fct-and-ec-balances"></a>
+## Verify FCT and EC Balances
 
-After sending or receiving factoids, importing secret keys, or redeeming your 12-word master passphrase, you may want to verify your address balances. We’ve provided two easy ways to check your Factoid \(FCT\) or Entry Credit \(EC\) balances.
+To know how to verify your FCT and EC balances [follow this guide](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#verify-fct-and-ec-balances).
 
-**1\) With the Factom Control Panel**
-
-The Factom Control Panel is easy to use and perfect for verifying your FA or EC balances. Simply [run FF](https://docs.factom.com/cli#run-factom-federation) and open the Control Panel web page in your browser: [http://localhost:8090/](http://localhost:8090/)
-
-Find the search bar on the upper right-hand corner of the Factom Control Panel.
-
-![Wallet 89](https://docs.factom.com/images/wallet_074.png)
-
-Paste the FA address you wish to verify in the search bar.
-
-![Wallet 90](https://docs.factom.com/images/wallet_075.png)
-
-Click GO.
-
-![Wallet 91](https://docs.factom.com/images/wallet_076.png)
-
-The Control Panel will display the factoid balance for the FA address under “Amount Available.” In this example, we have a balance of 2 FCT.
-
-Repeat the steps above to verify the balance of an EC address. Paste the EC address you wish to check in the search bar.
-
-![Wallet 92](https://docs.factom.com/images/wallet_077.png)
-
-Click GO.
-
-![Wallet 93](https://docs.factom.com/images/wallet_078.png)
-
-The Control Panel will display the Entry Credit balance for the EC address under “Amount Available.” In this example, we have a balance of 20 EC.
-
-You may also use the Control Panel to get more info about Transaction IDs, Block Numbers, Chain IDs, and more.
-
-**2\) With the Factom Explorer**
-
-The Factom Explorer provides information about our blockchain including FA and EC addresses, blocks, entries, and more. From here you may verify your FA or EC balances without running our software. Find the Factom Explorer at [https://explorer.factom.org](https://explorer.factom.org/).
-
-![Wallet 94](https://docs.factom.com/images/wallet_079.png)
-
-Paste the FA address you wish to verify in the search bar.
-
-![Wallet 95](https://docs.factom.com/images/wallet_080.png)
-
-Hit Enter on your keyboard.
-
-![Wallet 97](https://docs.factom.com/images/wallet_081.png)
-
-The Explorer will display the balance of the FA address, in this example 1.892 FCT, along with previous transactions.
-
-Now, let’s repeat the steps above to verify the balance of an EC address.
-
-Paste the EC address you wish to verify in the search bar.
-
-![Wallet 97](https://docs.factom.com/images/wallet_082.png)
-
-Hit Enter on your keyboard.
-
-![Wallet 98](https://docs.factom.com/images/wallet_083.png)
-
-The Explorer will display the balance of the EC address, in this example 3999 EC, along with its previous transactions.  
-To run the Factom Control Panel, you need some basic command line knowledge while the Factom Explorer doesn’t require you to run any Factom apps. Choose the verification method that suits you best.
-
-You made it this far and got the knowledge, now is time to teach others how to use Factom! \(big grin\)
-
-### Create a Factom Chain <a id="create-a-factom-chain"></a>
+## Create a Factom Chain
 
 To make entries in Factom, you must create a Factom Chain where your entries will be recorded. You can create as many chains as you like. Just remember, it’s a BYOEC party. You know… _bring your own entry credit party_. \(We know…what you are thinking. This is why we do Blockchains and not Standup\)
 
-Here is how to create your first Factom Chain.
-
 Creating a chain in Factom has a fee of 10 Entry Credits, so make sure your EC address balance can cover it.
 
-First, [Run FF](https://docs.factom.com/cli#run-factom-federation).
+First, [Run FF](https://developers.factomprotocol.org/start/factom-cli-docs/usage#run-factom-federation).
 
 In the factom-cli Terminal window run the addchain command as shown below.
 
-`echo "my first chain" | factom-cli addchain -n {chainName} {EC_Public_Key}`  
-In your case, the only differences will be the data between the quotes, the chainName, and the EC address.  
-Be sure to use your EC address \(not our example\).
+```bash
+echo "my first chain" | factom-cli addchain -n {chainName} {EC_Public_Key}
+```
+
+In your case, the only differences will be the data between the quotes, the _chainName_, and the EC address.
+
+{% hint style="warning" %}
+Be sure to use your EC address \(not our example\).  
+{% endhint %}
 
 > Terminal output for:  
 > `factom-cli addchain`
@@ -907,26 +517,36 @@ Entryhash: 232d1e54ecdfc369cc66e35dda73ce4beb7dffd3e75af94192034e79beaf6c8f
 
 If you’d like to upload a file as the first entry of a chain, you can use a standard input to do so rather than a pipe. For example:
 
-`factom-cli addchain -n {chainName} {EC_Public_Key} < {fileName}`
+```bash
+factom-cli addchain -n {chainName} {EC_Public_Key} < {fileName}
+```
 
 The result is the same either way. You’ll now have a newly minted chain sitting immutably on the Factom blockchain.
 
-Sample Terminal output is shown on the right.   
-  
-  
+{% hint style="info" %}
 Take note of the ChainID as you will need it to make Factom entries later on.
+{% endhint %}
 
-### Make a Factom Entry <a id="make-a-factom-entry"></a>
+## Make a Factom Entry
 
-Once you have created your first Factom chain and noted the ChainID, you are ready to make your first entry! Writing an entry in Factom costs 1 Entry Credit.
+Once you have created your first Factom chain and noted the ChainID, you are ready to make your first entry! 
 
-First, [Run FF](https://docs.factom.com/cli#run-factom-federation).
+{% hint style="info" %}
+Writing an entry in Factom costs 1 Entry Credit.
+{% endhint %}
+
+First, [Run FF](https://developers.factomprotocol.org/start/factom-cli-docs/usage#run-factom-federation).
 
 In the factom-cli Terminal window run the addentry command as constructed below:
 
-`echo "my first entry" | factom-cli addentry -c a4ab1e2ef212208b3513c5f06fcdcfa79b7c2b610526ce2dc374bb789700a791 EC27kDNpFcJQwvdpFXaXjPqhtDSf6VK8kRN8Fv7EkhvS9tVkuAfX`  
-In your case, the only differences will be the name between quotes, the ChainID, and the EC address. The name of the entry can be anything you want. In our example “my first entry” is the name of the new entry.  
-Our ChainID a4ab1e2ef212208b3513c5f06fcdcfa79b7c2b610526ce2dc374bb789700a791 should be replaced by your own.  
+```bash
+echo "my first entry" | factom-cli addentry -c a4ab1e2ef212208b3513c5f06fcdcfa79b7c2b610526ce2dc374bb789700a791 EC27kDNpFcJQwvdpFXaXjPqhtDSf6VK8kRN8Fv7EkhvS9tVkuAfX
+```
+
+In your case, the only differences will be the name between quotes, the _ChainID_, and the EC address. 
+
+The name of the entry can be anything you want. In our example “my first entry” is the name of the new entry. Our ChainID `a4ab1e2ef212208b3513c5f06fcdcfa79b7c2b610526ce2dc374bb789700a791` should be replaced by your own.
+
 Finally, the EC address above should be replaced by your own, again, make sure it has enough EC balance to cover the fee.
 
 > Terminal output for:  
@@ -939,22 +559,22 @@ ChainID: a4ab1e2ef212208b3513c5f06fcdcfa79b7c2b610526ce2dc374bb789700a791
 Entryhash: 2460e676d4f4c89ccf0608b2e3134421b9075fb956af76c02af78991e6faafdc
 ```
 
-Sample Terminal output is shown on the right.   
-  
-  
+{% hint style="info" %}
 To make additional entries, repeat these steps using the same ChainID.
+{% endhint %}
 
-You are now officially a Factom Jedi!
-
-### Read Factom Entries <a id="read-factom-entries"></a>
+## Read Factom Entries
 
 To read your Factom entries, you need the ChainID you used while creating your first chain.
 
-First, [Run FF](https://docs.factom.com/cli#run-factom-federation).
+First, [Run FF](https://developers.factomprotocol.org/start/factom-cli-docs/usage#run-factom-federation).
 
 Use the get allentries command in the factom-cli Terminal window.
 
-`factom-cli get allentries a4ab1e2ef212208b3513c5f06fcdcfa79b7c2b610526ce2dc374bb789700a791`  
+```bash
+factom-cli get allentries a4ab1e2ef212208b3513c5f06fcdcfa79b7c2b610526ce2dc374bb789700a791
+```
+
 Your ChainID will be different from the example above.
 
 > Terminal output for:  
@@ -975,9 +595,6 @@ my first entry
 }
 ```
 
-Sample Terminal output is shown on the right.   
-  
-  
 You may notice that there are two entries in the new chain even though you only made one. This is because every time a new chain is created, it generates an entry containing its assigned name. The second entry, \*Entry \[ 1 \]\*, is the first entry we made in the new chain, the one we named “my first entry.”
 
 This simple guide is designed to show how chains and entries work in Factom. Refer to the factom-cli help by typing the below command for more options.
@@ -986,7 +603,7 @@ This simple guide is designed to show how chains and entries work in Factom. Ref
 
 You can then explore other ways and more command flags you can run to make entries suited for your needs. We will also release more advanced guides in the near future. Stay tuned!
 
-### Using Factoid Papermill <a id="using-factoid-papermill"></a>
+## Factoid Papermill
 
 Factoid Papermill is an app to create private and public factoid address key pairs, the equivalent to a paper wallet for Factoids.
 
@@ -1001,7 +618,7 @@ The Factoid Papermill app has a different name on different platforms.
 * **Windows:** factoidpapermill.exe
 * **Linux:** factoidpapermill-linux
 
-**Using Factoid Papermill**
+### **Using Factoid Papermill**
 
 Factoid Papermill is available for [Windows](https://github.com/FactomProject/factoidpapermill/blob/master/bin/factoidpapermill.exe?raw=true), [Mac](https://github.com/FactomProject/factoidpapermill/blob/master/bin/factoidpapermill-mac?raw=true), and [Linux](https://github.com/FactomProject/factoidpapermill/blob/master/bin/factoidpapermill-linux?raw=true).
 
@@ -1024,30 +641,31 @@ Saving session...
 [Process completed]
 ```
 
-Sample Terminal output is shown on the right.   
-  
+Take note of the FA Address and Private Key and keep them in a safe place. If you need more addresses and private keys repeat the process. You can use your newly generated Factoid Address to receive factoids from a third party or an exchange. This method of storing factoids is considered a “cold wallet” or “paper wallet.”
 
-
-Take note of the FA Address and Private Key and keep them in a safe place. If you need more addresses and private keys repeat the process. You can use your newly generated Factoid Address to receive factoids from a third party or an exchange. This method of storing factoids is considered a “cold wallet” or “paper wallet.”  
 Your New Factoid Private Key and New Factoid Address will be different than this example. Remember you won’t be able to send from your new address until you have imported it into one of your wallets.  
 Failure to backup the Private Key generated by Factoid Papermill for a given Factoid Address will cause the loss of all factoids held, sent, or received by these addresses.  
-If on Mac and Linux Factoid Papermill doesn’t launch because of missing execute permissions simply open a Terminal window and type:  
-  
-chmod +x \(with a space after the x\)   
-  
+
+
+If on Mac and Linux Factoid Papermill doesn’t launch because of missing execute permissions simply open a Terminal window and type:
+
+```bash
+chmod +x 
+```
+
 Then drag and drop the app onto the Terminal window to populate its path, and click enter. You should then be able to run FactoidPapermill as described above.
 
-## Compile Factom Federation <a id="compile-factom-federation"></a>
+## Compile Factom Federation
 
 Quick-start guide to help you compile and run Factom Federation software.
 
 **Requirements not covered in guide**
 
-GoLang \(golang 1.7.4 recommended\)
+* GoLang \(golang 1.7.4 recommended\)
 
 **Requirements**
 
-Glide Package Manager
+* Glide Package Manager
 
 **Getting Glide**
 
@@ -1066,7 +684,8 @@ This will take some time and place the source code into your GOPATH:
 
 Cd into factomd:
 
-`cd $GOPATH/src/github.com/FactomProject/factomd`  
+`cd $GOPATH/src/github.com/FactomProject/factomd`
+
 By default, the master branch will be selected. If you wish to build a different branch, change it now.
 
 Use glide to install all the dependencies:
@@ -1143,7 +762,7 @@ If you wish the binary to be built in the active directory:
 
 `go build -v`
 
-## Factom CLI Commands <a id="factom-cli-commands"></a>
+## Factom CLI Commands
 
 ```text
 factom-cli [OPTIONS] SUBCOMMAND [OPTIONS]
@@ -1151,29 +770,33 @@ factom-cli [OPTIONS] SUBCOMMAND [OPTIONS]
 
 factom-cli is a command line interface program for interacting with factomd and factom-walletd.
 
-### Flags <a id="flags"></a>
+### Flags
 
 #### -f <a id="f"></a>
 
-```text
+```bash
 $ echo hello | factom-cli addchain -f -n moe -n larry \
  EC2DKSYyRcNWf7RS963VFYgMExoHRYLHVeCfQ9PGPmNzwexample
 ```
 
-The f flag, used with the addchain, addentry, buyec, composechain, composeentry, sendfct, sendtx, and signtx subcommands, tells factom-cli to continue on with processing without waiting for acknowledgment of the success of the subcommand to be generated. This can be useful for scripts where you can execute a long string of subcommands in a fraction of the time it would take if you had to wait for an acknowledgment of each command individually.
+The f flag, used with the addchain, addentry, buyec, composechain, composeentry, sendfct, sendtx, and signtx subcommands, tells factom-cli to continue on with processing without waiting for acknowledgment of the success of the subcommand to be generated. 
+
+This can be useful for scripts where you can execute a long string of subcommands in a fraction of the time it would take if you had to wait for an acknowledgment of each command individually.
 
 #### -q <a id="q"></a>
 
-```text
+```bash
 $ echo goodbye | factom-cli addentry -q -n moe -n larry -e curly \
  EC2DKSYyRcNWf7RS963VFYgMExoHRYLHVeCfQ9PGPmNzwexample
 ```
 
-The q flag specifies “quiet” execution of the addchain, addentry, addtxecoutput, addtxfee, addtxinput, addtxoutput, buyec, newtx, sendfct, sendtx, signtx, and subtxfee subcommands. This means that no output will be returned back to the user. This again can be useful for scripts where there is no need for feedback from factom-cli.
+The q flag specifies “quiet” execution of the addchain, addentry, addtxecoutput, addtxfee, addtxinput, addtxoutput, buyec, newtx, sendfct, sendtx, signtx, and subtxfee subcommands. This means that no output will be returned back to the user. 
+
+This again can be useful for scripts where there is no need for feedback from factom-cli.
 
 #### -e -x <a id="e-x"></a>
 
-```text
+```bash
 $ factom-cli addentry [-fq] [-n NAME1 -h HEXNAME2 ...|-c CHAINID] \
 [-e EXTID1 -e EXTID2 -x HEXEXTID ...] [-CET] ECADDRESS <STDIN>
 ```
@@ -1182,7 +805,7 @@ The addentry subcommands support the -e and -x flags for adding external ids to 
 
 #### -n -h <a id="n-h"></a>
 
-```text
+```bash
 $ factom-cli get chainhead -n test -h 3031
 ```
 
@@ -1190,7 +813,7 @@ The get firstentry, get chainhead, and get allentries subcommands support the -n
 
 #### -r <a id="r"></a>
 
-```text
+```bash
 $ factom-cli sendfct -r $my_factoid_address factom.michaeljbeam.me
 ```
 
@@ -1198,7 +821,7 @@ The r flag tells factom-cli to try and resolve a public Factoid or Entry Credit 
 
 #### -C <a id="c"></a>
 
-```text
+```bash
 $ echo hello | factom-cli addchain -n moe -n larry -C \
  EC2DKSYyRcNWf7RS963VFYgMExoHRYLHVeCfQ9PGPmNzwexample
 ```
@@ -1207,7 +830,7 @@ The C flag, used with the addchain subcommand, limits the subcommand output to a
 
 #### -E <a id="e"></a>
 
-```text
+```bash
 $ echo goodbye | factom-cli addentry -n moe -n larry -e curly -E \
  EC2DKSYyRcNWf7RS963VFYgMExoHRYLHVeCfQ9PGPmNzwexample
 ```
@@ -1216,7 +839,7 @@ The E flag, used with the addchain and addentry subcommands, limits the subcomma
 
 #### -T <a id="t"></a>
 
-```text
+```bash
 $ factom-cli get pendingtransactions -T
 ```
 
@@ -1226,7 +849,7 @@ The T flag, used with the addchain, addentry, buyec, get pendingtransactions, li
 
 #### status <a id="status"></a>
 
-```text
+```bash
 factom-cli status TxID|FullTx
 ```
 
@@ -1234,7 +857,7 @@ Returns information about a factoid transaction, or an entry / entry credit tran
 
 #### addchain <a id="addchain"></a>
 
-```text
+```bash
 factom-cli addchain [-fq] [-n NAME1 -n NAME2 -h HEXNAME3 ] [-CET] /
 ECADDRESS <STDIN>
 ```
@@ -1243,7 +866,7 @@ Create a new Factom Chain. Read data for the First Entry from stdin. Use the Ent
 
 #### addentry <a id="addentry"></a>
 
-```text
+```bash
 factom-cli addentry [-fq] [-n NAME1 -h HEXNAME2 ...|-c CHAINID] /
  [-e EXTID1 -e EXTID2 -x HEXEXTID ...] [-CET] ECADDRESS <STDIN>
 ```
@@ -1252,7 +875,7 @@ Create a new Factom Entry. Read data for the Entry from stdin. Use the Entry Cre
 
 #### addtxecoutput <a id="addtxecoutput"></a>
 
-```text
+```bash
 factom-cli addtxecoutput [-r] TXNAME ADDRESS AMOUNT
 ```
 
@@ -1260,7 +883,7 @@ Add an Entry Credit output to a transaction in the wallet
 
 #### addtxfee <a id="addtxfee"></a>
 
-```text
+```bash
 factom-cli addtxfee TXNAME ADDRESS
 ```
 
@@ -1268,7 +891,7 @@ Add the transaction fee to an input of a transaction in the wallet
 
 #### addtxinput <a id="addtxinput"></a>
 
-```text
+```bash
 factom-cli addtxinput TXNAME ADDRESS AMOUNT
 ```
 
@@ -1276,7 +899,7 @@ Add a Factoid input to a transaction in the wallet
 
 #### addtxoutput <a id="addtxoutput"></a>
 
-```text
+```bash
 factom-cli addtxoutput [-r] TXNAME ADDRESS AMOUNT
 ```
 
@@ -1284,7 +907,7 @@ Add a Factoid output to a transaction in the wallet
 
 #### backupwallet <a id="backupwallet"></a>
 
-```text
+```bash
 factom-cli backupwallet
 ```
 
@@ -1292,7 +915,7 @@ Backup the running wallet
 
 #### balance <a id="balance"></a>
 
-```text
+```bash
 factom-cli balance [-r] ADDRESS
 ```
 
@@ -1300,11 +923,11 @@ If this is an EC Address, returns the number of Entry Credits. If this is a Fact
 
 #### buyec <a id="buyec"></a>
 
-```text
+```bash
 factom-cli buyec FCTADDRESS ECADDRESS ECAMOUNT
 ```
 
-balance Buy entry credits
+Buy entry credits
 
 #### composechain <a id="composechain"></a>
 

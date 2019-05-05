@@ -23,7 +23,7 @@ The online wallet option is still experimental, and the hosted factomd node may 
 
 This only applies to users who have previously run Factom Genesis and have an old wallet file. If running Factom for the first time, you can skip this step.
 
-If you have run our previous software release “Factom Genesis \(FG\)” you need to import your FG wallet file \(named _factoid\_wallet\_bolt.db_\) the first time you run the Enterprise Wallet app to make sure all its previous addresses and balances are transferred over. You have learned how to backup your wallet file in our [Backup Your Wallet File!](https://developers.factomprotocol.org/start/enterprise-wallet#backup-your-wallets) guide and you should know if still in the default location within the .factom folder at ~/.factom/factoid\_wallet\_bolt.db.
+If you have run our previous software release “Factom Genesis \(FG\)” you need to import your FG wallet file \(named _factoid\_wallet\_bolt.db_\) the first time you run the Enterprise Wallet app to make sure all its previous addresses and balances are transferred over. You have learned how to backup your wallet file in our [Backup Your Wallet File!](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backup-wallet-file) guide and you should know if still in the default location within the .factom folder at ~/.factom/factoid\_wallet\_bolt.db.
 
 If your old wallet file is in the default place you don’t need to do anything, the new wallet will recognize the file and import it automatically. You can simply follow the same instructions for who has never used FG below.
 
@@ -55,7 +55,7 @@ You will then need to enter a strong password for your wallet, tick the box next
 This will automatically generate a new “factom\_wallet\_encrypted.db” file in your .factom folder \(which will be encrypted with the password you just chose\). You will need the same password every time you want to access your Secure Wallet, make sure to write it down and keep it safe.
 
 ![Online Wallet 00](https://docs.factom.com/images/wallet_142.png)  
-Opening a secure wallet will encrypt all private keys and the seed. Keep in mind this means that if you forget your password and seed, there is no recovery option. Be careful selecting this option, When using an encrypted wallet, be sure to immediately [back up your seed](https://developers.factomprotocol.org/start/enterprise-wallet#backup-your-wallets). This allows you to regenerate your wallet if you lose the password or the database gets corrupted. This option will not convert a v1 wallet if found on disk. This is intentional, as converting any wallet to an encrypted wallet means the original wallet still exists, and still insecure. Addresses and seeds can still be imported/exported using the settings and address book tabs.
+Opening a secure wallet will encrypt all private keys and the seed. Keep in mind this means that if you forget your password and seed, there is no recovery option. Be careful selecting this option, When using an encrypted wallet, be sure to immediately [back up your seed](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backing-up-your-wallet-seed). This allows you to regenerate your wallet if you lose the password or the database gets corrupted. This option will not convert a v1 wallet if found on disk. This is intentional, as converting any wallet to an encrypted wallet means the original wallet still exists, and still insecure. Addresses and seeds can still be imported/exported using the settings and address book tabs.
 
 Once you are happy, continue by following the instructions below for either the Online or Local Enterprise Wallet setup.
 
@@ -68,7 +68,7 @@ To create a Not Secure Wallet simply click on the Not Secure button.
 Make sure to tick the box next to “I acknowledge that my private keys will not be encrypted and are thus unprotected,” and finally click the “Proceed to Unencrypted Wallet” button to access the Secure Wallet.
 
 ![Online Wallet 00](https://docs.factom.com/images/wallet_144.png)  
-A non-secure wallet does not use encryption, and therefore it can be accessed by other users on your machine or malware. This will leave your private keys exposed and unencrypted on your hard drive. Choose your options carefully and be sure to immediately [back up your seed](https://developers.factomprotocol.org/start/enterprise-wallet#backup-your-wallets). 
+A non-secure wallet does not use encryption, and therefore it can be accessed by other users on your machine or malware. This will leave your private keys exposed and unencrypted on your hard drive. Choose your options carefully and be sure to immediately [back up your seed](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backing-up-your-wallet-seed). 
 
 {% hint style="info" %}
 We strongly recommend everyone to use the secure option.
@@ -276,7 +276,7 @@ _Unencrypted Wallet File Locations_
 * **Windows** `C:\Users\YourUsername\.factom\wallet\factom_wallet.db`
 * **Linux** `~/.factom/wallet/factom_wallet.db`
 
-Learn more on how to setup a Secure or Not Secure Wallet by following the [Choose Your Wallet Type guide](https://developers.factomprotocol.org/start/enterprise-wallet#choose-your-wallet-type).
+Learn more on how to setup a Secure or Not Secure Wallet by following the [Choose Your Wallet Type guide](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#choose-your-wallet-type).
 
 {% hint style="info" %}
 Note that the .factom folder is a hidden folder on Mac and Linux so perform a Google search for “how to show hidden files and folders on YOUR OS”, replacing YOUR OS with Mac or Linux accordingly.
@@ -295,7 +295,7 @@ Pay attention when performing backups and restores. Each wallet file has its uni
 
 ## Create A Factoid Address
 
-The first thing you need is most probably a Factoid Address \(FA\), and it’s very easy to do that with our new wallet. If you haven’t already done so, [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet#run-enterprise-wallet).
+The first thing you need is most probably a Factoid Address \(FA\), and it’s very easy to do that with our new wallet. If you haven’t already done so, [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
 Click on Address Book.
 
@@ -362,7 +362,7 @@ Perform this step only if you intend to make entries into Factom or want to stoc
 
 You are now ready to generate a new Entry Credit \(EC\) address. It’s very easy with our new wallet.
 
-If you haven’t already, [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet#run-enterprise-wallet).
+If you haven’t already, [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
 Click on Address Book.
 
@@ -427,13 +427,31 @@ We strongly recommend saving the Private Keys of all your External Addresses by 
 
 You have learned how to generate a new FCT address and quite a few more things in between. \(thumbs up\)
 
+## Import Private Key
 
+This section is relevant if you have a private key for a FCT or EC address for instance from a previous wallet or third party.
+
+To get hold of your FCT, run the wallet if you haven’t already.
+
+Go to the address book and select “NEW ADDRESS.”
+
+![Wallet 87](https://docs.factom.com/images/wallet_072.png)
+
+From the drop-down menu select “Import from Private Key.” Type it or paste it in the address bar. After adding a Nickname \(ours is From Old Wallet\) and selecting “ADD TO ADDRESS BOOK” the FA address should appear in the list of addresses. The balance should also show in the total wallet balance at the top.
+
+![Wallet 88](https://docs.factom.com/images/wallet_073.png)
+
+Follow the same procedure to import a private key for an EC address.  
+In this example we copied and pasted our private key in the address bar, yours will be different and unique to yourself.  
+Always take extra care when handling Private Keys with other people around to keep your factoids and entry credits safe. Anyone with access to your private keys can potentially redeem your tokens.
+
+You are so good at this already! You are ready to use your FCT balance.
 
 ## Send and Receive FCT
 
 **You can send Factoids** \(FCT\) from your local wallet to another Factoid Address \(FA\) within your wallet or a third party. To do so, you will need a source address and a destination address to execute the necessary command. You need to perform this action when you want to send FCT to an exchange, a friend, etc. Assuming you have a local FA address containing some FCT you wish to send and have a destination address you will need to:
 
-[Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet#run-enterprise-wallet). \(Yes, we know it’s growing on you\)
+[Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet). \(Yes, we know it’s growing on you\)
 
 **You can receive Factoids** using the same instructions below, for instance, if you want to move FCT between two FA addresses within your local wallet. If instead, you want to receive FCT from an exchange or a third party, you simply provide your FA Address to the sender. Once sent you can verify the transaction has confirmed as well as your local FCT balance. Our wallet makes it easy to grab the info you need for your FA addresses.
 
@@ -595,7 +613,7 @@ You will need a source address containing some FCT and a destination EC address 
 
 To get ECs proceed as follows.
 
-If you haven’t already [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet#run-enterprise-wallet).
+If you haven’t already [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
 Select “NEW TRANSACTION.”
 
@@ -685,40 +703,23 @@ Do not share your passphrase with anybody or they will be able to access your FC
 You are a champ! You are ready to use your FCT to trade or buy EC.
 {% endhint %}
 
-## Import Private Key
-
-This section is relevant if you have a private key for a FCT or EC address for instance from a previous wallet or third party.
-
-To get hold of your FCT, run the wallet if you haven’t already.
-
-Go to the address book and select “NEW ADDRESS.”
-
-![Wallet 87](https://docs.factom.com/images/wallet_072.png)
-
-From the drop-down menu select “Import from Private Key.” Type it or paste it in the address bar. After adding a Nickname \(ours is From Old Wallet\) and selecting “ADD TO ADDRESS BOOK” the FA address should appear in the list of addresses. The balance should also show in the total wallet balance at the top.
-
-![Wallet 88](https://docs.factom.com/images/wallet_073.png)
-
-Follow the same procedure to import a private key for an EC address.  
-In this example we copied and pasted our private key in the address bar, yours will be different and unique to yourself.  
-Always take extra care when handling Private Keys with other people around to keep your factoids and entry credits safe. Anyone with access to your private keys can potentially redeem your tokens.
-
-You are so good at this already! You are ready to use your FCT balance.
-
 ## Transfer FCT To Secure Wallet
 
-#### Create Backup of Your Current Wallet <a id="create-backup-of-your-current-wallet"></a>
+### Create Backup of Your Current Wallet
 
-First of all, make sure to [Backup Your Wallets!](https://docs.factom.com/#backup-your-wallets)  
+First of all, make sure to [Backup Your Wallets!](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backup-your-wallets)
+
+{% hint style="warning" %}
 Important: This backup should be copied to a safe location.
+{% endhint %}
 
-#### Upgrade Factom Enterprise Wallet <a id="upgrade-factom-enterprise-wallet"></a>
+### Upgrade Factom Enterprise Wallet
 
-Then upgrade Enterprise Wallet to the latest version by following our [Install Enterprise Wallet guide](https://docs.factom.com/#install-enterprise-wallet).
+Then upgrade Enterprise Wallet to the latest version by following our [Install Enterprise Wallet guide](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
-#### Create Secure Wallet & FCT Address <a id="create-secure-wallet-amp-fct-address"></a>
+### Create Secure Wallet & FCT Address
 
-**1.** [Run Enterprise Wallet](https://docs.factom.com/#run-enterprise-wallet).
+**1.** [Run Enterprise Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
 **2.** On the first screen, choose the “Secure” option.
 
@@ -728,20 +729,20 @@ Then upgrade Enterprise Wallet to the latest version by following our [Install E
 
 ![Online Wallet 00](https://docs.factom.com/images/wallet_142.png)
 
-**4.** From the Enterprise Wallet application, you can now [create a new factoid address](https://docs.factom.com/#create-a-factoid-address).
+**4.** From the Enterprise Wallet application, you can now [create a new factoid address](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#create-a-factoid-address).
 
 **5.** Copy the address you generated in the previous step so that you can fund it with factoids later in the process. You may want to save this in a separate text document for future reference \(and to make it easy to copy and paste later on\).
 
 **6.** Once you are sure you have a backup of your wallet data, exit the application, and make sure that it is no longer running.
 
-#### Create Backup of Your Secure Wallet <a id="create-backup-of-your-secure-wallet"></a>
+### Create Backup of Your Secure Wallet
 
-Now it’s time to backup your newly created secure wallet \(encrypted\) by following the [Backup Your Wallets!](https://docs.factom.com/#backup-your-wallets) guide.  
+Now it’s time to backup your newly created secure wallet \(encrypted\) by following the [Backup Your Wallets!](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#backup-your-wallets) guide.  
 Important: This backup should be copied to a safe location, and should be clearly distinguished from the first backup you made \(in other words, make sure that you can keep the Secure and Not Secure backups safe\).
 
-#### Send FCT to Your Secure Wallet <a id="send-fct-to-your-secure-wallet"></a>
+### Send FCT to Your Secure Wallet
 
-**1.** Once again, run [Enterprise Wallet](https://docs.factom.com/#run-enterprise-wallet).
+**1.** Once again, run [Enterprise Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet).
 
 **2.** On the first screen, choose the “Not Secure” option.
 
@@ -751,23 +752,22 @@ On the second screen tick the checkbox and click the “Proceed to Unencrypted W
 
 ![Online Wallet 00](https://docs.factom.com/images/wallet_144.png)
 
-**3.** When the wallet has fully loaded, you should see your original factoid balances again. You can now send your factoids to the new Secure Wallet address you just generated by following the [Send and Receive FCT Guide](https://docs.factom.com/#send-and-receive-fct).  
+**3.** When the wallet has fully loaded, you should see your original factoid balances again. You can now send your factoids to the new Secure Wallet address you just generated by following the [Send and Receive FCT Guide](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#send-and-receive-fct).  
 Important: Double-check the address you are funding before sending the transaction.
 
 **4.** Once you have sent your factoids from the Not Secure wallet addresses to the new, Secure wallet address\(es\) and waited for the transaction\(s\) to confirm, exit the application once again and make sure that it is no longer running.
 
-#### The End <a id="the-end"></a>
+If you have followed the above steps, when you next [Run Enterprise Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet) and select the “Secure” option using the password you chose earlier, your balances will include the factoids that you sent to it, and your wallet will be securely encrypted.
 
-If you have followed the above steps, when you next [Run Enterprise Wallet](https://docs.factom.com/#run-enterprise-wallet) and select the “Secure” option using the password you chose earlier, your balances will include the factoids that you sent to it, and your wallet will be securely encrypted.  
-Users who hold Entry Credits in a Not Secure wallet \(unencrypted\) can also import them into a Secure Wallet \(encrypted\) by simply [importing the private keys](https://docs.factom.com/#import-private-key) of their EC Addresses.
+Users who hold Entry Credits in a Not Secure wallet \(unencrypted\) can also import them into a Secure Wallet \(encrypted\) by simply [importing the private keys](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#import-private-key) of their EC Addresses.
 
-### Verify FCT and EC Balances <a id="verify-fct-and-ec-balances"></a>
+## Verify FCT and EC Balances
 
 After sending or receiving factoids, importing secret keys, or redeeming your 12-word master passphrase, you may want to verify your Factoid \(FCT\) or Entry Credit \(EC\) address balances. We’ve provided two easy ways for you to do so.
 
-**1\) With the Factom Control Panel**
+### **With the Factom Control Panel**
 
-The Factom Control Panel is easy to use and great for verifying your FA or EC balances. Simply [Run Wallet](https://docs.factom.com/#run-enterprise-wallet) and open the Control Panel webpage in your browser: [http://localhost:8090/](http://localhost:8090/)
+The Factom Control Panel is easy to use and great for verifying your FA or EC balances. Simply [Run Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/run-and-use-the-wallet#run-enterprise-wallet) and open the Control Panel webpage in your browser: [http://localhost:8090/](http://localhost:8090/)
 
 Find the search bar on the upper right-hand corner of the Factom Control Panel.
 
@@ -795,35 +795,44 @@ The Control Panel will display the Entry Credit balance for the EC address under
 
 You may also use the Control Panel to get more info about Transaction IDs, Block Numbers, Chain IDs, and more.
 
-**2\) With the Factom Explorer**
+### **With the Factom Explorer**
 
 The Factom Explorer provides information about our blockchain including FA and EC addresses, blocks, entries, and more. From here you may verify your FA or EC balances without running our software. Find the Factom Explorer at [https://explorer.factom.org](https://explorer.factom.org/).
 
-![Wallet 94](https://docs.factom.com/images/wallet_079.png)
+![Factom explorer](../../.gitbook/assets/factom_explorer.PNG)
 
 Paste the FA address you wish to verify in the search bar.
 
-![Wallet 95](https://docs.factom.com/images/wallet_080.png)
+![Factom explorer search bar \(At the top\)](../../.gitbook/assets/factom_explorer_search_bar.PNG)
 
 Hit Enter on your keyboard.
 
-![Wallet 97](https://docs.factom.com/images/wallet_081.png)
+![Factom explorer search result](../../.gitbook/assets/factom_explorer_search_result.PNG)
 
-The Explorer will display the balance of the FA address, in this example 1.892 FCT, along with previous transactions.
+The Explorer will display the balance of the FA address, in this example 0 FCT, along with previous transactions.
 
 Now, let’s repeat the steps above to verify the balance of an EC address.
 
 Paste the EC address you wish to verify in the search bar.
 
-![Wallet 97](https://docs.factom.com/images/wallet_082.png)
+![Factom explorer EC search](../../.gitbook/assets/factom_explorer_search_bar_ec.PNG)
 
 Hit Enter on your keyboard.
 
-![Wallet 98](https://docs.factom.com/images/wallet_083.png)
+![Factom explorer EC search result](../../.gitbook/assets/factom_explorer_search_result_ec.PNG)
 
-The Explorer will display the balance of the EC address, in this example 3999 EC, along with its previous transactions.  
-To run the Factom Control Panel, you need some basic command line knowledge while the Factom Explorer doesn’t require you to run any Factom apps. Choose the verification method that suits you best.
+The Explorer will display the balance of the EC address, in this example 3999 EC, along with its previous transactions.
 
-You made it this far and got the knowledge, now is time to teach others how to use Factom! \(big grin\)  
+{% hint style="info" %}
+To run the Factom Control Panel, you need some basic command line knowledge while the Factom Explorer doesn’t require you to run any Factom apps. Choose the verification method that suits you best.  
+  
+An alternative explorer, ran by The Factoid Authority,  can be found here: [https://explorer.factoid.org](https://explorer.factoid.org/data?type=dblock-list)
+{% endhint %}
+
+{% hint style="success" %}
+You made it this far and got the knowledge, now is time to teach others how to use Factom!   
+{% endhint %}
+
+  
 
 

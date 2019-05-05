@@ -46,9 +46,9 @@ And simply run it:
 
 After you run it you should see something similar to the images below, depending on your system. That's your private key and Factoid address.
 
-![Example of running the Factoidpapermill on Windows. ](../.gitbook/assets/papermill-example%20%281%29.PNG)
+![Example of running the Factoidpapermill on Windows. ](../.gitbook/assets/papermill-example.PNG)
 
-![Example of running the Factoidpapermill on Linux. ](../.gitbook/assets/papermill-example.PNG)
+![Example of running the Factoidpapermill on Linux. ](../.gitbook/assets/papermill-example%20%281%29.PNG)
 
 {% hint style="danger" %}
 Do **NOT** share the Factoid Private Key with anyone. If you lose this, you will most likely lose your funds stored on that address. 

@@ -174,7 +174,7 @@ const transactionId = await cli.sendTransaction(transaction)
 
 You can search for the transaction id \(after the next block is produced\) in your node control panel and should see something like this:
 
-![Factoid transaction](../../.gitbook/assets/image.png)
+![Factoid transaction](../../.gitbook/assets/image%20%283%29.png)
 
 #### Converting FCT to EC
 
@@ -252,7 +252,7 @@ const secondEntry = Entry.builder()
 const { chainId, entryHash } = await cli.add(secondEntry, 'EC35pi8hBPst6JosVSRNvQ5ysXZXN6QX1pTDWhUDy3cnDThpJMeL')
 ```
 
-![Second entry added to our chain](../../.gitbook/assets/image%20%282%29.png)
+![Second entry added to our chain](../../.gitbook/assets/image%20%284%29.png)
 
 ### Reading chains and entries
 
