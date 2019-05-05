@@ -2,7 +2,7 @@
 description: API reference documentation for factom-walletd
 ---
 
-# factom-walletd
+# Factom-walletd
 
 Factom-walletd serves the wallet API on port 8089.‌ All these APIs use JSON-RPC, which is a remote procedure call protocol encoded in JSON. It is a very simple protocol \(and very similar to XML-RPC\), defining only a handful of data types and commands.‌
 

@@ -54,7 +54,8 @@ You will then need to enter a strong password for your wallet, tick the box next
 
 This will automatically generate a new “factom\_wallet\_encrypted.db” file in your .factom folder \(which will be encrypted with the password you just chose\). You will need the same password every time you want to access your Secure Wallet, make sure to write it down and keep it safe.
 
-![Online Wallet 00](https://docs.factom.com/images/wallet_142.png)  
+![Online Wallet 00](https://docs.factom.com/images/wallet_142.png)
+
 Opening a secure wallet will encrypt all private keys and the seed. Keep in mind this means that if you forget your password and seed, there is no recovery option. Be careful selecting this option, When using an encrypted wallet, be sure to immediately [back up your seed](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#backing-up-your-wallet-seed). This allows you to regenerate your wallet if you lose the password or the database gets corrupted. This option will not convert a v1 wallet if found on disk. This is intentional, as converting any wallet to an encrypted wallet means the original wallet still exists, and still insecure. Addresses and seeds can still be imported/exported using the settings and address book tabs.
 
 Once you are happy, continue by following the instructions below for either the Online or Local Enterprise Wallet setup.
@@ -65,9 +66,10 @@ To create a Not Secure Wallet simply click on the Not Secure button.
 
 ![Online Wallet 00](https://docs.factom.com/images/wallet_141.png)
 
-Make sure to tick the box next to “I acknowledge that my private keys will not be encrypted and are thus unprotected,” and finally click the “Proceed to Unencrypted Wallet” button to access the Secure Wallet.
+Make sure to tick the box next to “I acknowledge that my private keys will not be encrypted and are thus unprotected,” and finally click the “Proceed to Unencrypted Wallet” button to access the Secure Wallet
 
-![Online Wallet 00](https://docs.factom.com/images/wallet_144.png)  
+![Online Wallet 00](https://docs.factom.com/images/wallet_144.png)
+
 A non-secure wallet does not use encryption, and therefore it can be accessed by other users on your machine or malware. This will leave your private keys exposed and unencrypted on your hard drive. Choose your options carefully and be sure to immediately [back up your seed](https://developers.factomprotocol.org/wallets/enterprise-wallet/run-and-use-the-wallet#backing-up-your-wallet-seed). 
 
 {% hint style="info" %}
@@ -141,8 +143,7 @@ On Mac, Windows and Linux, run “factomd” first
 
 Then browse to [http://localhost:8090](http://localhost:8090/) to see the Control Panel for your local FF node.
 
-![node 01](https://docs.factom.com/images/wallet_018.png)  
-
+![node 01](https://docs.factom.com/images/wallet_018.png)
 
 If this is the first time you are running FF, now’s a great time to check your Facebook feed or take your dog on a walk. Syncing the Factom blockchain may take a little while, the blockchain is …big. The Control Panel will display the progress and notify you when it has finished syncing. This will also occur when it has been a while since the last time you have run factomd. However, after the first full sync is complete, successive syncs are faster. You will only have to sync blocks since the last full sync. 
 
