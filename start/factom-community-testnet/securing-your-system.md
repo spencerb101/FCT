@@ -21,42 +21,6 @@ Now run the startup command again, change the version to the up-to-date one at `
 The factomd version in the above command may be outdated, be sure to check what the [latest release](https://hub.docker.com/r/factominc/factomd/tags) is. 
 {% endhint %}
 
-## Moving server identity
-
-This is only required if you want to create a new node, using your existing identity.
-
-#### Notes:
-
-* Replace your appropriate username
-* Replace the IP of your hosts as appropriate
-* The docker volumes need to have already been created.
-
-{% hint style="danger" %}
-IMPORTANT: before starting your factomd-node on your "new" host \("Host B"\), you MUST stop the factomd-node on your "old" host \("Host A"\).
-{% endhint %}
-
-### **Option 1: Single step**
-
-This can be used if you have root access to the remote host. ****On your "old" host, copy the file from host A to host B -- \(scp\)
-
-```bash
-scp /var/lib/docker/volumes/factom_keys/_data/factomd.conf root@REMOTE-IP:/var/lib/docker/volumes/factom_keys/_data/factomd.conf
-```
-
-### **Option 2: Two-step**
-
-On your "old" host, copy the file from host A to host B -- \(scp\):
-
-```bash
- scp /var/lib/docker/volumes/factom_keys/_data/factomd.conf USER@REMOTE-IP:/home/USER/factomd.conf
-```
-
-On your "new" host, place the file in the appropriate folder:
-
-```bash
- cp factomd.conf /var/lib/docker/volumes/factom_keys/_data/factomd.conf
-```
-
 ## Brainswapping
 
 ### What is a brainswap
@@ -141,4 +105,40 @@ This additional line is the brainswap logic. You will want to set the `ChangeAck
 Once you set the `ChangeAcksHeight` to `DBHeight+4`, save both files.
 
 At the block height `ChangeAcksHeight` you should see both nodes change identities. If none of your nodes crash, and the identities change, the swap was successful.
+
+## Moving server identity
+
+This is only required if you want to create a new node, using your existing identity.
+
+#### Notes:
+
+* Replace your appropriate username
+* Replace the IP of your hosts as appropriate
+* The docker volumes need to have already been created.
+
+{% hint style="danger" %}
+IMPORTANT: before starting your factomd-node on your "new" host \("Host B"\), you MUST stop the factomd-node on your "old" host \("Host A"\).
+{% endhint %}
+
+### **Option 1: Single step**
+
+This can be used if you have root access to the remote host. ****On your "old" host, copy the file from host A to host B -- \(scp\)
+
+```bash
+scp /var/lib/docker/volumes/factom_keys/_data/factomd.conf root@REMOTE-IP:/var/lib/docker/volumes/factom_keys/_data/factomd.conf
+```
+
+### **Option 2: Two-step**
+
+On your "old" host, copy the file from host A to host B -- \(scp\):
+
+```bash
+ scp /var/lib/docker/volumes/factom_keys/_data/factomd.conf USER@REMOTE-IP:/home/USER/factomd.conf
+```
+
+On your "new" host, place the file in the appropriate folder:
+
+```bash
+ cp factomd.conf /var/lib/docker/volumes/factom_keys/_data/factomd.conf
+```
 
