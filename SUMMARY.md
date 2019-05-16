@@ -7,6 +7,7 @@
 
 * [Developer Sandbox Setup Guide](start/developer-sandbox-setup-guide.md)
 * [Hello-world examples](start/hello-world-examples/README.md)
+  * [Golang](start/hello-world-examples/golang.md)
   * [JavaScript](start/hello-world-examples/javascript.md)
   * [Python](start/hello-world-examples/python.md)
 * [Factom Explorer](start/factom-explorer/README.md)
@@ -31,7 +32,7 @@
 * [Factom community testnet](start/factom-community-testnet/README.md)
   * [Installation](start/factom-community-testnet/preparing-your-system.md)
   * [Node monitoring](start/factom-community-testnet/node-monitoring.md)
-  * [Maintenance](start/factom-community-testnet/securing-your-system.md)
+  * [Maintenance](start/factom-community-testnet/maintenance.md)
   * [Interacting with Factom blockchain](start/factom-community-testnet/installing-factomd.md)
   * [Frequently Asked Questions \(FAQ\)](start/factom-community-testnet/frequently-asked-questions-faq.md)
 
@@ -44,11 +45,11 @@
 
 ## Wallets
 
+* [Ledger Nano S Wallet](wallets/ledger-nano-s-wallet.md)
 * [Enterprise Wallet](wallets/enterprise-wallet/README.md)
   * [Before you begin](wallets/enterprise-wallet/before-you-begin.md)
   * [Installation](wallets/enterprise-wallet/installation.md)
   * [Run and use the wallet](wallets/enterprise-wallet/run-and-use-the-wallet.md)
-* [Ledger Nano S Wallet](wallets/ledger-nano-s-wallet.md)
 * [MyFactomWallet](wallets/myfactomwallet.md)
 * [Paper Wallet](wallets/paper-wallet.md)
 
