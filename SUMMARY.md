@@ -32,7 +32,7 @@
 * [Factom community testnet](start/factom-community-testnet/README.md)
   * [Installation](start/factom-community-testnet/preparing-your-system.md)
   * [Node monitoring](start/factom-community-testnet/node-monitoring.md)
-  * [Maintenance](start/factom-community-testnet/maintenance.md)
+  * [Maintenance](start/factom-community-testnet/securing-your-system.md)
   * [Interacting with Factom blockchain](start/factom-community-testnet/installing-factomd.md)
   * [Frequently Asked Questions \(FAQ\)](start/factom-community-testnet/frequently-asked-questions-faq.md)
 
