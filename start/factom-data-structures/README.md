@@ -1,4 +1,4 @@
-# Factom data structures
+# Data Structures
 
 This document describes the byte level detail of the Factom data structures.
 

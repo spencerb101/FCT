@@ -1,4 +1,4 @@
-# Factom community testnet
+# Testnet
 
 ## What is the Factom community testnet?
 
@@ -50,8 +50,8 @@ There is no signup required to participate as an ordinary node on the testnet; j
 
 After figuring out what kind of server/node you want to run, you should verify that the computer you will be using meets the minimum requirements:
 
-* A modern CPU \(4 cores\)
-* 8 GB RAM
+* A modern CPU \(2 cores\)
+* 4 GB RAM
 * 50 GB storage
 * 20 MBit/s synchronous
 * Up to 1TB / month data transfer

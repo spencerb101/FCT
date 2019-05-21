@@ -1,4 +1,4 @@
-# Factom CLI Docs
+# CLI Reference
 
 This is the Factom CLI documentation. The following guides will allow you to install, run and/or compile and build the command line apps and tools necessary to run Factom Federation software.
 

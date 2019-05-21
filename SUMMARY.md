@@ -6,35 +6,39 @@
 ## Getting Started
 
 * [Developer Sandbox Setup Guide](start/developer-sandbox-setup-guide.md)
-* [Hello-world examples](start/hello-world-examples/README.md)
+* [Hello-World Examples](start/hello-world-examples/README.md)
   * [Golang](start/hello-world-examples/golang.md)
   * [JavaScript](start/hello-world-examples/javascript.md)
   * [Python](start/hello-world-examples/python.md)
-* [Factom Explorer](start/factom-explorer/README.md)
-  * [Overview](start/factom-explorer/overview.md)
-  * [Block types](start/factom-explorer/building-blocks.md)
-  * [Usage](start/factom-explorer/usage.md)
-* [Factom API Docs](start/factom-api-docs/README.md)
+* [API Reference](start/factom-api-docs/README.md)
   * [Factomd](start/factom-api-docs/factomd-api.md)
   * [Factom-walletd](start/factom-api-docs/factom-walletd-api.md)
   * [Debug](start/factom-api-docs/debug-api.md)
-* [Factom CLI Docs](start/factom-cli-docs/README.md)
+* [CLI Reference](start/factom-cli-docs/README.md)
   * [Installation](start/factom-cli-docs/installation.md)
   * [Usage](start/factom-cli-docs/usage.md)
-* [Factom data structures](start/factom-data-structures/README.md)
+* [Data Structures](start/factom-data-structures/README.md)
   * [Building blocks](start/factom-data-structures/building-blocks.md)
   * [User elements](start/factom-data-structures/user-elements.md)
   * [Block types](start/factom-data-structures/block-types.md)
-* [Factom Clients](start/factom-clients/README.md)
-  * [Open Source Clients](start/factom-clients/open-source-clients.md)
-  * [Commercial Clients](start/factom-clients/commercial-clients.md)
-* [Factomd Control Panel](start/factomd-control-panel.md)
-* [Factom community testnet](start/factom-community-testnet/README.md)
-  * [Installation](start/factom-community-testnet/preparing-your-system.md)
-  * [Node monitoring](start/factom-community-testnet/node-monitoring.md)
-  * [Maintenance](start/factom-community-testnet/securing-your-system.md)
-  * [Interacting with Factom blockchain](start/factom-community-testnet/installing-factomd.md)
-  * [Frequently Asked Questions \(FAQ\)](start/factom-community-testnet/frequently-asked-questions-faq.md)
+* [SDKs](start/factom-clients/README.md)
+  * [Open Source](start/factom-clients/open-source-clients.md)
+  * [Commercial](start/factom-clients/commercial-clients.md)
+
+## Infrastructure
+
+* [Control Panel](infrastructure/factomd-control-panel.md)
+* [Explorer](infrastructure/factom-explorer/README.md)
+  * [Overview](infrastructure/factom-explorer/overview.md)
+  * [Block types](infrastructure/factom-explorer/building-blocks.md)
+  * [Usage](infrastructure/factom-explorer/usage.md)
+* [Testnet](infrastructure/factom-community-testnet/README.md)
+  * [Installation](infrastructure/factom-community-testnet/preparing-your-system.md)
+  * [Node monitoring](infrastructure/factom-community-testnet/node-monitoring.md)
+  * [Maintenance](infrastructure/factom-community-testnet/securing-your-system.md)
+  * [Interacting with Factom blockchain](infrastructure/factom-community-testnet/installing-factomd.md)
+  * [Frequently Asked Questions \(FAQ\)](infrastructure/factom-community-testnet/frequently-asked-questions-faq.md)
+  * [Useful links](infrastructure/factom-community-testnet/useful-links.md)
 
 ## Technologies
 
@@ -42,6 +46,12 @@
 * [Smart Contracts](technologies/smart-contracts.md)
 * [Digital Identities](technologies/digital-identities.md)
 * [Voting Protocols](technologies/voting-protocols.md)
+
+## Protocol development
+
+* [Bug Bounty](protocol-development/bug-bounty-program.md)
+* [Factom Improvement Proposals](protocol-development/factom-improvement-proposals.md)
+* [Hacking Factom](protocol-development/hacking-factom.md)
 
 ## Wallets
 

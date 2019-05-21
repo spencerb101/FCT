@@ -21,8 +21,6 @@ Factom was built to address these issues, especially when it comes to the needs 
 
 In the Factom network, data is organized into specific groups, and each group can be tracked or examined individually \(although grouping is possible in Bitcoin using colored coins, verification requires the entire ledger back to the genesis block\). In Factom, users write to and read from groups that they’re interested in. This is extremely valuable to users, especially as the size of the overall data set grows. Users do not need to sift through a huge data set, most of which is irrelevant to them. They can simply identify the subset they are interested in and focus on that.Factom also utilizes an innovative dual token system that accomplishes two things. First, it provides a way for individuals to utilize the Factom protocol without having to hold or transact cryptocurrencies. This is good for businesses for both financial reasons \(due to volatility\) and regulation. Secondly, it provides USD-denominated price stability by setting a network-wide price per kilobyte of data entered. This allows for enterprise clients to better estimate costs.
 
-
-
 ## 2 Token System
 
 The majority of internet traffic runs on the TCP/IP protocol yet few understand how it works or even know that it exists. Technology integrates it seamlessly so that we don’t have to understand how it works. Businesses, governments, and people will one day use the Factom Protocol in much the same way when they want to ensure the integrity of their data. For true data integrity, one must have a trustless, decentralized, immutable, censorship resistant, autonomous protocol and that is exactly what Factom is.  

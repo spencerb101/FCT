@@ -1,4 +1,4 @@
-# Factom API Docs
+# API Reference
 
 Welcome to the Factom APIs documentation. Here you’ll find intructions for `factomd` , `factom-walletd`  and the `debug` JSON-RPC APIs. The API call examples are in curl, but the json structures are also provided for programming solutions. If using GoLang, there is a factom library solution created here: [https://github.com/FactomProject/factom](https://github.com/FactomProject/factom).   
   

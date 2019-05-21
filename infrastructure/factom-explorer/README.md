@@ -1,4 +1,4 @@
-# Factom Explorer
+# Explorer
 
 The Factom blockchain comprises of more than 190 000 blocks, at the time of writing. While the majority of the block lookups are done via APIs, the Explorer allows viewers to peruse data manually. The Factom Explorer provides information about the Factom blockchain including Factoid and Entry Credit addresses, blocks, entries, time stamps, transaction IDs and more.
 
