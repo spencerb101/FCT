@@ -24,6 +24,13 @@
 * [SDKs](start/factom-clients/README.md)
   * [Open Source](start/factom-clients/open-source-clients.md)
   * [Commercial](start/factom-clients/commercial-clients.md)
+* [Testnet](start/factom-community-testnet/README.md)
+  * [Installation](start/factom-community-testnet/preparing-your-system.md)
+  * [Node monitoring](start/factom-community-testnet/node-monitoring.md)
+  * [Maintenance](start/factom-community-testnet/securing-your-system.md)
+  * [Interacting with Factom blockchain](start/factom-community-testnet/installing-factomd.md)
+  * [Frequently Asked Questions \(FAQ\)](start/factom-community-testnet/frequently-asked-questions-faq.md)
+  * [Useful links](start/factom-community-testnet/useful-links.md)
 
 ## Infrastructure
 
@@ -32,13 +39,6 @@
   * [Overview](infrastructure/factom-explorer/overview.md)
   * [Block types](infrastructure/factom-explorer/building-blocks.md)
   * [Usage](infrastructure/factom-explorer/usage.md)
-* [Testnet](infrastructure/factom-community-testnet/README.md)
-  * [Installation](infrastructure/factom-community-testnet/preparing-your-system.md)
-  * [Node monitoring](infrastructure/factom-community-testnet/node-monitoring.md)
-  * [Maintenance](infrastructure/factom-community-testnet/securing-your-system.md)
-  * [Interacting with Factom blockchain](infrastructure/factom-community-testnet/installing-factomd.md)
-  * [Frequently Asked Questions \(FAQ\)](infrastructure/factom-community-testnet/frequently-asked-questions-faq.md)
-  * [Useful links](infrastructure/factom-community-testnet/useful-links.md)
 
 ## Technologies
 
