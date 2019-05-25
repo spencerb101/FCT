@@ -1,4 +1,4 @@
-# Developer Sandbox Setup Guide
+# Developer Sandbox
 
 There are three options for running a sandbox.
 

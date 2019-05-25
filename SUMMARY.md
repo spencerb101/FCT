@@ -5,7 +5,7 @@
 
 ## Getting Started
 
-* [Developer Sandbox Setup Guide](start/developer-sandbox-setup-guide.md)
+* [Developer Sandbox](start/developer-sandbox-setup-guide.md)
 * [Hello-World Examples](start/hello-world-examples/README.md)
   * [Golang](start/hello-world-examples/golang.md)
   * [JavaScript](start/hello-world-examples/javascript.md)
@@ -29,6 +29,7 @@
   * [Node monitoring](start/factom-community-testnet/node-monitoring.md)
   * [Maintenance](start/factom-community-testnet/securing-your-system.md)
   * [Interacting with Factom blockchain](start/factom-community-testnet/installing-factomd.md)
+  * [Faucet](start/factom-community-testnet/faucet.md)
   * [Frequently Asked Questions \(FAQ\)](start/factom-community-testnet/frequently-asked-questions-faq.md)
   * [Useful links](start/factom-community-testnet/useful-links.md)
 

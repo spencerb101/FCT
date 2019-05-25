@@ -4,10 +4,6 @@
 
 [https://fct.tools/](https://fct.tools/)
 
-#### Factoid / Entry Credit faucet
-
-[https://faucet.factoid.org/](https://faucet.factoid.org/)
-
 #### Factom identity CLI
 
 [https://github.com/PaulBernier/factom-identity-cli](https://github.com/PaulBernier/factom-identity-cli)
