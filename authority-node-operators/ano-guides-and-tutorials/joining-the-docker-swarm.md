@@ -20,20 +20,21 @@ Make sure you logout / login again, as otherwise your current terminal session w
 
 ## Storing the docker swarm certificate and key
 
-Make sure you store the docker swarm main-net key and certificate on your system. The files can be found here. 
+The Docker Swarm certificate and key is used for authenticating with the docker swarm. These will verify clients with the certificate, as well as encrypt communication with the Docker API using TLS. 
 
 {% hint style="info" %}
 If you're trying to join the test-net swarm the keys can be found [here](https://github.com/FactomProject/factomd-testnet-toolkit/tree/master/tls).
 {% endhint %}
 
-You can store these files in the directory /etc/docker for instance: 
+You can store these files in the directory `/etc/docker` for instance: 
 
 ```bash
 sudo mkdir -p /etc/docker
-sudo wget https://raw.githubusercontent.com/FactomProject/factomd-authority-toolkit/master/tls/cert.pem -O /etc/docker/factom-mainnet-cert.pem
-sudo wget https://raw.githubusercontent.com/FactomProject/factomd-authority-toolkit/master/tls/key.pem -O /etc/docker/factom-mainnet-key.pem
-sudo chmod 644 /etc/docker/factom-mainnet-cert.pem
-sudo chmod 440 /etc/docker/factom-mainnet-key.pem
+sudo wget https://raw.githubusercontent.com/FactomProject/factomd-authority-toolkit/master/tls/cert_exp_5-14-21.pem -O /etc/docker/factom-mainnet-cert_exp_5-14-21.pem
+sudo wget https://raw.githubusercontent.com/FactomProject/factomd-authority-toolkit/master/tls/key_exp_5-14-21.pem -O /etc/docker/factom-mainnet-key_exp_5-14-21.pem
+sudo wget https://raw.githubusercontent.com/FactomProject/factomd-authority-toolkit/master/tls/ca_exp_5-14-21.pem -O /etc/docker/factom-mainnet-ca_exp_5-14-21.pem
+sudo chmod 644 /etc/docker/factom-mainnet-cert_exp_5-14-21.pem
+sudo chmod 440 /etc/docker/factom-mainnet-key_exp_5-14-21.pem /etc/docker/factom-mainnet-ca_exp_5-14-21.pem
 sudo chgrp docker /etc/docker/*.pem
 ```
 
@@ -51,10 +52,11 @@ Configure the docker daemon using a default config file, located at `/etc/docker
 {% code-tabs-item title="/etc/docker/daemon.json" %}
 ```bash
 {
-  "tls": true,
-  "tlscert": "/etc/docker/factom-mainnet-cert.pem",
-
-  "tlskey": "/etc/docker/factom-mainnet-key.pem",
+  "tlsverify": true,
+  "tlscert": "/etc/docker/factom-mainnet-cert_exp_5-14-21.pem",
+  "tlskey": "/etc/docker/factom-mainnet-key_exp_5-14-21.pem",
+  "tlscacert":"/etc/docker/factom-mainnet-ca_exp_5-14-21.pem",
+  
   "hosts": ["tcp://0.0.0.0:2376", "unix:///var/run/docker.sock"]
 }
 ```
