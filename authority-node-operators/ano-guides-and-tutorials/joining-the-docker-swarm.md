@@ -3,7 +3,7 @@
 [![Factom protocol: Choose VPS and join the Docker Swarm](http://img.youtube.com/vi/Qghv05RCMcE/0.jpg)](https://www.youtube.com/watch?v=Qghv05RCMcE)
 
 {% hint style="info" %}
-This tutorial is fully covered in the video shown above.
+This tutorial is fully covered in the video shown above. Some parts may differ from the text version, such as the swarm certificates and keys, these have been updated since the making of this video.
 {% endhint %}
 
 ## Installing docker
