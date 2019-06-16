@@ -59,9 +59,9 @@ A fungible, mineable asset token standard.
 
 **Getting Started**
 
-The easiest way to get started exploring, issuing, accepting, and trading FAT tokens is by using the latest official [FAT Wallet Release](https://github.com/Factom-Asset-Tokens/FAT/blob/master). The wallet is available as an executable for Windows, Mac, or Linux.
+The easiest way to get started exploring, issuing, accepting, and trading FAT tokens is by using the latest official [FAT Wallet Release](https://github.com/Factom-Asset-Tokens/wallet/releases). The wallet is available as an executable for Windows, Mac, or Linux.
 
-You can also use a [Library or API](https://github.com/Factom-Asset-Tokens/FAT#libraries) to programmatically issue, interact with, and send FAT tokens from your code.  
+You can also use a [library or API](https://github.com/Factom-Asset-Tokens/FAT#libraries) to programmatically issue, interact with, and send FAT tokens from your code.  
 
 
 **What Is The FAT Wallet?**
