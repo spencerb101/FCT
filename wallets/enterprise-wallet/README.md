@@ -1,32 +1,38 @@
+---
+description: 'Enterprise Wallet is a Factom desktop wallet for Windows, Mac and Linux.'
+---
+
 # Enterprise Wallet
 
-## **Introduction**
+## **Download**
 
-It is our utmost pleasure to present the new “Enterprise Wallet,” it has been completely redesigned from the bottom up with improved functionality, ease of use, and a great new feel.
+If you just want to download and install the Enterprise Wallet, you can do that from the links below or from [Github](https://github.com/FactomProject/distribution#factom-enterprise-wallet). Further documentation for the Enterprise Wallet can be found in the lefthand panel.  
 
-Find the new features highlighted below:
+{% tabs %}
+{% tab title="Windows" %}
+### [Enterprise-wallet.exe](https://github.com/FactomProject/distribution/releases/download/v0.4.2.11/enterprise-wallet-setup-amd64.exe)
 
-* A redesigned graphic user interface \(GUI\)
-* Two themes: light and dark
-* Address Book function
-* Contacts list
-* More details about transactions
-* Transaction verification via Factom Explorer or Local Explorer
-* QR codes for FCT and EC addresses
-* Ability to import/export transactions to file
-* Ability to import/export private keys
-* Coin-control features such as specific or multiple input addresses for new transactions
-* Address generation from a “seed” in case you lose your wallet you can re-generate your addresses from the seed
-* Seed export to file function
-* Ability to use Encrypted or Unencrypted Wallets
+sha256sum: 6b6248da07a3a3d7a60480f99013b0e35f09a3ace484569bb24f44730d61ff70
+{% endtab %}
 
-Here it is in all its glory!
+{% tab title="Mac" %}
+### [Enterprise-wallet.dmg](https://github.com/FactomProject/distribution/releases/download/v0.4.2.11/enterprise-wallet-setup.dmg)
 
-#### **Light Theme**
+sha256sum: 4af4a6ded4a74e8e38e194d9648248314d8671ed381e35f0e969b87625f1d601
+{% endtab %}
 
-![Light Theme](https://docs.factom.com/images/wallet_001.png)
+{% tab title="Ubuntu/Debian" %}
+### [Enterprise-wallet.deb](https://github.com/FactomProject/distribution/releases/download/v0.4.2.11/enterprise-wallet-setup-amd64.deb)
 
-#### **Dark Theme**
+sha256sum: 22c7bce469e5f2d1051a4d9c6ad5d94cf2b79ce3f7cf6073f7e971fb692b44e5
+{% endtab %}
 
-![Dark Theme](https://docs.factom.com/images/wallet_002.png)
+{% tab title="Redhat/Centos" %}
+### [Enterprise-wallet.zip](https://github.com/FactomProject/distribution/releases/download/v0.4.2.11/enterprise-wallet-linux.zip)
+
+sha256sum: ce0ab4bf4d446bf5a3c5b0b25d68719d6dffa1005ad31781a0da3719c088111f
+{% endtab %}
+{% endtabs %}
+
+![Enterprise Wallet](../../.gitbook/assets/image%20%289%29.png)
 

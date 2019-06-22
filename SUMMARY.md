@@ -3,7 +3,7 @@
 * [Welcome Developers](README.md)
 * [Protocol Overview](protocol-overview-2.md)
 
-## Getting Started
+## Getting Started <a id="start"></a>
 
 * [Developer Sandbox](start/developer-sandbox-setup-guide.md)
 * [Hello-World Examples](start/hello-world-examples/README.md)
@@ -58,9 +58,14 @@
 
 * [Ledger Nano S Wallet](wallets/ledger-nano-s-wallet.md)
 * [Enterprise Wallet](wallets/enterprise-wallet/README.md)
-  * [Before you begin](wallets/enterprise-wallet/before-you-begin.md)
-  * [Installation](wallets/enterprise-wallet/installation.md)
-  * [Run and use the wallet](wallets/enterprise-wallet/run-and-use-the-wallet.md)
+  * [Install](wallets/enterprise-wallet/install.md)
+  * [Create FCT Address](wallets/enterprise-wallet/create-fct-address.md)
+  * [Send and Receive FCT](wallets/enterprise-wallet/send-and-receive-fct.md)
+  * [Backup Wallet](wallets/enterprise-wallet/backup-wallet.md)
+  * [Restore From a Backup Seed](wallets/enterprise-wallet/restore-from-a-backup-seed.md)
+  * [Importing/Exporting your private key\(s\)](wallets/enterprise-wallet/import-private-key.md)
+  * [Select Your Factomd Node](wallets/enterprise-wallet/select-your-factomd-node.md)
+  * [Upgrade to a Secure Wallet](wallets/enterprise-wallet/upgrade-to-a-secure-wallet.md)
 * [MyFactomWallet](wallets/myfactomwallet.md)
 * [Paper Wallet](wallets/paper-wallet.md)
 
