@@ -86,8 +86,8 @@ If your standby node is not in sync with the network, performing the brainswap w
     ```
 
       The `7/7` means you are on minute 7. You will want to make sure this number is the same on the Standby `(_/7)` and the Federated `(7/7)`
-* Check the process list for , that indicates some network instability. 
-  * Process list is located in the control panel \(localhost:8090\) -&gt; "more detailed node information". If any entries show you should not move on with the brainswap.
+* Check the process list for _Nil\(s\)_, that indicates some network instability. 
+  * Process list is located in the control panel \(localhost:8090\) -&gt; "_more detailed node information_". If any _Nil_ lines show you should not move on with the brainswap.
 
 Once you've confirmed that the standby node is ready, it's time to start the swap process.
 
