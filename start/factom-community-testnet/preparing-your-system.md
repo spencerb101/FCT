@@ -166,7 +166,7 @@ This part of tutorial is covered in the video shown above.
 
 ### Storing the docker swarm certificate and key
 
-Make sure you store the docker swarm testnet key and certificate on your system.  The files can be found at [here](https://github.com/FactomProject/factomd-authority-toolkit/tree/master/tls). You can store these files in the directory /etc/docker for instance:
+Make sure you store the docker swarm testnet key and certificate on your system.  The files can be found at [here](https://github.com/FactomProject/factomd-testnet-toolkit/tree/master/tls). You can store these files in the directory /etc/docker for instance:
 
 You can store these files in the directory /etc/docker for instance: 
 
