@@ -40,6 +40,7 @@
   * [Overview](infrastructure/factom-explorer/overview.md)
   * [Block types](infrastructure/factom-explorer/building-blocks.md)
   * [Usage](infrastructure/factom-explorer/usage.md)
+* [Open Node](infrastructure/open-node.md)
 
 ## Technologies
 
