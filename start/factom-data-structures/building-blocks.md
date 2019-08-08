@@ -22,5 +22,7 @@ $$
 ChainID = SHA256( SHA256(Name[0]) | SHA256(Name[1]) | ... | SHA256(Name[X]) )
 $$
 
-## 
+{% hint style="warning" %}
+The result of the SHA256 for each name should be concat as a _byte array_ rather than _hex!_
+{% endhint %}
 
