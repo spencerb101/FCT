@@ -2,11 +2,7 @@
 description: This page describes how to install Factom Federation.
 ---
 
-# Installation
-
-## Install Factom Federation \(FF\)
-
-If you got this far, you are doing well Grasshopper. Ready to get your hands on FF? You will be up and running in a few minutes. Promise.
+# Installing Factom
 
 Here is a step by step guide on how to install FF binaries on Mac, Windows, and Linux.
 
@@ -16,7 +12,7 @@ Here is a step by step guide on how to install FF binaries on Mac, Windows, and 
 
 ### Mac
 
-This installer is for factomd, factom-walletd, factom-cli, the three binaries will be installed in /Applications/Factom/ together with a .factom folder in the root of the local user Home Folder. These are all required to run Factom via command line.
+This installer is for `factomd`, `factom-walletd`, `factom-cli`, the three binaries will be installed in `/Applications/Factom/` together with a `.factom` folder in the root of the local user Home Folder. These are all required to run Factom via command line.
 
 Before you start, go to System Preferences/Security & Privacy, click on the lock at the bottom left of the window, type your username and password, then select “Allow apps downloaded from: Anywhere.” At the prompt click on “Allow From Anywhere.”
 
@@ -24,7 +20,7 @@ Before you start, go to System Preferences/Security & Privacy, click on the lock
 
 Note that after running the Factom installer it is recommended you revert your Security & Privacy settings to their original state.
 
-Next, locate the “factom.mpkg.zip” file you just downloaded, double-click to unzip it, then double-click the “factom.mpkg” file to run the installer.
+Next, locate the `factom.mpkg.zip` file you just downloaded, double-click to unzip it, then double-click the `factom.mpkg` file to run the installer.
 
 The installer will open, click continue.
 
@@ -46,15 +42,15 @@ The installer will proceed with the installation and once finished it will promp
 
 ### Windows
 
-This installer is for factomd, factom-walletd, factom-cli, the three binaries will be installed in c:\Program Files \(x86\)\Factom\ or c:\Program Files\Factom\ \(depending on your system\) together with a .factom folder in the root of the local user Home Folder. These are all required to run Factom via command line.
+This installer is for `factomd`, `factom-walletd`, `factom-cli`, the three binaries will be installed in `c:\Program Files (x86)\Factom\ or c:\Program Files\Factom\` \(depending on your system\) together with a `.factom` folder in the root of the local user Home Folder. These are all required to run Factom via command line.
 
-Next, locate the “FactomInstall-amd64.msi” or “FactomInstall-i386.msi” file you just downloaded in Step 1.
+Next, locate the `FactomInstall-amd64.msi` or `FactomInstall-i386.msi` file you just downloaded in Step 1.
 
-Double click the .msi installer to run it, but you may be prompted with the following message.
+Double click the `.msi` installer to run it, but you may be prompted with the following message.
 
 ![Windows Prompt 1](https://docs.factom.com/images/wallet_010.png)
 
-Click on “more info” to expand it then select “Run anyway.”
+Click on `More info` to expand it then select “Run anyway.”
 
 ![Windows Prompt 2](https://docs.factom.com/images/wallet_011.png)
 
@@ -62,31 +58,31 @@ The Installer will open, click “Next.”
 
 ![Installer Step 1](https://docs.factom.com/images/wallet_012.png)
 
-Select “I accept the terms in the License Agreement” and click “Next” to continue.
+Select `I accept the terms in the License Agreement` and click `Next` to continue.
 
 ![Installer Step 2](https://docs.factom.com/images/wallet_013.png)
 
-Make sure Factom is installed into c:\Program Files \(x86\)\Factom\ folder and click “Next” to continue.
+Make sure Factom is installed into `c:\Program Files (x86)\Factom\` folder and click `Next` to continue.
 
 ![Installer Step 3](https://docs.factom.com/images/wallet_014.png)
 
-Then click “Install.”
+Then click `Install`.
 
 ![Installer Step 4](https://docs.factom.com/images/wallet_015.png)
 
-Select “Yes” to continue if you get the following message.
+Select `Yes` to continue if you get the following message.
 
 ![Windows Prompt 3](https://docs.factom.com/images/wallet_016.png)
 
-When the installation is over select “Finish” to exit the installer.
+When the installation is over select `Finish` to exit the installer.
 
 ![Installer Step 5](https://docs.factom.com/images/wallet_017.png)
 
 ### Linux
 
-This installer is for factomd, factom-walletd, factom-cli, the three binaries will be installed on your local drive together with a .factom folder in the root of the local user Home Folder ~/.factom. These are all required to run Factom via command line or the Factom Foundation Wallet.
+This installer is for `factomd`, `factom-walletd`, `factom-cli`, the three binaries will be installed on your local drive together with a `.factom` folder in the root of the local user Home Folder `~/.factom`. These are all required to run Factom via command line or the Factom Foundation Wallet.
 
-Download the “factom-amd64.deb” or “factom-i386.deb” installer that suits your system as per Step 1 then run the following command to install.
+Download the `factom-amd64.deb` or `factom-i386.deb` installer that suits your system as per Step 1 then run the following command to install.
 
 ```bash
 sudo dpkg -i ./factom-amd64.deb

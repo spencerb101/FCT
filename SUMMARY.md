@@ -5,6 +5,7 @@
 
 ## Getting Started <a id="start"></a>
 
+* [Installing Factom](start/installation.md)
 * [Developer Sandbox](start/developer-sandbox-setup-guide.md)
 * [Hello-World Examples](start/hello-world-examples/README.md)
   * [Golang](start/hello-world-examples/golang.md)
@@ -14,9 +15,10 @@
   * [Factomd](start/factom-api-docs/factomd-api.md)
   * [Factom-walletd](start/factom-api-docs/factom-walletd-api.md)
   * [Debug](start/factom-api-docs/debug-api.md)
-* [CLI Reference](start/factom-cli-docs/README.md)
-  * [Installation](start/factom-cli-docs/installation.md)
-  * [Usage](start/factom-cli-docs/usage.md)
+* [CLI Reference](start/usage/README.md)
+  * [Run Factom Federation](start/usage/run-factom-federation.md)
+  * [Common Tasks](start/usage/common-tasks.md)
+  * [Factom CLI Commands](start/usage/factom-cli-commands.md)
 * [Data Structures](start/factom-data-structures/README.md)
   * [Building blocks](start/factom-data-structures/building-blocks.md)
   * [User elements](start/factom-data-structures/user-elements.md)
