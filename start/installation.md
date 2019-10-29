@@ -94,7 +94,7 @@ or
 sudo dpkg -i ./factom-i386.deb
 ```
 
-We are aware Linux users are hardcore, so we made sure one command is all they need to be ready to [install Enterprise Wallet](https://developers.factomprotocol.org/start/enterprise-wallet/installation#install-enterprise-wallet)!
+We are aware Linux users are hardcore, so we made sure one command is all they need to be ready to [install Enterprise Wallet](https://docs.factomprotocol.org/wallets/enterprise-wallet)!
 
 ### Docker
 
