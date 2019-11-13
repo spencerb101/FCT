@@ -99,7 +99,7 @@ A step by step report \(or an exploit script\) is very much welcome. It will all
 * Include your Factoid \(FCT\) address for payment.
 * Please allow 3 business days for the core committee to respond in the forum thread before reminding them.
 
---
+
 
 \*\*\*\*
 
