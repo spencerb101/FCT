@@ -28,5 +28,3 @@ Monitor your factom nodes with Grafana in conjunction with Prometheus and node\_
 
 [https://factoshi.io/](https://factoshi.io/) 
 
-++
-
