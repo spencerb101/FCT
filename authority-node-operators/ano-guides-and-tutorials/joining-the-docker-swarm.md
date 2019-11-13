@@ -48,8 +48,8 @@ Now you should  have the files with the correct permissions set.
 
 Configure the docker daemon using a default config file, located at `/etc/docker/daemon.json` . Create this file if it doesn't exist. Copy the following into the file:
 
-{% code-tabs %}
-{% code-tabs-item title="/etc/docker/daemon.json" %}
+{% tabs %}
+{% tab title="/etc/docker/daemon.json" %}
 ```bash
 {
   "tlsverify": true,
@@ -60,8 +60,8 @@ Configure the docker daemon using a default config file, located at `/etc/docker
   "hosts": ["tcp://0.0.0.0:2376", "unix:///var/run/docker.sock"]
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 If your system has multiple IP addresses you can select which IP it should listen on by editing `"hosts".` 
@@ -75,15 +75,15 @@ sudo systemctl edit docker.service
 
  The above command creates an override directory at `/etc/systemd/system/docker.service.d/` and an override file called `override.conf` \(which is open on your terminal now\).  Copy and paste the following:
 
-{% code-tabs %}
-{% code-tabs-item title="override.conf" %}
+{% tabs %}
+{% tab title="override.conf" %}
 ```bash
 [Service]
 ExecStart=
 ExecStart=/usr/bin/dockerd
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Exit and save the file. Now reload the docker configuration and the `docker.service`:
 

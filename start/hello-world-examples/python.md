@@ -62,8 +62,8 @@ Everything is setup and ready now. All you need is your favorite IDE and make su
 
 ### Initiating Factomd and FactomWalletd instances
 
-{% code-tabs %}
-{% code-tabs-item title="hello-world-fct-.py" %}
+{% tabs %}
+{% tab title="hello-world-fct-.py" %}
 ```python
 from factom import Factomd, FactomWalletd
 
@@ -79,15 +79,15 @@ factomd = Factomd(
                 username='hello',
                 password='world')
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### Retrieving wallet balances using factomd
 
 Let’s check the wallet balances on both the FCT and EC addresses we imported and generated earlier. The FCT balance will be shown in Factoshis\( Factoids \* 10^-8\) :
 
-{% code-tabs %}
-{% code-tabs-item title="hello-world-fct.py" %}
+{% tabs %}
+{% tab title="hello-world-fct.py" %}
 ```python
 # Retrieve FCT and EC balance
 fct_balance = factomd.factoid_balance(FCT_ADDR)
@@ -96,13 +96,13 @@ ec_balance = factomd.entry_credit_balance(EC_ADDR)
 print(fct_balance)
 print(ec_balance)
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 If you provided your wallet info when initiating the `factomd` instance you can run the above lines without providing the addresses:
 
-{% code-tabs %}
-{% code-tabs-item title="hello-world-fct.py" %}
+{% tabs %}
+{% tab title="hello-world-fct.py" %}
 ```python
 # Retrieve FCT and EC balance
 fct_balance = factomd.factoid_balance()
@@ -111,8 +111,8 @@ ec_balance = factomd.entry_credit_balance()
 print(fct_balance)
 print(ec_balance)
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 You should see the following results:
 
@@ -127,15 +127,15 @@ At the moment we have 20000 Factoids and 0 Entry Credits. We need to fund our En
 
 The wallet daemon provides a method `fct_to_ec()` to burn Factoids and mint Entry Credits. We will use that method, but first we need to know what the Factoid to Entry Credit exchange rate is:
 
-{% code-tabs %}
-{% code-tabs-item title="hello-world-fct.py" %}
+{% tabs %}
+{% tab title="hello-world-fct.py" %}
 ```python
 # Check the EC rate
 ec_rate = factomd.entry_credit_rate()
 print(ec_rate)
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Result:
 
@@ -145,8 +145,8 @@ Result:
 
 This tells us we'll need to burn 1000 Factoshis \(0.00001 FCT\) in exchange for 1 Entry Credit, so let's purchase 10 entry credits for 10000 Factoshis \(0.0001 FCT\). 
 
-{% code-tabs %}
-{% code-tabs-item title="hello-world-fct.py" %}
+{% tabs %}
+{% tab title="hello-world-fct.py" %}
 ```python
 # Purchase some EC with Factoids
 r = walletd.fct_to_ec(factomd=factomd,
@@ -155,8 +155,8 @@ r = walletd.fct_to_ec(factomd=factomd,
                       ec_address=ec_address)
 print(r)
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Result:
 
@@ -186,8 +186,8 @@ The wallet client has a `new_chain()` method that handles everything needed to c
 * Entry content
 * Your Entry Credit address
 
-{% code-tabs %}
-{% code-tabs-item title="hello-world-fct.py" %}
+{% tabs %}
+{% tab title="hello-world-fct.py" %}
 ```python
 # Create new chain!
 new_chain = walletd.new_chain(factomd=factomd,
@@ -197,8 +197,8 @@ new_chain = walletd.new_chain(factomd=factomd,
 
 print(new_chain)
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
  Result:
 
@@ -216,8 +216,8 @@ If nothing shows up you might need to wait a few more seconds / minutes, dependi
 
 Our chain is successfully created and is visible in the explorer, now lets add some entries to that chain. 
 
-{% code-tabs %}
-{% code-tabs-item title="hello-world-fct.py" %}
+{% tabs %}
+{% tab title="hello-world-fct.py" %}
 ```python
 # Chainid retrieved from the previous result
 chain_id = 'e1ebf8bd4a4b20816c83b674895064bbe77bdc467967480daa7f851b1595d4dc'
@@ -230,8 +230,8 @@ new_entry = walletd.new_entry(factomd=factomd,
                               ec_address=EC_ADDR)
 print(new_entry)
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Result:
 
@@ -251,8 +251,8 @@ As we see in the image above, both the initial entry and new entry exist on the 
 
 Sometimes the entries in your chain may reference each other, thus you may want to scan the entire chain in order to very its integrity.  The `factomd` client provides a `read_chain()` method which iterates over all entry-containing blocks and returns a list of entries in reverse order.
 
-{% code-tabs %}
-{% code-tabs-item title="hello-world-fct.py" %}
+{% tabs %}
+{% tab title="hello-world-fct.py" %}
 ```python
 chain_id = 'e1ebf8bd4a4b20816c83b674895064bbe77bdc467967480daa7f851b1595d4dc'
 
@@ -261,8 +261,8 @@ chain_data = factomd.read_chain(chain_id=chain_id)
 
 print(chain_data )
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Result:
 
@@ -295,8 +295,8 @@ factom.exceptions.InvalidParams: -32602: Invalid params
 
 Details about the error are attached to the exception instance, thus a good idea is to wrap each API call into try blocks such as:
 
-{% code-tabs %}
-{% code-tabs-item title="hello-world-fct.py" %}
+{% tabs %}
+{% tab title="hello-world-fct.py" %}
 ```python
 from factom.exceptions import FactomAPIError
 
@@ -308,8 +308,8 @@ try:
 except FactomAPIError as e:
     print(e.data)
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 As this chain already exists, it'll return the following message:
 
@@ -323,8 +323,8 @@ For a full list of the error codes in the library see [here](https://github.com/
 
 Below is the full code featuring everything mentioned above, with some extra additions. 
 
-{% code-tabs %}
-{% code-tabs-item title="hello-world-fct.py" %}
+{% tabs %}
+{% tab title="hello-world-fct.py" %}
 ```python
 from time import sleep
 
@@ -448,8 +448,8 @@ if __name__ == "__main__":
     except FactomAPIError as e:    
         print(e.data)
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ## Conclusion
 

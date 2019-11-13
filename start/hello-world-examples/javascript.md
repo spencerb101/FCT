@@ -307,8 +307,8 @@ Our main function has 3 steps:
 * We buy enough entry credits on the fly to pay for writing that data.
 * We add the chain to Factom.
 
-{% code-tabs %}
-{% code-tabs-item title="factomize.js" %}
+{% tabs %}
+{% tab title="factomize.js" %}
 ```javascript
 // Our main function that factomizes our input file
 async function factomize(filePath) {
@@ -323,13 +323,13 @@ async function factomize(filePath) {
     console.log(`Entry hash: ${entryHash}`);
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Here we are creating a new a new chain per file. Another approach could be to create one chain where you will append new entries for all your factomized files. We put some metadata in the external ids \(filename, timestamp\) and the SHA512 of the file in the content of the entry. We also added 'simple-factomized' in the first external ID as a simple marker for easier identification of the nature of the entry,.
 
-{% code-tabs %}
-{% code-tabs-item title="factomize.js" %}
+{% tabs %}
+{% tab title="factomize.js" %}
 ```javascript
 function buildChain(filePath) {
     const data = fs.readFileSync(filePath);
@@ -346,13 +346,13 @@ function buildChain(filePath) {
     return new Chain(entry);
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 We have a function to buy entry credits for the specific amount needed for the sake of re-using what we learned previously. But in practice you will often use an EC address that already have enough ECs and that is regularly topped up to stay with a large positive balance.
 
-{% code-tabs %}
-{% code-tabs-item title="factomize.js" %}
+{% tabs %}
+{% tab title="factomize.js" %}
 ```javascript
 // FCT address funded from the genesis block
 const FUNDED_FCT_ADDRESS = 'Fs3E9gV6DXsYzf7Fqx1fVBQPQXV695eP3k5XbmHEZVRLkMdD9qCK';
@@ -368,13 +368,13 @@ async function getEntryCredits(cli, amount) {
     return { ecAddress };
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Everything together gives us our simple factomizer:
 
-{% code-tabs %}
-{% code-tabs-item title="factomize.js" %}
+{% tabs %}
+{% tab title="factomize.js" %}
 ```javascript
 const fs = require('fs'),
     path = require('path'),
@@ -423,8 +423,8 @@ function buildChain(filePath) {
 
 factomize(process.argv[2])
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Usage:
 
@@ -444,8 +444,8 @@ Now that we have secured a document in the blockchain we need an operation to be
 * Fetch the hash recorded in the corresponding Factom entry.
 * Compare both hashes.
 
-{% code-tabs %}
-{% code-tabs-item title="verify.js" %}
+{% tabs %}
+{% tab title="verify.js" %}
 ```javascript
 async function verify(filePath, entryHash) {
     const fileHash = getFileHash(filePath);
@@ -458,11 +458,11 @@ async function verify(filePath, entryHash) {
     }
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
-{% code-tabs %}
-{% code-tabs-item title="verify.js" %}
+{% tabs %}
+{% tab title="verify.js" %}
 ```javascript
 async function getRecordedHash(entryHash) {
     const cli = new FactomCli();
@@ -475,13 +475,13 @@ async function getRecordedHash(entryHash) {
     return entry.content;
 }
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Everything together:
 
-{% code-tabs %}
-{% code-tabs-item title="verify.js" %}
+{% tabs %}
+{% tab title="verify.js" %}
 ```javascript
 const fs = require('fs'),
     path = require('path'),
@@ -517,8 +517,8 @@ async function getRecordedHash(entryHash) {
 
 verify(process.argv[2], process.argv[3]);
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 Usage:
 
